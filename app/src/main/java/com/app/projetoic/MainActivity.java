@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void telaQuadrado (View view){
+    public void telaQuadrado (View view){
         Intent intent = new Intent(MainActivity.this,TelaQuadradoActivity.class);
         startActivity(intent);
     }
