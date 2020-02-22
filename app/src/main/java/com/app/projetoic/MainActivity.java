@@ -3,24 +3,37 @@ package com.app.projetoic;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ImageView imageQuadrado;
+    private ImageView imageQuadradoVazado;
+    private ImageView imageRetangulo;
+    private ImageView imageRetanguloVazado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Inicializar itens
+        inicializarItens();
+
         //Configurar Toolbar
         Toolbar toolbar = findViewById(R.id.toolbarPrincipal);
-        toolbar.setTitle("Visualizar Postagem");
+        toolbar.setTitle("Geometrix");
         toolbar.setTitleTextColor(getColor(R.color.titleColor));
         setSupportActionBar(toolbar);
+
+
     }
 
     @Override
@@ -28,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main,menu);
-
         return super.onCreateOptionsMenu(menu);
 
     }
@@ -46,5 +58,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void telaQuadrado (View view){
+        Intent intent = new Intent(MainActivity.this,TelaQuadradoActivity.class);
+        startActivity(intent);
+    }
+
+    private void inicializarItens(){
+        imageQuadrado = findViewById(R.id.imageQuadrado);
+        imageQuadradoVazado = findViewById(R.id.imageQuadradoVazado);
+        imageRetangulo = findViewById(R.id.imageRetangulo);
+        imageRetanguloVazado = findViewById(R.id.imageRetanguloVazado);
     }
 }
