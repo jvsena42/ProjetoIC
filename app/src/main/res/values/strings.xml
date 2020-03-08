@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">Projeto IC</string>
+    <string name="app_name">Geometrix</string>
+    <string name="textoSobre">O Geometry Tool foi desenvolvido para o cálculo de propriedades geométricas de seções planas.
+        Sua elaboração só foi possível graças ao financiamento do programa PIBIC, com o objetivo didático e científico.
+       </string>
+    
+    <string name="desenvolvedor">
+        Desenvolvedor: Luís Gustavo Sousa Vieira.
+    </string>
+
+    <string name="tituloDesenvolvedor">
+        Graduando de Engenharia Civil da Universidade Federal do Piauí (UFPI)
+    </string>
+
+    <string name="orientador">
+        Orientador: Prof. Dr. Eduardo Martins Fontes do Rêgo  2020.
+    </string>
+
+    <string name="direitos">
+         Direitos autorais reservados ao DE-UFPI.
+    </string>
+    <string name="tituloSobre">Sobre o aplicativo:</string>
+
+
 </resources>

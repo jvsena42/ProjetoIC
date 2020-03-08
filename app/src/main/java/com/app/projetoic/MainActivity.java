@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Página configurações",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.itemSobre:
+                Intent intent = new Intent(MainActivity.this,SobreActivity.class);
+                startActivity(intent);
                 Toast.makeText(getApplicationContext(),"Página sobre",Toast.LENGTH_SHORT).show();
                 break;
         }
