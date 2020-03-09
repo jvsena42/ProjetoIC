@@ -5,11 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    android:fadeScrollbars="true"
-    android:gravity="top"
-    android:isScrollContainer="true"
-    android:scrollbars="vertical"
-    tools:context=".TelaQuadradoActivity">
+    tools:context=".TelaQuadradoVazadoActivity">
 
     <include
         android:id="@+id/include2"
@@ -20,56 +16,60 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/editTextEspessura"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/alturaCaixaDeTexto"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/background"
+        android:ems="10"
+        android:hint="e="
+        android:inputType="number"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLado"
+        tools:layout_editor_absoluteX="392dp" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:background="@drawable/background"
         android:padding="12dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextLado"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include2"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/quadrado" />
+        app:srcCompat="@drawable/quadrado_vazado"
+        tools:layout_editor_absoluteX="8dp" />
 
     <EditText
         android:id="@+id/editTextLado"
         android:layout_width="match_parent"
         android:layout_height="@dimen/alturaCaixaDeTexto"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:background="@drawable/background"
         android:ems="10"
         android:hint="L="
         android:inputType="number"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextEspessura"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:layout_editor_absoluteX="392dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:background="@drawable/background"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLado">
+        app:layout_constraintTop_toBottomOf="@+id/editTextEspessura"
+        tools:layout_editor_absoluteX="392dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -175,13 +175,11 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         android:background="@drawable/background"
         android:text="Calcular"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:layout_editor_absoluteX="0dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

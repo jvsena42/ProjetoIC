@@ -67,6 +67,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void telaQuadradoVazado (View view){
+        Intent intent = new Intent(MainActivity.this,TelaQuadradoVazadoActivity.class);
+        startActivity(intent);
+    }
+
+    public void telaRetangulo (View view){
+        Intent intent = new Intent(MainActivity.this,TelaRetanguloActivity.class);
+        startActivity(intent);
+    }
+
     private void inicializarItens(){
         imageQuadrado = findViewById(R.id.imageQuadrado);
         imageQuadradoVazado = findViewById(R.id.imageQuadradoVazado);

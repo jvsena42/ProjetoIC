@@ -48,6 +48,7 @@
                 android:layout_width="5dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="telaQuadradoVazado"
                 app:srcCompat="@drawable/quadrado_vazado" />
 
             <ImageView
@@ -55,6 +56,7 @@
                 android:layout_width="5dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="telaRetangulo"
                 app:srcCompat="@drawable/retangulo" />
 
             <ImageView
