@@ -10,8 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.santalu.maskedittext.MaskEditText;
-
 public class TelaQuadradoActivity extends AppCompatActivity {
 
     private EditText editTextLado;
@@ -88,7 +86,7 @@ public class TelaQuadradoActivity extends AppCompatActivity {
                     textViewZy.setText("Zy = "+textModuloPlastico);
 
                     //Apagar caixa de Edittext
-                    //editTextLado.setText("");
+                    editTextLado.setText("");
 
                 }else {
                     Toast.makeText(TelaQuadradoActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();

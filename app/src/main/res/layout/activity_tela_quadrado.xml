@@ -69,7 +69,7 @@
         android:background="@drawable/background"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCalcular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextLado">
@@ -122,6 +122,16 @@
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="Wx = "
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -137,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="start|center_vertical"
+                android:padding="5dp"
                 android:text="Perímetro ="
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
@@ -168,6 +179,16 @@
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:text="Zy ="
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="Wy ="
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
         </LinearLayout>

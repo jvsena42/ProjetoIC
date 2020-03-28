@@ -250,6 +250,7 @@
 
     <include
         android:id="@+id/include"
+        style="@style/AppTheme"
         layout="@layout/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

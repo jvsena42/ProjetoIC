@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@android:color/white"
+    android:isScrollContainer="true"
     tools:context=".TelaQuadradoVazadoActivity">
 
     <include
@@ -27,7 +28,7 @@
         android:inputType="number"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLado"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLadoQVazado"
         tools:layout_editor_absoluteX="392dp" />
 
     <ImageView
@@ -37,15 +38,15 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/background"
         android:padding="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextLado"
+        app:layout_constraintBottom_toTopOf="@+id/editTextLadoQVazado"
         app:layout_constraintTop_toBottomOf="@+id/include2"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/quadrado_vazado"
+        app:srcCompat="@drawable/tela_quadrado_vazado"
         tools:layout_editor_absoluteX="8dp" />
 
     <EditText
-        android:id="@+id/editTextLado"
+        android:id="@+id/editTextLadoQVazado"
         android:layout_width="match_parent"
         android:layout_height="@dimen/alturaCaixaDeTexto"
         android:layout_marginTop="8dp"
@@ -67,7 +68,7 @@
         android:background="@drawable/background"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCalcular"
         app:layout_constraintTop_toBottomOf="@+id/editTextEspessura"
         tools:layout_editor_absoluteX="392dp">
 
@@ -119,6 +120,16 @@
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
+            <TextView
+                android:id="@+id/textViewWx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="Wx"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -134,6 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="start|center_vertical"
+                android:padding="5dp"
                 android:text="Perímetro ="
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
@@ -167,12 +179,22 @@
                 android:text="Zy ="
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewWy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="Wy"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
         </LinearLayout>
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonCalcular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
