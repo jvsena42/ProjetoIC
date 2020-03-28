@@ -103,6 +103,7 @@ public class TelaQuadradoVazadoActivity extends AppCompatActivity {
                         textViewZx.setText("Zx = "+textModuloPlastico);
                         textViewZy.setText("Zy = "+textModuloPlastico);
 
+                        //Limpar EditText
                         editTextEspessura.setText("");
                         editTextLado.setText("");
 

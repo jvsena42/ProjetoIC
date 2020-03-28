@@ -85,7 +85,7 @@ public class TelaQuadradoActivity extends AppCompatActivity {
                     textViewZx.setText("Zx = "+textModuloPlastico);
                     textViewZy.setText("Zy = "+textModuloPlastico);
 
-                    //Apagar caixa de Edittext
+                    //Limpar EditText
                     editTextLado.setText("");
 
                 }else {
