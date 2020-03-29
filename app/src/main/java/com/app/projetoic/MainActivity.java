@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent3);
                 break;
             case R.id.imageRetanguloVazado:
+                Intent intent4 = new Intent(MainActivity.this, TelaRetanguloVazadoActivity.class);
+                startActivity(intent4);
                 break;
 
         }
