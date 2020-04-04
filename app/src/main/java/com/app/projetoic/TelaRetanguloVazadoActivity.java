@@ -23,6 +23,8 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
     private TextView textViewiy;
     private TextView textViewZx;
     private TextView textViewZy;
+    private TextView textViewWx;
+    private TextView textViewWy;
     private Button buttonCalcular;
 
     @Override
@@ -48,6 +50,8 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
         textViewiy = findViewById(R.id.textViewiy);
         textViewZx = findViewById(R.id.textViewZx);
         textViewZy = findViewById(R.id.textViewZy);
+        textViewWx = findViewById(R.id.textViewWx);
+        textViewWy = findViewById(R.id.textViewWy);
         buttonCalcular = findViewById(R.id.buttonCalcular);
 
         //Evento de clique
@@ -99,6 +103,14 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
                         String textModuloPlasticoY = String.valueOf(moduloPlasticoY);
                         textViewZx.setText("Zx = "+textModuloPlasticoX);
                         textViewZy.setText("Zy = "+textModuloPlasticoY);
+
+                        //Módulo elástico
+                        float moduloElasticoX = (float) ((medidaBase*medidaAltura)*medidaEspessura + (Math.pow(medidaBase,2)*medidaEspessura/3));
+                        float moduloElasticoY = (float) ((medidaBase*medidaAltura)*medidaEspessura + (Math.pow(medidaAltura,2)*medidaEspessura/3));
+                        String textModuloElasticoX = String.valueOf(moduloElasticoX);
+                        String textModuloElasticoY = String.valueOf(moduloElasticoY);
+                        textViewWx.setText("Wx = "+textModuloElasticoX);
+                        textViewWy.setText("Wx = "+textModuloElasticoY);
 
                         //Limpar EditText
                         editTextBase.setText("");
