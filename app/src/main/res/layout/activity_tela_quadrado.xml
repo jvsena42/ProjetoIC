@@ -123,7 +123,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/textViewWx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -183,7 +183,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/textViewWy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

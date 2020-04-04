@@ -21,6 +21,8 @@ public class TelaQuadradoActivity extends AppCompatActivity {
     private TextView textViewiy;
     private TextView textViewZx;
     private TextView textViewZy;
+    private TextView textViewWx;
+    private TextView textViewWy;
     private Button buttonCalcular;
 
 
@@ -45,6 +47,8 @@ public class TelaQuadradoActivity extends AppCompatActivity {
         textViewiy = findViewById(R.id.textViewiy);
         textViewZx = findViewById(R.id.textViewZx);
         textViewZy = findViewById(R.id.textViewZy);
+        textViewWx = findViewById(R.id.textViewWx);
+        textViewWy = findViewById(R.id.textViewWy);
         buttonCalcular = findViewById(R.id.buttonCalcular);
 
         //Evento de clique
@@ -84,6 +88,12 @@ public class TelaQuadradoActivity extends AppCompatActivity {
                     String textModuloPlastico = String.valueOf(moduloPlastico);
                     textViewZx.setText("Zx = "+textModuloPlastico);
                     textViewZy.setText("Zy = "+textModuloPlastico);
+
+                    //Módulo Elástico
+                    float moduloElastico = (float) (Math.pow(medidaLado,3)/6);
+                    String textModuloElastico = String.valueOf(moduloElastico);
+                    textViewWx.setText("Wx = "+textModuloElastico);
+                    textViewWy.setText("Wy = "+textModuloElastico);
 
                     //Limpar EditText
                     editTextLado.setText("");
