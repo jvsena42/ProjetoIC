@@ -103,6 +103,12 @@ public class TelaQuadradoVazadoActivity extends AppCompatActivity {
                         textViewZx.setText("Zx = "+textModuloPlastico);
                         textViewZy.setText("Zy = "+textModuloPlastico);
 
+                        //Modulo Elastico
+                        float moduloElastico = (float) ((Math.pow(medidaLadoMaior,4)-Math.pow(medidaLadoMaior-2*medidaEspessura,4))/(6*medidaLadoMaior));
+                        String textModuloElastico = String.valueOf(moduloElastico);
+                        textViewWx.setText("Wx = "+textModuloElastico);
+                        textViewWy.setText("Wy = "+textModuloElastico);
+
                         //Limpar EditText
                         editTextEspessura.setText("");
                         editTextLado.setText("");
