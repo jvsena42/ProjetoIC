@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imageQuadradoVazado;
     private ImageView imageRetangulo;
     private ImageView imageRetanguloVazado;
+    private ImageView imageCirculo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar.setTitle("Geometrix");
         toolbar.setTitleTextColor(getColor(R.color.titleColor));
         setSupportActionBar(toolbar);
+
+
 
 
     }
@@ -55,6 +58,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent4 = new Intent(MainActivity.this, TelaRetanguloVazadoActivity.class);
                 startActivity(intent4);
                 break;
+            case R.id.imageCirculo:
+                Intent intent5 = new Intent(MainActivity.this, TelaCirculoActivity.class);
+                startActivity(intent5);
+                break;
 
         }
     }
@@ -64,11 +71,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageQuadradoVazado = findViewById(R.id.imageQuadradoVazado);
         imageRetangulo = findViewById(R.id.imageRetangulo);
         imageRetanguloVazado = findViewById(R.id.imageRetanguloVazado);
+        imageCirculo = findViewById(R.id.imageCirculo);
 
         imageQuadrado.setOnClickListener(this);
         imageRetanguloVazado.setOnClickListener(this);
         imageRetangulo.setOnClickListener(this);
         imageQuadradoVazado.setOnClickListener(this);
+        imageCirculo.setOnClickListener(this);
     }
 
     @Override
