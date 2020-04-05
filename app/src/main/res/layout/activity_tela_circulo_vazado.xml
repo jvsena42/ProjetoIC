@@ -2,12 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@android:color/white"
-    android:isScrollContainer="true"
-    tools:context=".TelaQuadradoVazadoActivity">
+    tools:context=".TelaCirculoVazadoActivity">
 
     <include
         android:id="@+id/include2"
@@ -40,16 +38,16 @@
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextLadoQVazado" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextRaio" />
 
             <EditText
-                android:id="@+id/editTextLadoQVazado"
+                android:id="@+id/editTextRaio"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/alturaCaixaDeTexto"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/background"
                 android:ems="10"
-                android:hint="L="
+                android:hint="R="
                 android:inputType="number"
                 android:padding="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/editTextEspessura"
@@ -210,12 +208,12 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/background"
                 android:padding="12dp"
-                app:layout_constraintBottom_toTopOf="@+id/editTextLadoQVazado"
+                app:layout_constraintBottom_toTopOf="@+id/editTextRaio"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
-                app:srcCompat="@drawable/tela_quadrado_vazado" />
+                app:srcCompat="@drawable/tela_circulo_vazado" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
