@@ -109,18 +109,18 @@
                 app:srcCompat="@drawable/circulo_vazado" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/imageTresQuartosCirculo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/tresquartoscirculo" />
+
+            <ImageView
+                android:id="@+id/imageSemicirculo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/semicirculo" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/meio_circulo" />
 
             <ImageView
                 android:id="@+id/imageView3"

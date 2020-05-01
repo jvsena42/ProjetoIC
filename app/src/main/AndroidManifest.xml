@@ -10,7 +10,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TelaCirculoVazadoActivity"></activity>
+        <activity android:name=".TresQuartosCirculoActivity"></activity>
+        <activity android:name=".TelaCirculoVazadoActivity" />
         <activity android:name=".TelaCirculoActivity" />
         <activity android:name=".TelaRetanguloVazadoActivity" />
         <activity android:name=".TelaRetanguloActivity" />
