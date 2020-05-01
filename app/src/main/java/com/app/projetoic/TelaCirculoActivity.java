@@ -67,7 +67,7 @@ public class TelaCirculoActivity extends AppCompatActivity {
                     //Perímetro
                     float perimetro = (float) (Math.PI*2*medidaRaio);
                     String textPerimetro = String.valueOf(perimetro);
-                    textViewPerimetro.setText("Perímetro = " + textPerimetro);
+                    textViewPerimetro.setText("P. Ext.= " + textPerimetro);
 
                     //Momento de inercia
                     float momentoInercia = (float) (Math.PI*Math.pow(medidaRaio,4)/4);

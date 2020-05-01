@@ -142,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="start|center_vertical"
-                        android:text="Perímetro ="
+                        android:text="P. Ext.="
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
 

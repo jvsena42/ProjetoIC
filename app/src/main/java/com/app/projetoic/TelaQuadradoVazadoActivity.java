@@ -82,7 +82,7 @@ public class TelaQuadradoVazadoActivity extends AppCompatActivity {
                         //Perímetro
                         float perimetro = medidaLadoMaior * 4;
                         String textPerimetro = String.valueOf(perimetro);
-                        textViewPerimetro.setText("Perímetro = " + textPerimetro);
+                        textViewPerimetro.setText("P. Ext. = " + textPerimetro);
 
                         //Momento de inercia
                         float momentoInercia = (float) ((Math.pow(medidaLadoMaior,4)/12)-(Math.pow(medidaLadoMenor,4)/12));

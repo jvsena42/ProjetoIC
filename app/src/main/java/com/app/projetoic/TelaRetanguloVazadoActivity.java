@@ -78,7 +78,7 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
                         //Perímetro
                         float perimetro = medidaBase*2+medidaAltura*2;
                         String textPerimetro = String.valueOf(perimetro);
-                        textViewPerimetro.setText("Perímetro = " + textPerimetro);
+                        textViewPerimetro.setText("P. Ext. = " + textPerimetro);
 
                         //Momento de inercia
                         float momentoInerciaX = (float) ((Math.pow(medidaAltura,3)*medidaBase/12)-(Math.pow(medidaAlturaInterna,3)*medidaBaseInterna/12));

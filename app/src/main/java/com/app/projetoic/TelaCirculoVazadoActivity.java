@@ -81,7 +81,7 @@ public class TelaCirculoVazadoActivity extends AppCompatActivity {
                         //Perímetro
                         float perimetro = (float) (2*Math.PI*medidaRaio);
                         String textPerimetro = String.valueOf(perimetro);
-                        textViewPerimetro.setText("Perímetro = " + textPerimetro);
+                        textViewPerimetro.setText("P. Ext. = " + textPerimetro);
 
                         //Momento de inercia
                         float momentoInerciaMaior = (float) (Math.PI*Math.pow(medidaRaio,4)) /4;
