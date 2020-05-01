@@ -96,38 +96,38 @@
 
             <ImageView
                 android:id="@+id/imageCirculo"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/circulo" />
 
             <ImageView
                 android:id="@+id/imageCirculoVazado"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/circulo_vazado" />
 
             <ImageView
                 android:id="@+id/imageTresQuartosCirculo"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/tresquartoscirculo" />
 
             <ImageView
                 android:id="@+id/imageSemicirculo"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/semicirculo" />
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
+                android:id="@+id/imageQuadrante"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/quarto_de_circulo" />
+                app:srcCompat="@drawable/quadrante" />
 
         </LinearLayout>
 

@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imageCirculoVazado;
     private ImageView imageTresQuartosCirculo;
     private ImageView imageSemicirculo;
+    private ImageView imageQuadrante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 /*Intent intent8 = new Intent(MainActivity.this, TelaSemicirculoActivity.class);
                 startActivity(intent8);*/
                 break;
+            case R.id.imageQuadrante:
+                /*Intent intent8 = new Intent(MainActivity.this, TelaSemicirculoActivity.class);
+                startActivity(intent8);*/
+                break;
 
         }
     }
@@ -89,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageCirculoVazado = findViewById(R.id.imageCirculoVazado);
         imageTresQuartosCirculo = findViewById(R.id.imageTresQuartosCirculo);
         imageSemicirculo = findViewById(R.id.imageSemicirculo);
+        imageQuadrante = findViewById(R.id.imageQuadrante);
 
         imageQuadrado.setOnClickListener(this);
         imageRetanguloVazado.setOnClickListener(this);
@@ -98,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageCirculoVazado.setOnClickListener(this);
         imageTresQuartosCirculo.setOnClickListener(this);
         imageSemicirculo.setOnClickListener(this);
+        imageQuadrante.setOnClickListener(this);
     }
 
     @Override
