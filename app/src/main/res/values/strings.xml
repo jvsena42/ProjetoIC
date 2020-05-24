@@ -20,6 +20,7 @@
          Direitos autorais reservados ao DE-UFPI.
     </string>
     <string name="tituloSobre">Sobre o aplicativo:</string>
+    <string name="title_activity_passageiro">PassageiroActivity</string>
 
 
 </resources>

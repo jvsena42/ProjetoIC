@@ -163,14 +163,14 @@
             android:padding="5dp">
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/imageTrianguloEquilatero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/triangulo_isoceles" />
 
             <ImageView
-                android:id="@+id/imageView8"
+                android:id="@+id/imageTrianguloRetangulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

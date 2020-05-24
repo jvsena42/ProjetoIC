@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imageTresQuartosCirculo;
     private ImageView imageSemicirculo;
     private ImageView imageQuadrante;
+    private ImageView imageTrianguloEquilatero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +75,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent7);
                 break;
             case R.id.imageSemicirculo:
-                /*Intent intent8 = new Intent(MainActivity.this, TelaSemicirculoActivity.class);
-                startActivity(intent8);*/
+                Intent intent8 = new Intent(MainActivity.this, TelaSemicirculoActivity.class);
+                startActivity(intent8);
                 break;
             case R.id.imageQuadrante:
-                /*Intent intent8 = new Intent(MainActivity.this, TelaSemicirculoActivity.class);
-                startActivity(intent8);*/
+                Intent intent9 = new Intent(MainActivity.this, TelaQuadranteActivity.class);
+                startActivity(intent9);
+            case R.id.imageTrianguloEquilatero:
+                Intent intent10 = new Intent(MainActivity.this, TelaTrianguloEquilateroActivity.class);
+                startActivity(intent10);
                 break;
 
         }
@@ -95,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageTresQuartosCirculo = findViewById(R.id.imageTresQuartosCirculo);
         imageSemicirculo = findViewById(R.id.imageSemicirculo);
         imageQuadrante = findViewById(R.id.imageQuadrante);
+        imageTrianguloEquilatero = findViewById(R.id.imageTrianguloEquilatero);
 
         imageQuadrado.setOnClickListener(this);
         imageRetanguloVazado.setOnClickListener(this);
@@ -105,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageTresQuartosCirculo.setOnClickListener(this);
         imageSemicirculo.setOnClickListener(this);
         imageQuadrante.setOnClickListener(this);
+        imageTrianguloEquilatero.setOnClickListener(this);
     }
 
     @Override
