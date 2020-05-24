@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imageSemicirculo;
     private ImageView imageQuadrante;
     private ImageView imageTrianguloEquilatero;
+    private ImageView imageTrianguloRetangulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +85,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.imageTrianguloEquilatero:
                 Intent intent10 = new Intent(MainActivity.this, TelaTrianguloEquilateroActivity.class);
                 startActivity(intent10);
+            case R.id.imageTrianguloRetangulo:
+                Intent intent11 = new Intent(MainActivity.this, TelaTrianguloRetanguloActivity.class);
+                startActivity(intent11);
                 break;
 
         }
@@ -100,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageSemicirculo = findViewById(R.id.imageSemicirculo);
         imageQuadrante = findViewById(R.id.imageQuadrante);
         imageTrianguloEquilatero = findViewById(R.id.imageTrianguloEquilatero);
+        imageTrianguloRetangulo = findViewById(R.id.imageTrianguloRetangulo);
 
         imageQuadrado.setOnClickListener(this);
         imageRetanguloVazado.setOnClickListener(this);
@@ -111,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageSemicirculo.setOnClickListener(this);
         imageQuadrante.setOnClickListener(this);
         imageTrianguloEquilatero.setOnClickListener(this);
+        imageTrianguloRetangulo.setOnClickListener(this);
     }
 
     @Override
