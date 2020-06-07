@@ -88,18 +88,22 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
                     textViewix.setText("ix = " + textRaioGiracaoX);
                     textViewiy.setText("iy = " + textRaioGiracaoY);
 
-                    /*
+
                     //Módulo Plástico
-                    float moduloPlastico = (float) (Math.pow(medidaLado, 3) / 4);
-                    String textModuloPlastico = String.valueOf(moduloPlastico);
-                    textViewZx.setText("Zx = " + textModuloPlastico);
-                    textViewZy.setText("Zy = " + textModuloPlastico);
+                    float moduloPlasticoX = (float) ((medidaLado*Math.pow(altura, 2)*(2-Math.sqrt(2))) / 6);
+                    float moduloPlasticoY = (float) (altura*Math.pow(medidaLado, 2) / 12);
+                    String textModuloPlasticoX = String.valueOf(moduloPlasticoX);
+                    String textModuloPlasticoY = String.valueOf(moduloPlasticoY);
+                    textViewZx.setText("Zx = " + textModuloPlasticoX);
+                    textViewZy.setText("Zy = " + textModuloPlasticoY);
 
                     //Módulo Elástico
-                    float moduloElastico = (float) (Math.pow(medidaLado, 3) / 6);
-                    String textModuloElastico = String.valueOf(moduloElastico);
-                    textViewWx.setText("Wx = " + textModuloElastico);
-                    textViewWy.setText("Wy = " + textModuloElastico);*/
+                    float moduloElasticoX = (float) (medidaLado*Math.pow(altura, 2) / 24);
+                    float moduloElasticoY = (float) (altura*Math.pow(medidaLado, 2) / 18);
+                    String textModuloElasticoX = String.valueOf(moduloElasticoX);
+                    String textModuloElasticoY = String.valueOf(moduloElasticoY);
+                    textViewWx.setText("Wx = " + textModuloElasticoX);
+                    textViewWy.setText("Wy = " + textModuloElasticoY);
 
                     //Limpar EditText
                     editTextLado.setText("");

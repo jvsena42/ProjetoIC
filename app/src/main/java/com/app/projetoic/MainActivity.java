@@ -65,12 +65,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent5 = new Intent(MainActivity.this, TelaCirculoActivity.class);
                 startActivity(intent5);
                 break;
-
             case R.id.imageCirculoVazado:
                 Intent intent6 = new Intent(MainActivity.this, TelaCirculoVazadoActivity.class);
                 startActivity(intent6);
                 break;
-
             case R.id.imageTresQuartosCirculo:
                 Intent intent7 = new Intent(MainActivity.this, TresQuartosCirculoActivity.class);
                 startActivity(intent7);
@@ -82,9 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.imageQuadrante:
                 Intent intent9 = new Intent(MainActivity.this, TelaQuadranteActivity.class);
                 startActivity(intent9);
+                break;
             case R.id.imageTrianguloEquilatero:
                 Intent intent10 = new Intent(MainActivity.this, TelaTrianguloEquilateroActivity.class);
                 startActivity(intent10);
+                break;
             case R.id.imageTrianguloRetangulo:
                 Intent intent11 = new Intent(MainActivity.this, TelaTrianguloRetanguloActivity.class);
                 startActivity(intent11);

@@ -94,18 +94,21 @@ public class TelaTrianguloRetanguloActivity extends AppCompatActivity {
                     textViewix.setText("ix = " + textRaioGiracaoX);
                     textViewiy.setText("iy = " + textRaioGiracaoY);
 
-                    /*
                     //Módulo Plástico
-                    float moduloPlastico = (float) (Math.pow(medidaLado, 3) / 4);
-                    String textModuloPlastico = String.valueOf(moduloPlastico);
-                    textViewZx.setText("Zx = " + textModuloPlastico);
-                    textViewZy.setText("Zy = " + textModuloPlastico);
+                    float moduloPlasticoX = (float) (0.0864*medidaLadoC*Math.pow(medidaLadoB, 2) *(2-Math.sqrt(2)))/6;
+                    float moduloPlasticoY = (float) (0.0864*medidaLadoB*Math.pow(medidaLadoC, 2) )/12;
+                    String textModuloPlasticoX = String.valueOf(moduloPlasticoX);
+                    String textModuloPlasticoY = String.valueOf(moduloPlasticoY);
+                    textViewZx.setText("Zx = " + textModuloPlasticoX);
+                    textViewZy.setText("Zy = " + textModuloPlasticoY);
 
                     //Módulo Elástico
-                    float moduloElastico = (float) (Math.pow(medidaLado, 3) / 6);
-                    String textModuloElastico = String.valueOf(moduloElastico);
-                    textViewWx.setText("Wx = " + textModuloElastico);
-                    textViewWy.setText("Wy = " + textModuloElastico);*/
+                    float moduloElasticoX = (float) (medidaLadoC*Math.pow(medidaLadoB, 2) / 24);
+                    float moduloElasticoY = (float) (medidaLadoB*Math.pow(medidaLadoC, 2) / 24);
+                    String textModuloElasticoX = String.valueOf(moduloElasticoX);
+                    String textModuloElasticoY = String.valueOf(moduloElasticoY);
+                    textViewWx.setText("Wx = " + textModuloElasticoX);
+                    textViewWy.setText("Wy = " + textModuloElasticoY);
 
                     //Limpar EditText
                     editTextA.setText("");
