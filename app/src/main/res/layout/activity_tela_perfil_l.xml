@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaRetanguloActivity">
+    android:orientation="vertical"
+    tools:context=".TelaPerfilLActivity">
 
     <include
         android:id="@+id/include2"
@@ -50,7 +50,7 @@
                 android:hint="h="
                 android:inputType="number"
                 android:padding="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintBottom_toTopOf="@+id/editTextEspessura"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextBase" />
@@ -67,7 +67,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/buttonCalcular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextAltura">
+                app:layout_constraintTop_toBottomOf="@+id/editTextEspessura">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -84,6 +84,16 @@
                         android:layout_weight="1"
                         android:padding="5dp"
                         android:text="Área ="
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textViewCentroideX"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:text="Centroide x ="
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
 
@@ -142,8 +152,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="start|center_vertical"
+                        android:gravity="center_vertical"
                         android:text="P. Ext.="
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textViewCentroideY"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:text="Centroide y ="
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
 
@@ -200,19 +220,33 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/tela_retangulo" />
+                app:srcCompat="@drawable/tela_perfil_l" />
 
             <Button
                 android:id="@+id/buttonCalcular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/background"
                 android:text="Calcular"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+            <EditText
+                android:id="@+id/editTextEspessura"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/alturaCaixaDeTexto"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/background"
+                android:ems="10"
+                android:hint="e ="
+                android:inputType="number"
+                android:padding="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/editTextAltura"
+                tools:layout_editor_absoluteX="8dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
