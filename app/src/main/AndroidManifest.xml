@@ -10,7 +10,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TelaPerfilLActivity"></activity>
+        <activity android:name=".TelaPerfilCActivity"></activity>
+        <activity android:name=".TelaPerfilLActivity" />
         <activity android:name=".TelaTrianguloRetanguloActivity" />
         <activity android:name=".TelaTrianguloEquilateroActivity" />
         <activity android:name=".TelaQuadranteActivity" />

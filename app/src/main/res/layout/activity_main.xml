@@ -215,7 +215,7 @@
                 app:srcCompat="@drawable/perfil_l" />
 
             <ImageView
-                android:id="@+id/imageView11"
+                android:id="@+id/imagePerfilC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TelaPerfilLActivity extends AppCompatActivity {
+public class TelaPerfilCActivity extends AppCompatActivity {
 
     private EditText editTextBase;
     private EditText editTextAltura;
@@ -32,7 +32,7 @@ public class TelaPerfilLActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_perfil_l);
+        setContentView(R.layout.activity_tela_perfil_c);
 
         //Configurar Toolbar
         Toolbar toolbar = findViewById(R.id.toolbarPrincipal);
@@ -71,26 +71,27 @@ public class TelaPerfilLActivity extends AppCompatActivity {
                     float medidaAltura = Float.parseFloat(textAltura);
                     float medidaEspessura = Float.parseFloat(textEspessura);
                     float medidaBaseInterna = medidaBase-(medidaEspessura);
-                    float medidaAlturaInterna = medidaAltura-(medidaEspessura);
+                    float medidaAlturaInterna = medidaAltura-(2*medidaEspessura);
 
                     if (medidaBaseInterna>0 && medidaAlturaInterna>0){
 
                         //Área
-                        float area1 = medidaBase*medidaEspessura;
-                        float area2 = medidaEspessura*medidaAlturaInterna;
-                        float areaTotal = area1 + area2;
+                        float area1 = medidaEspessura*medidaBase;
+                        float area2 = medidaAlturaInterna*medidaEspessura;
+                        float areaTotal = 2*area1 + area2;
                         String textArea = String.valueOf(areaTotal);
                         textViewArea.setText("Área = " +textArea);
 
                         //Centróide
                         float centroideX1 = medidaBase/2;
                         float centroideX2 = medidaEspessura/2;
-                        float centroideX = centroideX1 + centroideX2;
+                        float centroideX = (2*(area1*centroideX1)+area2*centroideX2)/areaTotal;
 
                         float centroideY1 = medidaEspessura/2;
-                        float centroideY2 = medidaEspessura + (medidaAlturaInterna/2);
-                        float centroideY = centroideY1 + centroideY2;
+                        float centroideY2 = medidaAltura/2;
+                        float centroideY3 = medidaAltura - (medidaEspessura/2);
 
+                        float centroideY = (area1*centroideY1+area2*centroideY2+area1*centroideY3)/areaTotal;
 
                         String textCentroideX = String.valueOf(centroideX);
                         String textCentroideY = String.valueOf(centroideY);
@@ -99,19 +100,21 @@ public class TelaPerfilLActivity extends AppCompatActivity {
 
 
                         //Perímetro
-                        float perimetro = medidaBase + medidaAltura + medidaBaseInterna + medidaAlturaInterna * 2*medidaEspessura;
+                        float perimetro = (2*medidaBase) + (2*medidaBaseInterna) + (2*medidaEspessura)+ medidaAltura + medidaAlturaInterna;
                         String textPerimetro = String.valueOf(perimetro);
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
 
-
                         //Momento de inercia
-                        float momentoInerciaX1 = (float) ((medidaBase*Math.pow(medidaEspessura,3)/12)  + area1*Math.pow(centroideY-centroideY1,2));
-                        float momentoInerciaX2 = (float) ((medidaEspessura*Math.pow(medidaAltura-medidaEspessura,3)/12)  + area2*Math.pow(centroideY-centroideY2,2));
-                        float momentoInerciaX = momentoInerciaX1 + momentoInerciaX2;
+                        float momentoInerciaX1 = (float) (medidaBase*Math.pow(medidaEspessura,3)/12 + area1*Math.pow(centroideY-(medidaEspessura/2),2));
+                        float momentoInerciaX2 = (float) (medidaEspessura*Math.pow(medidaAltura-2*medidaEspessura,3)/12);
+                        float momentoInerciaX3 = (float) (medidaBase*Math.pow(medidaEspessura,3)/12 + area1*Math.pow(centroideY-(medidaAltura - (medidaEspessura/2)),2));
+                        float momentoInerciaX = momentoInerciaX1 + momentoInerciaX2 + momentoInerciaX3;
 
-                        float momentoInerciaY1 = (float) ((medidaEspessura*Math.pow(medidaBase,3)/12)  + area1*Math.pow(centroideX-centroideX1,2));
-                        float momentoInerciaY2 = (float) (((medidaAltura-medidaEspessura)*Math.pow(medidaEspessura,3)/12)  + area2*Math.pow(centroideX-centroideX2,2));
-                        float momentoInerciaY = momentoInerciaY1 + momentoInerciaY2;
+                        float momentoInerciaY1 = (float) (medidaEspessura*Math.pow(medidaBase,3)/12 + area1*Math.pow(centroideX-(medidaBase/2),2));
+                        float momentoInerciaY2 = (float) ((medidaAltura-2*medidaEspessura)*Math.pow(medidaEspessura,3)/12);
+                        float momentoInerciaY3 = (float) (medidaBase*Math.pow(medidaEspessura,3)/12 + area1*Math.pow(centroideY-(medidaAltura - (medidaEspessura/2)),2));
+
+                        float momentoInerciaY = momentoInerciaY1 + momentoInerciaY2 + momentoInerciaY3;
 
                         String textMomentoInerciaX = String.valueOf(momentoInerciaX);
                         String textMomentoInerciaY = String.valueOf(momentoInerciaY);
@@ -127,7 +130,6 @@ public class TelaPerfilLActivity extends AppCompatActivity {
                         textViewiy.setText("iy = " + textRaioGiracaoY);
 
                         /*
-
                         //Módulo plastico
                         float moduloPlasticoX = (float) (Math.pow(medidaAltura,2)*medidaBase/4*(1-(1-2*medidaEspessura/medidaBase)*Math.pow(1-2*medidaEspessura/medidaAltura,2)));
                         float moduloPlasticoY = (float) (Math.pow(medidaBase,2)*medidaAltura/4*(1-(1-2*medidaEspessura/medidaAltura)*Math.pow(1-2*medidaEspessura/medidaBase,2)));
@@ -149,11 +151,11 @@ public class TelaPerfilLActivity extends AppCompatActivity {
                         editTextAltura.setText("");
                         editTextEspessura.setText("");
                     }else {
-                        Toast.makeText(TelaPerfilLActivity.this, "Erro! digite uma espessura menor ou medidas maiores para os lados", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TelaPerfilCActivity.this, "Erro! digite uma espessura menor ou medidas maiores para os lados", Toast.LENGTH_SHORT).show();
                     }
 
                 }else {
-                    Toast.makeText(TelaPerfilLActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TelaPerfilCActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

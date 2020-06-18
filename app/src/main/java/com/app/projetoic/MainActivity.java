@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imageTrianguloEquilatero;
     private ImageView imageTrianguloRetangulo;
     private ImageView imagePerfilL;
+    private ImageView imagePerfilC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,9 +91,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent11 = new Intent(MainActivity.this, TelaTrianguloRetanguloActivity.class);
                 startActivity(intent11);
                 break;
-                case R.id.imagePerfilL:
+            case R.id.imagePerfilL:
                 Intent intent12 = new Intent(MainActivity.this, TelaPerfilLActivity.class);
                 startActivity(intent12);
+                break;
+            case R.id.imagePerfilC:
+                Intent intent13 = new Intent(MainActivity.this, TelaPerfilCActivity.class);
+                startActivity(intent13);
                 break;
 
         }
@@ -111,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageTrianguloEquilatero = findViewById(R.id.imageTrianguloEquilatero);
         imageTrianguloRetangulo = findViewById(R.id.imageTrianguloRetangulo);
         imagePerfilL = findViewById(R.id.imagePerfilL);
+        imagePerfilC = findViewById(R.id.imagePerfilC);
 
         imageQuadrado.setOnClickListener(this);
         imageRetanguloVazado.setOnClickListener(this);
@@ -124,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageTrianguloEquilatero.setOnClickListener(this);
         imageTrianguloRetangulo.setOnClickListener(this);
         imagePerfilL.setOnClickListener(this);
+        imagePerfilC.setOnClickListener(this);
     }
 
     @Override
