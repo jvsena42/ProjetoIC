@@ -126,7 +126,8 @@
                         android:padding="5dp"
                         android:text="Zx ="
                         android:textColor="@android:color/black"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/textViewWx"
@@ -136,7 +137,8 @@
                         android:padding="5dp"
                         android:text="Wx ="
                         android:textColor="@android:color/black"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
@@ -196,7 +198,8 @@
                         android:padding="5dp"
                         android:text="Zy ="
                         android:textColor="@android:color/black"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/textViewWy"
@@ -206,7 +209,8 @@
                         android:padding="5dp"
                         android:text="Wy ="
                         android:textColor="@android:color/black"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:visibility="gone" />
                 </LinearLayout>
 
             </LinearLayout>
