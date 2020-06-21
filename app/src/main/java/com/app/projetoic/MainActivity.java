@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imageTrianguloRetangulo;
     private ImageView imagePerfilL;
     private ImageView imagePerfilC;
+    private ImageView imagePerfilI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +100,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent13 = new Intent(MainActivity.this, TelaPerfilCActivity.class);
                 startActivity(intent13);
                 break;
+            case R.id.imagePerfilI:
+                Intent intent14 = new Intent(MainActivity.this, TelaPerfilIActivity.class);
+                startActivity(intent14);
+                break;
 
         }
     }
@@ -117,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageTrianguloRetangulo = findViewById(R.id.imageTrianguloRetangulo);
         imagePerfilL = findViewById(R.id.imagePerfilL);
         imagePerfilC = findViewById(R.id.imagePerfilC);
+        imagePerfilI = findViewById(R.id.imagePerfilI);
 
         imageQuadrado.setOnClickListener(this);
         imageRetanguloVazado.setOnClickListener(this);
@@ -131,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageTrianguloRetangulo.setOnClickListener(this);
         imagePerfilL.setOnClickListener(this);
         imagePerfilC.setOnClickListener(this);
+        imagePerfilI.setOnClickListener(this);
     }
 
     @Override
