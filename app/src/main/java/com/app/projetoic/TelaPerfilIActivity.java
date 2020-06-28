@@ -134,23 +134,23 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                         textViewix.setText("ix = " + textRaioGiracaoX);
                         textViewiy.setText("iy = " + textRaioGiracaoY);
 
-                        /*
+
                         //Módulo plastico
-                        float moduloPlasticoX = (float) (Math.pow(medidaAltura,2)*medidaBase/4*(1-(1-2*medidaEspessura/medidaBase)*Math.pow(1-2*medidaEspessura/medidaAltura,2)));
-                        float moduloPlasticoY = (float) (Math.pow(medidaBase,2)*medidaAltura/4*(1-(1-2*medidaEspessura/medidaAltura)*Math.pow(1-2*medidaEspessura/medidaBase,2)));
+                        float moduloPlasticoX = (float) (medidaBase*medidaEspessuraMesa*(medidaAltura-medidaEspessuraMesa)+0.25*medidaEspessuraAlma*Math.pow(medidaAltura-2*medidaEspessuraMesa,2));
+                        float moduloPlasticoY = (float) (0.5*medidaEspessuraMesa*Math.pow(medidaBase,2)*0.25*(medidaAltura-2*medidaEspessuraMesa)*Math.pow(medidaEspessuraAlma,2));
                         String textModuloPlasticoX = String.valueOf(moduloPlasticoX);
                         String textModuloPlasticoY = String.valueOf(moduloPlasticoY);
-                        textViewZx.setText("Zx = "+textModuloPlasticoX);
-                        textViewZy.setText("Zy = "+textModuloPlasticoY);
+                        textViewZx.setText("Zx' = "+textModuloPlasticoX);
+                        textViewZy.setText("Zy' = "+textModuloPlasticoY);
 
                         //Módulo elástico
-                        float moduloElasticoX = (float) ((medidaBase*medidaAltura)*medidaEspessura + (Math.pow(medidaBase,2)*medidaEspessura/3));
-                        float moduloElasticoY = (float) ((medidaBase*medidaAltura)*medidaEspessura + (Math.pow(medidaAltura,2)*medidaEspessura/3));
+                        float moduloElasticoX = momentoInerciaX/medidaAltura;
+                        float moduloElasticoY = momentoInerciaY/medidaBase;
                         String textModuloElasticoX = String.valueOf(moduloElasticoX);
                         String textModuloElasticoY = String.valueOf(moduloElasticoY);
                         textViewWx.setText("Wx = "+textModuloElasticoX);
                         textViewWy.setText("Wx = "+textModuloElasticoY);
-                        */
+
                         //Limpar EditText
                         editTextBase.setText("");
                         editTextAltura.setText("");

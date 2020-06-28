@@ -164,10 +164,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="5dp"
-                        android:text="Zx ="
+                        android:text="Zx' ="
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
 
                     <TextView
                         android:id="@+id/textViewWx"
@@ -178,7 +178,7 @@
                         android:text="Wx ="
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
 
                 </LinearLayout>
 
@@ -236,10 +236,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="5dp"
-                        android:text="Zy ="
+                        android:text="Zy' ="
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
 
                     <TextView
                         android:id="@+id/textViewWy"
@@ -250,7 +250,7 @@
                         android:text="Wy ="
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
                 </LinearLayout>
 
             </LinearLayout>
