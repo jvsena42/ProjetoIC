@@ -83,8 +83,8 @@ public class TelaSemicirculoActivity extends AppCompatActivity {
                     //Módulo Plástico
                     float moduloPlastico = (float) (2*Math.pow(medidaRaio,3)/3);
                     String textModuloPlastico = String.valueOf(moduloPlastico);
-                    textViewZx.setText("Zx = "+textModuloPlastico);
-                    textViewZy.setText("Zy = "+textModuloPlastico);
+                    textViewZx.setText("Zx' = "+textModuloPlastico);
+                    textViewZy.setText("Zy' = "+textModuloPlastico);
 
                     //Módulo Elástico
                     float moduloElastico = (float) (0.3927*Math.pow(medidaRaio,3));

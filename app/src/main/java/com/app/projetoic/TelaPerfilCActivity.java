@@ -95,8 +95,8 @@ public class TelaPerfilCActivity extends AppCompatActivity {
 
                         String textCentroideX = String.valueOf(centroideX);
                         String textCentroideY = String.valueOf(centroideY);
-                        textViewCentroideX.setText("Centróide X = "+textCentroideX);
-                        textViewCentroideY.setText("Centróide Y = "+textCentroideY);
+                        textViewCentroideX.setText("X' = "+textCentroideX);
+                        textViewCentroideY.setText("Y' = "+textCentroideY);
 
 
                         //Perímetro

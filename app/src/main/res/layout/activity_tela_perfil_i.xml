@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".TelaPerfilIActivity">
 
 
@@ -30,7 +30,9 @@
                 android:id="@+id/editTextBase"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/alturaCaixaDeTexto"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/background"
                 android:ems="10"
                 android:hint="b="
@@ -45,30 +47,68 @@
                 android:id="@+id/editTextAltura"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/alturaCaixaDeTexto"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/background"
                 android:ems="10"
                 android:hint="h="
                 android:inputType="numberDecimal"
                 android:padding="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/editTextEspessura"
+                app:layout_constraintBottom_toTopOf="@+id/editTextEspessuraMesa"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextBase" />
+
+            <EditText
+                android:id="@+id/editTextEspessuraAlma"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/alturaCaixaDeTexto"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/background"
+                android:ems="10"
+                android:hint="tw ="
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextEspessuraMesa" />
+
+            <EditText
+                android:id="@+id/editTextEspessuraMesa"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/alturaCaixaDeTexto"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/background"
+                android:ems="10"
+                android:hint="tf ="
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/editTextEspessuraAlma"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextAltura" />
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/background"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/buttonCalcular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextEspessura">
+                app:layout_constraintTop_toBottomOf="@+id/editTextEspessuraAlma">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -94,7 +134,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="5dp"
-                        android:text="Centroide x ="
+                        android:text="x' ="
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
 
@@ -166,7 +206,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="5dp"
-                        android:text="Centroide y ="
+                        android:text="y' ="
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
 
@@ -219,6 +259,8 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/background"
                 android:padding="12dp"
                 app:layout_constraintBottom_toTopOf="@+id/editTextBase"
@@ -231,7 +273,9 @@
                 android:id="@+id/buttonCalcular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/background"
                 android:text="Calcular"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -239,19 +283,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-            <EditText
-                android:id="@+id/editTextEspessura"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/alturaCaixaDeTexto"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/background"
-                android:ems="10"
-                android:hint="e ="
-                android:inputType="numberDecimal"
-                android:padding="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-                app:layout_constraintTop_toBottomOf="@+id/editTextAltura"
-                tools:layout_editor_absoluteX="8dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

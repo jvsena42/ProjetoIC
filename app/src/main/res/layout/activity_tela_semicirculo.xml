@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:text="Zx ="
+                android:text="Zx' ="
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
@@ -175,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:text="Zy ="
+                android:text="Zy' ="
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
