@@ -111,7 +111,7 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
 
                         //Momento de inercia
-                        float momentoInerciaX1 = (float) (medidaBase*Math.pow(medidaEspessuraMesa,3)/12 + area1*Math.pow(centroideY-centroideY2,2));
+                        float momentoInerciaX1 = (float) (medidaBase*Math.pow(medidaEspessuraMesa,3)/12 + area1*Math.pow(centroideY-centroideY1,2));
                         float momentoInerciaX2 = (float) (medidaEspessuraAlma*Math.pow(medidaAltura-medidaAlturaInterna,3)/12);
                         float momentoInerciaX3 = (float) (medidaBase*Math.pow(medidaEspessuraMesa,3)/12 + area3*Math.pow(centroideY-centroideY3,2));
                         float momentoInerciaX = momentoInerciaX1 + momentoInerciaX2 + momentoInerciaX3;
@@ -123,16 +123,16 @@ public class TelaPerfilIActivity extends AppCompatActivity {
 
                         String textMomentoInerciaX = String.valueOf(momentoInerciaX);
                         String textMomentoInerciaY = String.valueOf(momentoInerciaY);
-                        textViewIx.setText("Ix = " + textMomentoInerciaX);
-                        textViewIy.setText("Iy = " + textMomentoInerciaY);
+                        textViewIx.setText("Ix' = " + textMomentoInerciaX);
+                        textViewIy.setText("Iy' = " + textMomentoInerciaY);
 
                         //Raio de giração
-                        float raioGiracaoX = (float) Math.sqrt((momentoInerciaY/areaTotal));
-                        float raioGiracaoY = (float) Math.sqrt((momentoInerciaX/areaTotal));
+                        float raioGiracaoX = (float) Math.sqrt((momentoInerciaX/areaTotal));
+                        float raioGiracaoY = (float) Math.sqrt((momentoInerciaY/areaTotal));
                         String textRaioGiracaoX = String.valueOf(raioGiracaoX);
                         String textRaioGiracaoY = String.valueOf(raioGiracaoY);
-                        textViewix.setText("ix = " + textRaioGiracaoX);
-                        textViewiy.setText("iy = " + textRaioGiracaoY);
+                        textViewix.setText("ix' = " + textRaioGiracaoX);
+                        textViewiy.setText("iy' = " + textRaioGiracaoY);
 
 
                         //Módulo plastico
@@ -144,12 +144,12 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                         textViewZy.setText("Zy' = "+textModuloPlasticoY);
 
                         //Módulo elástico
-                        float moduloElasticoX = momentoInerciaX/medidaAltura;
-                        float moduloElasticoY = momentoInerciaY/medidaBase;
+                        float moduloElasticoX = 2*momentoInerciaX/medidaAltura;
+                        float moduloElasticoY = 2*momentoInerciaY/medidaBase;
                         String textModuloElasticoX = String.valueOf(moduloElasticoX);
                         String textModuloElasticoY = String.valueOf(moduloElasticoY);
-                        textViewWx.setText("Wx = "+textModuloElasticoX);
-                        textViewWy.setText("Wx = "+textModuloElasticoY);
+                        textViewWx.setText("Wx' = "+textModuloElasticoX);
+                        textViewWy.setText("Wx' = "+textModuloElasticoY);
 
                         //Limpar EditText
                         editTextBase.setText("");
