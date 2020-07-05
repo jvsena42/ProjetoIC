@@ -1,4 +1,4 @@
-package com.app.projetoic;
+package com.app.projetoic.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TelaSemicirculoActivity extends AppCompatActivity {
+import com.app.projetoic.R;
+
+public class TelaQuadranteActivity extends AppCompatActivity {
 
     private EditText editTextRaio;
     private TextView textViewArea;
@@ -27,7 +29,7 @@ public class TelaSemicirculoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_semicirculo);
+        setContentView(R.layout.activity_tela_quadrante);
 
         //Configurar Toolbar
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbarPrincipal);
@@ -59,17 +61,17 @@ public class TelaSemicirculoActivity extends AppCompatActivity {
                     float medidaRaio = Float.parseFloat(textRaio);
 
                     //Área
-                    float area = (float) (Math.PI*Math.pow(medidaRaio,2)/2);
+                    float area = (float) (Math.PI*Math.pow(medidaRaio,2)/4);
                     String textArea = String.valueOf(area);
                     textViewArea.setText("Área = " +textArea);
 
                     //Perímetro
-                    float perimetro = (float) ((Math.PI*2*medidaRaio)/2)+(2*medidaRaio);
+                    float perimetro = (float) ((Math.PI*2*medidaRaio)/4)+(2*medidaRaio);
                     String textPerimetro = String.valueOf(perimetro);
                     textViewPerimetro.setText("P. Ext.= " + textPerimetro);
 
                     //Momento de inercia
-                    float momentoInercia = (float) (Math.PI*Math.pow(medidaRaio,4)/8);
+                    float momentoInercia = (float) (Math.PI*Math.pow(medidaRaio,4)/16);
                     String textMomentoInercia = String.valueOf(momentoInercia);
                     textViewIx.setText("Ix = " + textMomentoInercia);
                     textViewIy.setText("Iy = " + textMomentoInercia);
@@ -81,13 +83,13 @@ public class TelaSemicirculoActivity extends AppCompatActivity {
                     textViewiy.setText("iy = " + textRaioGiracao);
 
                     //Módulo Plástico
-                    float moduloPlastico = (float) (2*Math.pow(medidaRaio,3)/3);
+                   /* float moduloPlastico = (float) (3*Math.PI*Math.pow(medidaRaio,3)/16);
                     String textModuloPlastico = String.valueOf(moduloPlastico);
-                    textViewZx.setText("Zx' = "+textModuloPlastico);
-                    textViewZy.setText("Zy' = "+textModuloPlastico);
+                    textViewZx.setText("Zx = "+textModuloPlastico);
+                    textViewZy.setText("Zy = "+textModuloPlastico);*/
 
                     //Módulo Elástico
-                    float moduloElastico = (float) (0.3927*Math.pow(medidaRaio,3));
+                    float moduloElastico = (float) (Math.PI*Math.pow(medidaRaio,3)/16);
                     String textModuloElastico = String.valueOf(moduloElastico);
                     textViewWx.setText("Wx = "+textModuloElastico);
                     textViewWy.setText("Wy = "+textModuloElastico);
@@ -96,10 +98,9 @@ public class TelaSemicirculoActivity extends AppCompatActivity {
                     editTextRaio.setText("");
 
                 }else {
-                    Toast.makeText(TelaSemicirculoActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TelaQuadranteActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
     }
 }

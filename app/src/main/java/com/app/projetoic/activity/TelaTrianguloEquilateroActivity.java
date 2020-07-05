@@ -1,4 +1,4 @@
-package com.app.projetoic;
+package com.app.projetoic.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,10 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TelaTrianguloRetanguloActivity extends AppCompatActivity {
+import com.app.projetoic.R;
 
-    private EditText editTextB;
-    private EditText editTextC;
+public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
+
+    private EditText editTextLado;
     private TextView textViewArea;
     private TextView textViewPerimetro;
     private TextView textViewIx;
@@ -29,7 +30,8 @@ public class TelaTrianguloRetanguloActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_triangulo_retangulo);
+        setContentView(R.layout.activity_tela_triangulo_equilatero);
+
 
         //Configurar Toolbar
         Toolbar toolbar = findViewById(R.id.toolbarPrincipal);
@@ -38,8 +40,7 @@ public class TelaTrianguloRetanguloActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Configuracoes iniciais
-        editTextB = findViewById(R.id.editTextB);
-        editTextC = findViewById(R.id.editTextC);
+        editTextLado = findViewById(R.id.editTextC);
         textViewArea = findViewById(R.id.textViewArea);
         textViewPerimetro = findViewById(R.id.textViewPerimetro);
         textViewIx = findViewById(R.id.textViewIx);
@@ -58,62 +59,58 @@ public class TelaTrianguloRetanguloActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Recuperar dados
-                String textLadoB = editTextB.getText().toString();
-                String textLadoC = editTextC.getText().toString();
-                if (!textLadoB.isEmpty() && !textLadoC.isEmpty()) {
-
-                    double medidaLadoB = Float.parseFloat(textLadoB);
-                    double medidaLadoC = Float.parseFloat(textLadoC);
-                    double medidaLadoA = Math.sqrt(Math.pow(medidaLadoB,2)+Math.pow(medidaLadoC,2));
+                String textLado = editTextLado.getText().toString();
+                if (!textLado.isEmpty()) {
+                    float medidaLado = Float.parseFloat(textLado);
+                    float altura = (float) Math.sqrt(Math.pow(medidaLado,2)+Math.pow(medidaLado/2,2));
 
                     //Área
-                    double area = medidaLadoB * medidaLadoC/2;
+                    float area = (medidaLado/2) * altura/2;
                     String textArea = String.valueOf(area);
                     textViewArea.setText("Área = " + textArea);
 
                     //Perímetro
-                    double perimetro = medidaLadoA + medidaLadoB +medidaLadoC;
+                    float perimetro = medidaLado * 3;
                     String textPerimetro = String.valueOf(perimetro);
                     textViewPerimetro.setText("P. Ext. = " + textPerimetro);
 
                     //Momento de inercia
-                    double momentoInerciaX = (medidaLadoC*Math.pow(medidaLadoB,3)/36);
-                    double momentoInerciaY = (medidaLadoB*Math.pow(medidaLadoC,3)/36);
+                    float momentoInerciaX = (float) (medidaLado*Math.pow(altura,3)/36);
+                    float momentoInerciaY = (float) (altura*Math.pow(medidaLado,3)/36);
                     String textMomentoInerciaX = String.valueOf(momentoInerciaX);
                     String textMomentoInerciaY = String.valueOf(momentoInerciaY);
                     textViewIx.setText("Ix = " + textMomentoInerciaX);
                     textViewIy.setText("Iy = " + textMomentoInerciaY);
 
                     //Raio de giração
-                    double raioGiracaoX = Math.sqrt(momentoInerciaX/area);
-                    double raioGiracaoY = Math.sqrt(momentoInerciaY/area);
+                    float raioGiracaoX = (float) Math.sqrt(momentoInerciaX/area);
+                    float raioGiracaoY = (float) Math.sqrt(momentoInerciaY/area);
                     String textRaioGiracaoX = String.valueOf(raioGiracaoX);
                     String textRaioGiracaoY = String.valueOf(raioGiracaoY);
                     textViewix.setText("ix = " + textRaioGiracaoX);
                     textViewiy.setText("iy = " + textRaioGiracaoY);
 
                     //Módulo Plástico
-                    double moduloPlasticoX = 0.0864*medidaLadoC*Math.pow(medidaLadoB, 2);
-                    double moduloPlasticoY = 0.0864*medidaLadoB*Math.pow(medidaLadoC, 2);
+                    float moduloPlasticoX = (float) ((medidaLado*Math.pow(altura, 2)*(2-Math.sqrt(2))) / 6);
+                    float moduloPlasticoY = (float) (altura*Math.pow(medidaLado, 2) / 12);
                     String textModuloPlasticoX = String.valueOf(moduloPlasticoX);
                     String textModuloPlasticoY = String.valueOf(moduloPlasticoY);
                     textViewZx.setText("Zx = " + textModuloPlasticoX);
                     textViewZy.setText("Zy = " + textModuloPlasticoY);
 
                     //Módulo Elástico
-                    double moduloElasticoX = (medidaLadoC*Math.pow(medidaLadoB, 2) / 24);
-                    double moduloElasticoY = (medidaLadoB*Math.pow(medidaLadoC, 2) / 24);
+                    float moduloElasticoX = (float) (medidaLado*Math.pow(altura, 2) / 24);
+                    float moduloElasticoY = (float) (altura*Math.pow(medidaLado, 2) / 18);
                     String textModuloElasticoX = String.valueOf(moduloElasticoX);
                     String textModuloElasticoY = String.valueOf(moduloElasticoY);
                     textViewWx.setText("Wx = " + textModuloElasticoX);
                     textViewWy.setText("Wy = " + textModuloElasticoY);
 
                     //Limpar EditText
-                    editTextB.setText("");
-                    editTextC.setText("");
+                    editTextLado.setText("");
 
                 } else {
-                    Toast.makeText(TelaTrianguloRetanguloActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TelaTrianguloEquilateroActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
                 }
 
             }

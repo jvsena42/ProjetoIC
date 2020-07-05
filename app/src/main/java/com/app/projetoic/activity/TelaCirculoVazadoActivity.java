@@ -1,4 +1,4 @@
-package com.app.projetoic;
+package com.app.projetoic.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.app.projetoic.R;
 
 public class TelaCirculoVazadoActivity extends AppCompatActivity {
 

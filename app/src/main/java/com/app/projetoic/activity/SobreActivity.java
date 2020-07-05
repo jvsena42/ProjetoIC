@@ -1,8 +1,10 @@
-package com.app.projetoic;
+package com.app.projetoic.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.app.projetoic.R;
 
 public class SobreActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.app.projetoic;
+package com.app.projetoic.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,10 +10,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TelaRetanguloActivity extends AppCompatActivity {
+import com.app.projetoic.R;
+
+public class TelaRetanguloVazadoActivity extends AppCompatActivity {
 
     private EditText editTextBase;
     private EditText editTextAltura;
+    private EditText editTextEspessura;
     private TextView textViewArea;
     private TextView textViewPerimetro;
     private TextView textViewIx;
@@ -29,7 +32,7 @@ public class TelaRetanguloActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_retangulo);
+        setContentView(R.layout.activity_tela_retangulo_vazado);
 
         //Configurar Toolbar
         Toolbar toolbar = findViewById(R.id.toolbarPrincipal);
@@ -40,6 +43,7 @@ public class TelaRetanguloActivity extends AppCompatActivity {
         //Configuracoes iniciais
         editTextBase = findViewById(R.id.editTextBase);
         editTextAltura = findViewById(R.id.editTextAltura);
+        editTextEspessura = findViewById(R.id.editTextEspessura);
         textViewArea = findViewById(R.id.textViewArea);
         textViewPerimetro = findViewById(R.id.textViewPerimetro);
         textViewIx = findViewById(R.id.textViewIx);
@@ -56,19 +60,20 @@ public class TelaRetanguloActivity extends AppCompatActivity {
         buttonCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Recuperar dados
                 String textBase = editTextBase.getText().toString();
                 String textAltura = editTextAltura.getText().toString();
+                String textEspessura = editTextEspessura.getText().toString();
 
-                if (!textBase.isEmpty() || !textAltura.isEmpty()) {
-
+                if (!textBase.isEmpty() && !textAltura.isEmpty() && !textEspessura.isEmpty()){
                     float medidaBase = Float.parseFloat(textBase);
                     float medidaAltura = Float.parseFloat(textAltura);
+                    float medidaEspessura = Float.parseFloat(textEspessura);
+                    float medidaBaseInterna = medidaBase-(2*medidaEspessura);
+                    float medidaAlturaInterna = medidaAltura-(2*medidaEspessura);
 
-                    if (medidaBase > 0 && medidaAltura > 0) {
-
+                    if (medidaBaseInterna>0 && medidaAlturaInterna>0){
                         //Área
-                        float area = medidaBase*medidaAltura;
+                        float area = (medidaBase*medidaAltura)-(medidaBaseInterna*medidaAlturaInterna);
                         String textArea = String.valueOf(area);
                         textViewArea.setText("Área = " +textArea);
 
@@ -78,8 +83,8 @@ public class TelaRetanguloActivity extends AppCompatActivity {
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
 
                         //Momento de inercia
-                        float momentoInerciaX = (float) (Math.pow(medidaAltura,3)*medidaBase/12);
-                        float momentoInerciaY = (float) (Math.pow(medidaBase,3)*medidaAltura/12);
+                        float momentoInerciaX = (float) ((Math.pow(medidaAltura,3)*medidaBase/12)-(Math.pow(medidaAlturaInterna,3)*medidaBaseInterna/12));
+                        float momentoInerciaY = (float) ((Math.pow(medidaBase,3)*medidaAltura/12)-(Math.pow(medidaBaseInterna,3)*medidaAlturaInterna/12));
                         String textMomentoInerciaX = String.valueOf(momentoInerciaX);
                         String textMomentoInerciaY = String.valueOf(momentoInerciaY);
                         textViewIx.setText("Ix = " + textMomentoInerciaX);
@@ -93,17 +98,17 @@ public class TelaRetanguloActivity extends AppCompatActivity {
                         textViewix.setText("ix = " + textRaioGiracaoX);
                         textViewiy.setText("iy = " + textRaioGiracaoY);
 
-                        //Módulo Plástico
-                        float moduloPlasticoX = (float) (Math.pow(medidaAltura,2)*medidaBase/4);
-                        float moduloPlasticoY = (float) (Math.pow(medidaBase,2)*medidaAltura/4);
+                        //Módulo plastico
+                        float moduloPlasticoX = (float) (Math.pow(medidaAltura,2)*medidaBase/4*(1-(1-2*medidaEspessura/medidaBase)*Math.pow(1-2*medidaEspessura/medidaAltura,2)));
+                        float moduloPlasticoY = (float) (Math.pow(medidaBase,2)*medidaAltura/4*(1-(1-2*medidaEspessura/medidaAltura)*Math.pow(1-2*medidaEspessura/medidaBase,2)));
                         String textModuloPlasticoX = String.valueOf(moduloPlasticoX);
                         String textModuloPlasticoY = String.valueOf(moduloPlasticoY);
                         textViewZx.setText("Zx = "+textModuloPlasticoX);
                         textViewZy.setText("Zy = "+textModuloPlasticoY);
 
-                        //Módulo Elástico
-                        float moduloElasticoX = (float) (medidaBase*Math.pow(medidaAltura,2)/6);
-                        float moduloElasticoY = (float) (medidaAltura*Math.pow(medidaBase,2)/6);
+                        //Módulo elástico
+                        float moduloElasticoX = (float) ((medidaBase*medidaAltura)*medidaEspessura + (Math.pow(medidaBase,2)*medidaEspessura/3));
+                        float moduloElasticoY = (float) ((medidaBase*medidaAltura)*medidaEspessura + (Math.pow(medidaAltura,2)*medidaEspessura/3));
                         String textModuloElasticoX = String.valueOf(moduloElasticoX);
                         String textModuloElasticoY = String.valueOf(moduloElasticoY);
                         textViewWx.setText("Wx = "+textModuloElasticoX);
@@ -112,15 +117,16 @@ public class TelaRetanguloActivity extends AppCompatActivity {
                         //Limpar EditText
                         editTextBase.setText("");
                         editTextAltura.setText("");
-
-                    } else {
-                    Toast.makeText(TelaRetanguloActivity.this, "Utilize valores válidos!", Toast.LENGTH_SHORT).show();
+                        editTextEspessura.setText("");
+                    }else {
+                        Toast.makeText(TelaRetanguloVazadoActivity.this, "Erro! digite uma espessura menor ou medidas maiores para os lados", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(TelaRetanguloActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
-                }
 
+                }else {
+                    Toast.makeText(TelaRetanguloVazadoActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
     }
 }

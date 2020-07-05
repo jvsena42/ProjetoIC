@@ -1,7 +1,6 @@
-package com.app.projetoic;
+package com.app.projetoic.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +9,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TelaQuadradoActivity extends AppCompatActivity {
+import com.app.projetoic.R;
 
-    private EditText editTextLado;
+public class TelaSemicirculoActivity extends AppCompatActivity {
+
+    private EditText editTextRaio;
     private TextView textViewArea;
     private TextView textViewPerimetro;
     private TextView textViewIx;
@@ -25,20 +26,19 @@ public class TelaQuadradoActivity extends AppCompatActivity {
     private TextView textViewWy;
     private Button buttonCalcular;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_quadrado);
+        setContentView(R.layout.activity_tela_semicirculo);
 
         //Configurar Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbarPrincipal);
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbarPrincipal);
         toolbar.setTitle("Geometrix");
         toolbar.setTitleTextColor(getColor(R.color.titleColor));
         setSupportActionBar(toolbar);
 
         //Configuracoes iniciais
-        editTextLado = findViewById(R.id.editTextLado);
+        editTextRaio = findViewById(R.id.editTextRaio);
         textViewArea = findViewById(R.id.textViewArea);
         textViewPerimetro = findViewById(R.id.textViewPerimetro);
         textViewIx = findViewById(R.id.textViewIx);
@@ -55,57 +55,53 @@ public class TelaQuadradoActivity extends AppCompatActivity {
         buttonCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //Recuperar dados
-                String textLado = editTextLado.getText().toString();
-                if (!textLado.isEmpty()){
-                    float medidaLado = Float.parseFloat(textLado);
+                String textRaio = editTextRaio.getText().toString();
+                if (!textRaio.isEmpty()){
+                    float medidaRaio = Float.parseFloat(textRaio);
 
                     //Área
-                    float area = medidaLado*medidaLado;
+                    float area = (float) (Math.PI*Math.pow(medidaRaio,2)/2);
                     String textArea = String.valueOf(area);
                     textViewArea.setText("Área = " +textArea);
 
                     //Perímetro
-                    float perimetro = medidaLado*4;
+                    float perimetro = (float) ((Math.PI*2*medidaRaio)/2)+(2*medidaRaio);
                     String textPerimetro = String.valueOf(perimetro);
-                    textViewPerimetro.setText("P. Ext. = " + textPerimetro);
+                    textViewPerimetro.setText("P. Ext.= " + textPerimetro);
 
                     //Momento de inercia
-                    float momentoInercia = (float) (Math.pow(medidaLado,4)/12);
+                    float momentoInercia = (float) (Math.PI*Math.pow(medidaRaio,4)/8);
                     String textMomentoInercia = String.valueOf(momentoInercia);
                     textViewIx.setText("Ix = " + textMomentoInercia);
                     textViewIy.setText("Iy = " + textMomentoInercia);
 
                     //Raio de giração
-                    float raioGiracao = (float) (medidaLado/Math.sqrt(12));
+                    float raioGiracao = (float) Math.sqrt(momentoInercia/area);
                     String textRaioGiracao = String.valueOf(raioGiracao);
                     textViewix.setText("ix = " + textRaioGiracao);
                     textViewiy.setText("iy = " + textRaioGiracao);
 
                     //Módulo Plástico
-                    float moduloPlastico = (float) (Math.pow(medidaLado,3)/4);
+                    float moduloPlastico = (float) (2*Math.pow(medidaRaio,3)/3);
                     String textModuloPlastico = String.valueOf(moduloPlastico);
-                    textViewZx.setText("Zx = "+textModuloPlastico);
-                    textViewZy.setText("Zy = "+textModuloPlastico);
+                    textViewZx.setText("Zx' = "+textModuloPlastico);
+                    textViewZy.setText("Zy' = "+textModuloPlastico);
 
                     //Módulo Elástico
-                    float moduloElastico = (float) (Math.pow(medidaLado,3)/6);
+                    float moduloElastico = (float) (0.3927*Math.pow(medidaRaio,3));
                     String textModuloElastico = String.valueOf(moduloElastico);
                     textViewWx.setText("Wx = "+textModuloElastico);
                     textViewWy.setText("Wy = "+textModuloElastico);
 
                     //Limpar EditText
-                    editTextLado.setText("");
+                    editTextRaio.setText("");
 
                 }else {
-                    Toast.makeText(TelaQuadradoActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TelaSemicirculoActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
     }
-
-
 }

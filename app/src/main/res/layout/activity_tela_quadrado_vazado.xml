@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@android:color/white"
     android:isScrollContainer="true"
-    tools:context=".TelaQuadradoVazadoActivity">
+    tools:context=".activity.TelaQuadradoVazadoActivity">
 
     <include
         android:id="@+id/include2"

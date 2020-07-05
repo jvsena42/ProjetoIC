@@ -8,7 +8,7 @@
     android:gravity="top"
     android:isScrollContainer="true"
     android:scrollbars="vertical"
-    tools:context=".TelaQuadradoActivity">
+    tools:context=".activity.TelaQuadradoActivity">
 
     <include
         android:id="@+id/include2"
