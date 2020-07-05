@@ -98,7 +98,7 @@ public class TelaCirculoVazadoActivity extends AppCompatActivity {
                         textViewiy.setText("iy = "+textRaioGiracao);
 
                         //Módulo plastico
-                        float moduloPlastico = (float) (Math.pow(2*medidaRaio,3)*(1-Math.pow(1-(1-(2*medidaEspessura/(2*medidaRaio))),3))/6);
+                        float moduloPlastico = (float) (4*Math.pow(medidaRaio,3)*(1-Math.pow((1-(medidaEspessura/medidaRaio)),3))/3);
                         String textModuloPlastico = String.valueOf(moduloPlastico);
                         textViewZx.setText("Zx = "+textModuloPlastico);
                         textViewZy.setText("Zy = "+textModuloPlastico);

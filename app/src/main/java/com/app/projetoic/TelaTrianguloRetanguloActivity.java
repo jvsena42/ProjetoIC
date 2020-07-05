@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 public class TelaTrianguloRetanguloActivity extends AppCompatActivity {
 
-    private EditText editTextA;
     private EditText editTextB;
     private EditText editTextC;
     private TextView textViewArea;
@@ -39,7 +38,6 @@ public class TelaTrianguloRetanguloActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Configuracoes iniciais
-        editTextA = findViewById(R.id.editTextA);
         editTextB = findViewById(R.id.editTextB);
         editTextC = findViewById(R.id.editTextC);
         textViewArea = findViewById(R.id.textViewArea);
@@ -60,58 +58,57 @@ public class TelaTrianguloRetanguloActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Recuperar dados
-                String textLadoA = editTextA.getText().toString();
                 String textLadoB = editTextB.getText().toString();
                 String textLadoC = editTextC.getText().toString();
-                if (!textLadoA.isEmpty() && !textLadoB.isEmpty() && !textLadoC.isEmpty()) {
-                    float medidaLadoA = Float.parseFloat(textLadoA);
-                    float medidaLadoB = Float.parseFloat(textLadoB);
-                    float medidaLadoC = Float.parseFloat(textLadoC);
+                if (!textLadoB.isEmpty() && !textLadoC.isEmpty()) {
+
+                    double medidaLadoB = Float.parseFloat(textLadoB);
+                    double medidaLadoC = Float.parseFloat(textLadoC);
+                    double medidaLadoA = Math.sqrt(Math.pow(medidaLadoB,2)+Math.pow(medidaLadoC,2));
 
                     //Área
-                    float area = medidaLadoB * medidaLadoC/2;
+                    double area = medidaLadoB * medidaLadoC/2;
                     String textArea = String.valueOf(area);
                     textViewArea.setText("Área = " + textArea);
 
                     //Perímetro
-                    float perimetro = medidaLadoA + medidaLadoB +medidaLadoC;
+                    double perimetro = medidaLadoA + medidaLadoB +medidaLadoC;
                     String textPerimetro = String.valueOf(perimetro);
                     textViewPerimetro.setText("P. Ext. = " + textPerimetro);
 
                     //Momento de inercia
-                    float momentoInerciaX = (float) (medidaLadoC*Math.pow(medidaLadoB,3)/36);
-                    float momentoInerciay = (float) (medidaLadoB*Math.pow(medidaLadoC,3)/36);
+                    double momentoInerciaX = (medidaLadoC*Math.pow(medidaLadoB,3)/36);
+                    double momentoInerciaY = (medidaLadoB*Math.pow(medidaLadoC,3)/36);
                     String textMomentoInerciaX = String.valueOf(momentoInerciaX);
-                    String textMomentoInerciay = String.valueOf(momentoInerciay);
+                    String textMomentoInerciaY = String.valueOf(momentoInerciaY);
                     textViewIx.setText("Ix = " + textMomentoInerciaX);
-                    textViewIy.setText("Iy = " + textMomentoInerciay);
+                    textViewIy.setText("Iy = " + textMomentoInerciaY);
 
                     //Raio de giração
-                    float raioGiracaoX = (float) Math.sqrt(momentoInerciay/area);
-                    float raioGiracaoY = (float) Math.sqrt(momentoInerciaX/area);
+                    double raioGiracaoX = Math.sqrt(momentoInerciaX/area);
+                    double raioGiracaoY = Math.sqrt(momentoInerciaY/area);
                     String textRaioGiracaoX = String.valueOf(raioGiracaoX);
                     String textRaioGiracaoY = String.valueOf(raioGiracaoY);
                     textViewix.setText("ix = " + textRaioGiracaoX);
                     textViewiy.setText("iy = " + textRaioGiracaoY);
 
                     //Módulo Plástico
-                    float moduloPlasticoX = (float) (0.0864*medidaLadoC*Math.pow(medidaLadoB, 2) *(2-Math.sqrt(2)))/6;
-                    float moduloPlasticoY = (float) (0.0864*medidaLadoB*Math.pow(medidaLadoC, 2) )/12;
+                    double moduloPlasticoX = 0.0864*medidaLadoC*Math.pow(medidaLadoB, 2);
+                    double moduloPlasticoY = 0.0864*medidaLadoB*Math.pow(medidaLadoC, 2);
                     String textModuloPlasticoX = String.valueOf(moduloPlasticoX);
                     String textModuloPlasticoY = String.valueOf(moduloPlasticoY);
                     textViewZx.setText("Zx = " + textModuloPlasticoX);
                     textViewZy.setText("Zy = " + textModuloPlasticoY);
 
                     //Módulo Elástico
-                    float moduloElasticoX = (float) (medidaLadoC*Math.pow(medidaLadoB, 2) / 24);
-                    float moduloElasticoY = (float) (medidaLadoB*Math.pow(medidaLadoC, 2) / 24);
+                    double moduloElasticoX = (medidaLadoC*Math.pow(medidaLadoB, 2) / 24);
+                    double moduloElasticoY = (medidaLadoB*Math.pow(medidaLadoC, 2) / 24);
                     String textModuloElasticoX = String.valueOf(moduloElasticoX);
                     String textModuloElasticoY = String.valueOf(moduloElasticoY);
                     textViewWx.setText("Wx = " + textModuloElasticoX);
                     textViewWy.setText("Wy = " + textModuloElasticoY);
 
                     //Limpar EditText
-                    editTextA.setText("");
                     editTextB.setText("");
                     editTextC.setText("");
 

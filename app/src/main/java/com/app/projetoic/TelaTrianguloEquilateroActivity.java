@@ -63,7 +63,7 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
                     float altura = (float) Math.sqrt(Math.pow(medidaLado,2)+Math.pow(medidaLado/2,2));
 
                     //Área
-                    float area = medidaLado * altura/2;
+                    float area = (medidaLado/2) * altura/2;
                     String textArea = String.valueOf(area);
                     textViewArea.setText("Área = " + textArea);
 
@@ -74,20 +74,19 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
 
                     //Momento de inercia
                     float momentoInerciaX = (float) (medidaLado*Math.pow(altura,3)/36);
-                    float momentoInerciay = (float) (altura*Math.pow(medidaLado,3)/36);
+                    float momentoInerciaY = (float) (altura*Math.pow(medidaLado,3)/36);
                     String textMomentoInerciaX = String.valueOf(momentoInerciaX);
-                    String textMomentoInerciay = String.valueOf(momentoInerciay);
+                    String textMomentoInerciaY = String.valueOf(momentoInerciaY);
                     textViewIx.setText("Ix = " + textMomentoInerciaX);
-                    textViewIy.setText("Iy = " + textMomentoInerciay);
+                    textViewIy.setText("Iy = " + textMomentoInerciaY);
 
                     //Raio de giração
-                    float raioGiracaoX = (float) Math.sqrt(momentoInerciay/area);
-                    float raioGiracaoY = (float) Math.sqrt(momentoInerciaX/area);
+                    float raioGiracaoX = (float) Math.sqrt(momentoInerciaX/area);
+                    float raioGiracaoY = (float) Math.sqrt(momentoInerciaY/area);
                     String textRaioGiracaoX = String.valueOf(raioGiracaoX);
                     String textRaioGiracaoY = String.valueOf(raioGiracaoY);
                     textViewix.setText("ix = " + textRaioGiracaoX);
                     textViewiy.setText("iy = " + textRaioGiracaoY);
-
 
                     //Módulo Plástico
                     float moduloPlasticoX = (float) ((medidaLado*Math.pow(altura, 2)*(2-Math.sqrt(2))) / 6);
