@@ -86,8 +86,8 @@ public class TelaRetanguloActivity extends AppCompatActivity {
                         textViewIy.setText("Iy = " + textMomentoInerciaY);
 
                         //Raio de giração
-                        float raioGiracaoX = (float) Math.sqrt((momentoInerciaY/area));
-                        float raioGiracaoY = (float) Math.sqrt((momentoInerciaX/area));
+                        float raioGiracaoX = (float) Math.sqrt((momentoInerciaX/area));
+                        float raioGiracaoY = (float) Math.sqrt((momentoInerciaY/area));
                         String textRaioGiracaoX = String.valueOf(raioGiracaoX);
                         String textRaioGiracaoY = String.valueOf(raioGiracaoY);
                         textViewix.setText("ix = " + textRaioGiracaoX);

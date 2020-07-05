@@ -143,7 +143,6 @@ public class TelaPerfilLActivity extends AppCompatActivity {
                         textViewZx.setText("Zx' = "+textModuloPlasticoX);
                         textViewZy.setText("Zy' = "+textModuloPlasticoY);
 
-
                         //Módulo elástico
                         float moduloElasticoX = momentoInerciaX/(medidaAltura-centroideY);
                         float moduloElasticoY = momentoInerciaY/(medidaBase-centroideX);
