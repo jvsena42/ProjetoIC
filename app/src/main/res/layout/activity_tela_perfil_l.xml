@@ -25,42 +25,76 @@
             android:layout_height="match_parent"
             android:padding="8dp">
 
+            <Button
+                android:id="@+id/buttonCalcular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/background"
+                android:text="Calcular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
             <EditText
                 android:id="@+id/editTextBase"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/alturaCaixaDeTexto"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/background"
                 android:ems="10"
-                android:hint="b="
-                android:inputType="numberDecimal"
-                android:padding="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/editTextAltura"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-            <EditText
-                android:id="@+id/editTextAltura"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/alturaCaixaDeTexto"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/background"
-                android:ems="10"
-                android:hint="h="
+                android:hint="a="
                 android:inputType="numberDecimal"
                 android:padding="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/editTextEspessura"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+            <EditText
+                android:id="@+id/editTextEspessura"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/alturaCaixaDeTexto"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/background"
+                android:ems="10"
+                android:hint="e ="
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextBase" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/background"
+                android:padding="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/editTextBase"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/tela_perfil_l" />
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/background"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -108,12 +142,22 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/textViewImin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:text="Imin ="
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:id="@+id/textViewix"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="5dp"
-                        android:text="ix ="
+                        android:text="ix'=iy'="
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
 
@@ -180,12 +224,22 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/textViewIz"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:text="Iz ="
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:id="@+id/textViewiy"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="5dp"
-                        android:text="iy ="
+                        android:text="iz ="
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
 
@@ -213,44 +267,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background"
-                android:padding="12dp"
-                app:layout_constraintBottom_toTopOf="@+id/editTextBase"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/tela_perfil_l" />
-
-            <Button
-                android:id="@+id/buttonCalcular"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/background"
-                android:text="Calcular"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-            <EditText
-                android:id="@+id/editTextEspessura"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/alturaCaixaDeTexto"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/background"
-                android:ems="10"
-                android:hint="e ="
-                android:inputType="numberDecimal"
-                android:padding="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-                app:layout_constraintTop_toBottomOf="@+id/editTextAltura"
-                tools:layout_editor_absoluteX="8dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
