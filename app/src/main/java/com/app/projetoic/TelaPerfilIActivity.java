@@ -112,7 +112,7 @@ public class TelaPerfilIActivity extends AppCompatActivity {
 
                         //Momento de inercia
                         float momentoInerciaX1 = (float) (medidaBase*Math.pow(medidaEspessuraMesa,3)/12 + area1*Math.pow(centroideY-centroideY1,2));
-                        float momentoInerciaX2 = (float) (medidaEspessuraAlma*Math.pow(medidaAltura-medidaAlturaInterna,3)/12);
+                        float momentoInerciaX2 = (float) (medidaEspessuraAlma*Math.pow(medidaAlturaInterna,3)/12);
                         float momentoInerciaX3 = (float) (medidaBase*Math.pow(medidaEspessuraMesa,3)/12 + area3*Math.pow(centroideY-centroideY3,2));
                         float momentoInerciaX = momentoInerciaX1 + momentoInerciaX2 + momentoInerciaX3;
 
@@ -144,8 +144,8 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                         textViewZy.setText("Zy' = "+textModuloPlasticoY);
 
                         //Módulo elástico
-                        float moduloElasticoX = 2*momentoInerciaX/medidaAltura;
-                        float moduloElasticoY = 2*momentoInerciaY/medidaBase;
+                        double moduloElasticoX = moduloPlasticoX/1.12;
+                        double moduloElasticoY = moduloPlasticoY/1.55;
                         String textModuloElasticoX = String.valueOf(moduloElasticoX);
                         String textModuloElasticoY = String.valueOf(moduloElasticoY);
                         textViewWx.setText("Wx' = "+textModuloElasticoX);

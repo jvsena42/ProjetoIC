@@ -149,7 +149,8 @@
                         android:padding="5dp"
                         android:text="Imin ="
                         android:textColor="@android:color/black"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/textViewix"
@@ -231,7 +232,8 @@
                         android:padding="5dp"
                         android:text="Iz ="
                         android:textColor="@android:color/black"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/textViewiy"

@@ -90,14 +90,12 @@ public class TelaPerfilCActivity extends AppCompatActivity {
                         float centroideY1 = medidaEspessura/2;
                         float centroideY2 = medidaAltura/2;
                         float centroideY3 = medidaAltura - (medidaEspessura/2);
-
                         float centroideY = (area1*centroideY1+area2*centroideY2+area1*centroideY3)/areaTotal;
 
                         String textCentroideX = String.valueOf(centroideX);
                         String textCentroideY = String.valueOf(centroideY);
                         textViewCentroideX.setText("X' = "+textCentroideX);
                         textViewCentroideY.setText("Y' = "+textCentroideY);
-
 
                         //Perímetro
                         float perimetro = (2*medidaBase) + (2*medidaBaseInterna) + (2*medidaEspessura)+ medidaAltura + medidaAlturaInterna;
@@ -110,10 +108,9 @@ public class TelaPerfilCActivity extends AppCompatActivity {
                         float momentoInerciaX3 = (float) (medidaBase*Math.pow(medidaEspessura,3)/12 + area1*Math.pow(centroideY-centroideY3,2));
                         float momentoInerciaX = momentoInerciaX1 + momentoInerciaX2 + momentoInerciaX3;
 
-                        float momentoInerciaY1 = (float) (medidaEspessura*Math.pow(medidaBase,3)/12 + area1*Math.pow(centroideX-(medidaBase/2),2));
-                        float momentoInerciaY2 = (float) ((medidaAltura-2*medidaEspessura)*Math.pow(medidaEspessura,3)/12 + area2*Math.pow(centroideX-centroideX2,2));
-                        float momentoInerciaY3 = (float) (medidaBase*Math.pow(medidaEspessura,3)/12 + area1*Math.pow(centroideX-(medidaBase/2),2));
-
+                        float momentoInerciaY1 = (float) (medidaEspessura*Math.pow(medidaBase,3)/12 + area1*Math.pow(centroideX-centroideX1,2));
+                        float momentoInerciaY2 = (float) ((medidaAlturaInterna)*Math.pow(medidaEspessura,3)/12 + area2*Math.pow(centroideX-centroideX2,2));
+                        float momentoInerciaY3 = (float) (medidaEspessura*Math.pow(medidaBase,3)/12 + area1*Math.pow(centroideX-centroideX1,2));
                         float momentoInerciaY = momentoInerciaY1 + momentoInerciaY2 + momentoInerciaY3;
 
                         String textMomentoInerciaX = String.valueOf(momentoInerciaX);
@@ -122,13 +119,12 @@ public class TelaPerfilCActivity extends AppCompatActivity {
                         textViewIy.setText("Iy' = " + textMomentoInerciaY);
 
                         //Raio de giração
-                        float raioGiracaoX = (float) Math.sqrt((momentoInerciaX/areaTotal));
-                        float raioGiracaoY = (float) Math.sqrt((momentoInerciaY/areaTotal));
+                        double raioGiracaoX = Math.sqrt(momentoInerciaX/areaTotal);
+                        double raioGiracaoY = Math.sqrt(momentoInerciaY/areaTotal);
                         String textRaioGiracaoX = String.valueOf(raioGiracaoX);
                         String textRaioGiracaoY = String.valueOf(raioGiracaoY);
                         textViewix.setText("ix' = " + textRaioGiracaoX);
                         textViewiy.setText("iy' = " + textRaioGiracaoY);
-
 
                         //Módulo plastico
                         float moduloPlasticoX = (float) (medidaBase*medidaEspessura*(medidaAltura-medidaEspessura)+medidaEspessura*Math.pow(0.5*medidaAltura-medidaEspessura,2));
