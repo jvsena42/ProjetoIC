@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -154,11 +157,6 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                         textViewWx.setText("Wx' = "+textModuloElasticoX);
                         textViewWy.setText("Wx' = "+textModuloElasticoY);
 
-                        //Limpar EditText
-                        editTextBase.setText("");
-                        editTextAltura.setText("");
-                        editTextEspessuraMesa.setText("");
-                        editTextEspessuraAlma.setText("");
                     }else {
                         Toast.makeText(TelaPerfilIActivity.this, "Erro! digite uma espessura menor ou medidas maiores para os lados", Toast.LENGTH_SHORT).show();
                     }
@@ -168,5 +166,32 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_secundario, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.item_limpar:
+
+                //Limpar EditText
+                editTextBase.setText("");
+                editTextAltura.setText("");
+                editTextEspessuraMesa.setText("");
+                editTextEspessuraAlma.setText("");
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

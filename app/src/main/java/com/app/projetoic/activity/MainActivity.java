@@ -155,9 +155,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.itemConfiguracoes:
-                Toast.makeText(getApplicationContext(), "Página configurações", Toast.LENGTH_SHORT).show();
-                break;
             case R.id.itemSobre:
                 Intent intent = new Intent(MainActivity.this, SobreActivity.class);
                 startActivity(intent);

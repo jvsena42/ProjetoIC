@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -111,10 +114,6 @@ public class TelaTrianguloRetanguloActivity extends AppCompatActivity {
                     textViewWx.setText("Wx = " + textModuloElasticoX);
                     textViewWy.setText("Wy = " + textModuloElasticoY);
 
-                    //Limpar EditText
-                    editTextB.setText("");
-                    editTextC.setText("");
-
                 } else {
                     Toast.makeText(TelaTrianguloRetanguloActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
                 }
@@ -122,5 +121,30 @@ public class TelaTrianguloRetanguloActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_secundario, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.item_limpar:
+
+                //Limpar EditText
+                editTextB.setText("");
+                editTextC.setText("");
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

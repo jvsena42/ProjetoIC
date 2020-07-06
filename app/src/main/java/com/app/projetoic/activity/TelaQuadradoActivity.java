@@ -3,7 +3,11 @@ package com.app.projetoic.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -98,9 +102,6 @@ public class TelaQuadradoActivity extends AppCompatActivity {
                     textViewWx.setText("Wx = "+textModuloElastico);
                     textViewWy.setText("Wy = "+textModuloElastico);
 
-                    //Limpar EditText
-                    editTextLado.setText("");
-
                 }else {
                     Toast.makeText(TelaQuadradoActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
                 }
@@ -110,5 +111,27 @@ public class TelaQuadradoActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_secundario, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.item_limpar:
+                //Limpar EditText
+                editTextLado.setText("");
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }
