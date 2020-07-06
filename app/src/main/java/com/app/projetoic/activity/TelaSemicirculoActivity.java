@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.projetoic.R;
+import com.app.projetoic.helper.Utils;
 
 public class TelaSemicirculoActivity extends AppCompatActivity {
 
@@ -58,39 +59,39 @@ public class TelaSemicirculoActivity extends AppCompatActivity {
                 //Recuperar dados
                 String textRaio = editTextRaio.getText().toString();
                 if (!textRaio.isEmpty()){
-                    float medidaRaio = Float.parseFloat(textRaio);
+                    double medidaRaio = Float.parseFloat(textRaio);
 
                     //Área
-                    float area = (float) (Math.PI*Math.pow(medidaRaio,2)/2);
-                    String textArea = String.valueOf(area);
+                    double area = (Math.PI*Math.pow(medidaRaio,2)/2);
+                    String textArea = Utils.arredondar(area);
                     textViewArea.setText("Área = " +textArea);
 
                     //Perímetro
-                    float perimetro = (float) ((Math.PI*2*medidaRaio)/2)+(2*medidaRaio);
-                    String textPerimetro = String.valueOf(perimetro);
+                    double perimetro = ((Math.PI*2*medidaRaio)/2)+(2*medidaRaio);
+                    String textPerimetro = Utils.arredondar(perimetro);
                     textViewPerimetro.setText("P. Ext.= " + textPerimetro);
 
                     //Momento de inercia
-                    float momentoInercia = (float) (Math.PI*Math.pow(medidaRaio,4)/8);
-                    String textMomentoInercia = String.valueOf(momentoInercia);
+                    double momentoInercia = (Math.PI*Math.pow(medidaRaio,4)/8);
+                    String textMomentoInercia = Utils.arredondar(momentoInercia);
                     textViewIx.setText("Ix = " + textMomentoInercia);
                     textViewIy.setText("Iy = " + textMomentoInercia);
 
                     //Raio de giração
-                    float raioGiracao = (float) Math.sqrt(momentoInercia/area);
-                    String textRaioGiracao = String.valueOf(raioGiracao);
+                    double raioGiracao = Math.sqrt(momentoInercia/area);
+                    String textRaioGiracao = Utils.arredondar(raioGiracao);
                     textViewix.setText("ix = " + textRaioGiracao);
                     textViewiy.setText("iy = " + textRaioGiracao);
 
                     //Módulo Plástico
-                    float moduloPlastico = (float) (2*Math.pow(medidaRaio,3)/3);
-                    String textModuloPlastico = String.valueOf(moduloPlastico);
+                    double moduloPlastico = (2*Math.pow(medidaRaio,3)/3);
+                    String textModuloPlastico = Utils.arredondar(moduloPlastico);
                     textViewZx.setText("Zx' = "+textModuloPlastico);
                     textViewZy.setText("Zy' = "+textModuloPlastico);
 
                     //Módulo Elástico
-                    float moduloElastico = (float) (0.3927*Math.pow(medidaRaio,3));
-                    String textModuloElastico = String.valueOf(moduloElastico);
+                    double moduloElastico = (0.3927*Math.pow(medidaRaio,3));
+                    String textModuloElastico = Utils.arredondar(moduloElastico);
                     textViewWx.setText("Wx = "+textModuloElastico);
                     textViewWy.setText("Wy = "+textModuloElastico);
 

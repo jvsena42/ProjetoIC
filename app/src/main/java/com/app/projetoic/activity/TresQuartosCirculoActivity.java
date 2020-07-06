@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.projetoic.R;
+import com.app.projetoic.helper.Utils;
 
 public class TresQuartosCirculoActivity extends AppCompatActivity {
 
@@ -58,27 +59,27 @@ public class TresQuartosCirculoActivity extends AppCompatActivity {
                 //Recuperar dados
                 String textRaio = editTextRaio.getText().toString();
                 if (!textRaio.isEmpty()){
-                    float medidaRaio = Float.parseFloat(textRaio);
+                    double medidaRaio = Float.parseFloat(textRaio);
 
                     //Área
-                    float area = (float) (Math.PI*Math.pow(medidaRaio,2)*3/4);
-                    String textArea = String.valueOf(area);
+                    double area = Math.PI*Math.pow(medidaRaio,2)*3/4;
+                    String textArea = Utils.arredondar(area);
                     textViewArea.setText("Área = " +textArea);
 
                     //Perímetro
-                    float perimetro = (float) ((Math.PI*2*medidaRaio)*3/4)+(2*medidaRaio);
-                    String textPerimetro = String.valueOf(perimetro);
+                    double perimetro =  ((Math.PI*2*medidaRaio)*3/4)+(2*medidaRaio);
+                    String textPerimetro = Utils.arredondar(perimetro);
                     textViewPerimetro.setText("P. Ext.= " + textPerimetro);
 
                     //Momento de inercia
-                    float momentoInercia = (float) (3*Math.PI*Math.pow(medidaRaio,4)/16);
-                    String textMomentoInercia = String.valueOf(momentoInercia);
+                    double momentoInercia = (3*Math.PI*Math.pow(medidaRaio,4)/16);
+                    String textMomentoInercia = Utils.arredondar(momentoInercia);
                     textViewIx.setText("Ix = " + textMomentoInercia);
                     textViewIy.setText("Iy = " + textMomentoInercia);
 
                     //Raio de giração
-                    float raioGiracao = (float) Math.sqrt(momentoInercia/area);
-                    String textRaioGiracao = String.valueOf(raioGiracao);
+                    double raioGiracao = Math.sqrt(momentoInercia/area);
+                    String textRaioGiracao = Utils.arredondar(raioGiracao);
                     textViewix.setText("ix = " + textRaioGiracao);
                     textViewiy.setText("iy = " + textRaioGiracao);
 
@@ -89,8 +90,8 @@ public class TresQuartosCirculoActivity extends AppCompatActivity {
                     textViewZy.setText("Zy = "+textModuloPlastico);*/
 
                     //Módulo Elástico
-                    float moduloElastico = (float) (3*Math.PI*Math.pow(medidaRaio,3)/16);
-                    String textModuloElastico = String.valueOf(moduloElastico);
+                    double moduloElastico = (3*Math.PI*Math.pow(medidaRaio,3)/16);
+                    String textModuloElastico = Utils.arredondar(moduloElastico);
                     textViewWx.setText("Wx = "+textModuloElastico);
                     textViewWy.setText("Wy = "+textModuloElastico);
 

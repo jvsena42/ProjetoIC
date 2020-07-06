@@ -58,38 +58,38 @@ public class TelaCirculoActivity extends AppCompatActivity {
                 //Recuperar dados
                 String textRaio = editTextRaio.getText().toString();
                 if (!textRaio.isEmpty()){
-                    float medidaRaio = Float.parseFloat(textRaio);
+                    double medidaRaio = Float.parseFloat(textRaio);
 
                     //Área
-                    float area = (float) (Math.PI*Math.pow(medidaRaio,2));
+                    double area = (Math.PI*Math.pow(medidaRaio,2));
                     String textArea = String.valueOf(area);
                     textViewArea.setText("Área = " +textArea);
 
                     //Perímetro
-                    float perimetro = (float) (Math.PI*2*medidaRaio);
+                    double perimetro = (Math.PI*2*medidaRaio);
                     String textPerimetro = String.valueOf(perimetro);
                     textViewPerimetro.setText("P. Ext.= " + textPerimetro);
 
                     //Momento de inercia
-                    float momentoInercia = (float) (Math.PI*Math.pow(medidaRaio,4)/4);
+                    double momentoInercia = (Math.PI*Math.pow(medidaRaio,4)/4);
                     String textMomentoInercia = String.valueOf(momentoInercia);
                     textViewIx.setText("Ix = " + textMomentoInercia);
                     textViewIy.setText("Iy = " + textMomentoInercia);
 
                     //Raio de giração
-                    float raioGiracao = medidaRaio/2;
+                    double raioGiracao = medidaRaio/2;
                     String textRaioGiracao = String.valueOf(raioGiracao);
                     textViewix.setText("ix = " + textRaioGiracao);
                     textViewiy.setText("iy = " + textRaioGiracao);
 
                     //Módulo Plástico
-                    float moduloPlastico = (float) (4*Math.pow(medidaRaio,3)/3);
+                    double moduloPlastico = (4*Math.pow(medidaRaio,3)/3);
                     String textModuloPlastico = String.valueOf(moduloPlastico);
                     textViewZx.setText("Zx = "+textModuloPlastico);
                     textViewZy.setText("Zy = "+textModuloPlastico);
 
                     //Módulo Elástico
-                    float moduloElastico = (float) (Math.PI*Math.pow(medidaRaio,3)/4);
+                    double moduloElastico = (Math.PI*Math.pow(medidaRaio,3)/4);
                     String textModuloElastico = String.valueOf(moduloElastico);
                     textViewWx.setText("Wx = "+textModuloElastico);
                     textViewWy.setText("Wy = "+textModuloElastico);

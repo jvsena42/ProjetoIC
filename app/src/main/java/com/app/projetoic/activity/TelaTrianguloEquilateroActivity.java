@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.projetoic.R;
+import com.app.projetoic.helper.Utils;
 
 public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
 
@@ -61,48 +62,48 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
                 //Recuperar dados
                 String textLado = editTextLado.getText().toString();
                 if (!textLado.isEmpty()) {
-                    float medidaLado = Float.parseFloat(textLado);
-                    float altura = (float) Math.sqrt(Math.pow(medidaLado,2)+Math.pow(medidaLado/2,2));
+                    double medidaLado = Float.parseFloat(textLado);
+                    double altura = Math.sqrt(Math.pow(medidaLado,2)+Math.pow(medidaLado/2,2));
 
                     //Área
-                    float area = (medidaLado/2) * altura/2;
-                    String textArea = String.valueOf(area);
+                    double area = (medidaLado/2) * altura/2;
+                    String textArea = Utils.arredondar(area);
                     textViewArea.setText("Área = " + textArea);
 
                     //Perímetro
-                    float perimetro = medidaLado * 3;
-                    String textPerimetro = String.valueOf(perimetro);
+                    double perimetro = medidaLado * 3;
+                    String textPerimetro = Utils.arredondar(perimetro);
                     textViewPerimetro.setText("P. Ext. = " + textPerimetro);
 
                     //Momento de inercia
-                    float momentoInerciaX = (float) (medidaLado*Math.pow(altura,3)/36);
-                    float momentoInerciaY = (float) (altura*Math.pow(medidaLado,3)/36);
-                    String textMomentoInerciaX = String.valueOf(momentoInerciaX);
-                    String textMomentoInerciaY = String.valueOf(momentoInerciaY);
+                    double momentoInerciaX = (medidaLado*Math.pow(altura,3)/36);
+                    double momentoInerciaY = (altura*Math.pow(medidaLado,3)/36);
+                    String textMomentoInerciaX = Utils.arredondar(momentoInerciaX);
+                    String textMomentoInerciaY = Utils.arredondar(momentoInerciaY);
                     textViewIx.setText("Ix = " + textMomentoInerciaX);
                     textViewIy.setText("Iy = " + textMomentoInerciaY);
 
                     //Raio de giração
-                    float raioGiracaoX = (float) Math.sqrt(momentoInerciaX/area);
-                    float raioGiracaoY = (float) Math.sqrt(momentoInerciaY/area);
-                    String textRaioGiracaoX = String.valueOf(raioGiracaoX);
-                    String textRaioGiracaoY = String.valueOf(raioGiracaoY);
+                    double raioGiracaoX = Math.sqrt(momentoInerciaX/area);
+                    double raioGiracaoY = Math.sqrt(momentoInerciaY/area);
+                    String textRaioGiracaoX = Utils.arredondar(raioGiracaoX);
+                    String textRaioGiracaoY = Utils.arredondar(raioGiracaoY);
                     textViewix.setText("ix = " + textRaioGiracaoX);
                     textViewiy.setText("iy = " + textRaioGiracaoY);
 
                     //Módulo Plástico
-                    float moduloPlasticoX = (float) ((medidaLado*Math.pow(altura, 2)*(2-Math.sqrt(2))) / 6);
-                    float moduloPlasticoY = (float) (altura*Math.pow(medidaLado, 2) / 12);
-                    String textModuloPlasticoX = String.valueOf(moduloPlasticoX);
-                    String textModuloPlasticoY = String.valueOf(moduloPlasticoY);
+                    double moduloPlasticoX = ((medidaLado*Math.pow(altura, 2)*(2-Math.sqrt(2))) / 6);
+                    double moduloPlasticoY = (altura*Math.pow(medidaLado, 2) / 12);
+                    String textModuloPlasticoX = Utils.arredondar(moduloPlasticoX);
+                    String textModuloPlasticoY = Utils.arredondar(moduloPlasticoY);
                     textViewZx.setText("Zx = " + textModuloPlasticoX);
                     textViewZy.setText("Zy = " + textModuloPlasticoY);
 
                     //Módulo Elástico
-                    float moduloElasticoX = (float) (medidaLado*Math.pow(altura, 2) / 24);
-                    float moduloElasticoY = (float) (altura*Math.pow(medidaLado, 2) / 18);
-                    String textModuloElasticoX = String.valueOf(moduloElasticoX);
-                    String textModuloElasticoY = String.valueOf(moduloElasticoY);
+                    double moduloElasticoX = (medidaLado*Math.pow(altura, 2) / 24);
+                    double moduloElasticoY = (altura*Math.pow(medidaLado, 2) / 18);
+                    String textModuloElasticoX = Utils.arredondar(moduloElasticoX);
+                    String textModuloElasticoY = Utils.arredondar(moduloElasticoY);
                     textViewWx.setText("Wx = " + textModuloElasticoX);
                     textViewWy.setText("Wy = " + textModuloElasticoY);
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.projetoic.R;
+import com.app.projetoic.helper.Utils;
 
 public class TelaPerfilCActivity extends AppCompatActivity {
 
@@ -69,78 +70,78 @@ public class TelaPerfilCActivity extends AppCompatActivity {
                 String textEspessura = editTextEspessura.getText().toString();
 
                 if (!textBase.isEmpty() && !textAltura.isEmpty() && !textEspessura.isEmpty()){
-                    float medidaBase = Float.parseFloat(textBase);
-                    float medidaAltura = Float.parseFloat(textAltura);
-                    float medidaEspessura = Float.parseFloat(textEspessura);
-                    float medidaBaseInterna = medidaBase-(medidaEspessura);
-                    float medidaAlturaInterna = medidaAltura-(2*medidaEspessura);
+                    double medidaBase = Float.parseFloat(textBase);
+                    double medidaAltura = Float.parseFloat(textAltura);
+                    double medidaEspessura = Float.parseFloat(textEspessura);
+                    double medidaBaseInterna = medidaBase-(medidaEspessura);
+                    double medidaAlturaInterna = medidaAltura-(2*medidaEspessura);
 
                     if (medidaBaseInterna>0 && medidaAlturaInterna>0){
 
                         //Área
-                        float area1 = medidaEspessura*medidaBase;
-                        float area2 = medidaAlturaInterna*medidaEspessura;
-                        float areaTotal = 2*area1 + area2;
-                        String textArea = String.valueOf(areaTotal);
+                        double area1 = medidaEspessura*medidaBase;
+                        double area2 = medidaAlturaInterna*medidaEspessura;
+                        double areaTotal = 2*area1 + area2;
+                        String textArea = Utils.arredondar(areaTotal);
                         textViewArea.setText("Área = " +textArea);
 
                         //Centróide
-                        float centroideX1 = medidaBase/2;
-                        float centroideX2 = medidaEspessura/2;
-                        float centroideX = (2*(area1*centroideX1)+area2*centroideX2)/areaTotal;
+                        double centroideX1 = medidaBase/2;
+                        double centroideX2 = medidaEspessura/2;
+                        double centroideX = (2*(area1*centroideX1)+area2*centroideX2)/areaTotal;
 
-                        float centroideY1 = medidaEspessura/2;
-                        float centroideY2 = medidaAltura/2;
-                        float centroideY3 = medidaAltura - (medidaEspessura/2);
-                        float centroideY = (area1*centroideY1+area2*centroideY2+area1*centroideY3)/areaTotal;
+                        double centroideY1 = medidaEspessura/2;
+                        double centroideY2 = medidaAltura/2;
+                        double centroideY3 = medidaAltura - (medidaEspessura/2);
+                        double centroideY = (area1*centroideY1+area2*centroideY2+area1*centroideY3)/areaTotal;
 
-                        String textCentroideX = String.valueOf(centroideX);
-                        String textCentroideY = String.valueOf(centroideY);
+                        String textCentroideX = Utils.arredondar(centroideX);
+                        String textCentroideY = Utils.arredondar(centroideY);
                         textViewCentroideX.setText("X' = "+textCentroideX);
                         textViewCentroideY.setText("Y' = "+textCentroideY);
 
                         //Perímetro
-                        float perimetro = (2*medidaBase) + (2*medidaBaseInterna) + (2*medidaEspessura)+ medidaAltura + medidaAlturaInterna;
-                        String textPerimetro = String.valueOf(perimetro);
+                        double perimetro = (2*medidaBase) + (2*medidaBaseInterna) + (2*medidaEspessura)+ medidaAltura + medidaAlturaInterna;
+                        String textPerimetro = Utils.arredondar(perimetro);
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
 
                         //Momento de inercia
-                        float momentoInerciaX1 = (float) (medidaBase*Math.pow(medidaEspessura,3)/12 + area1*Math.pow(centroideY-centroideY1,2));
-                        float momentoInerciaX2 = (float) (medidaEspessura*Math.pow(medidaAltura-2*medidaEspessura,3)/12);
-                        float momentoInerciaX3 = (float) (medidaBase*Math.pow(medidaEspessura,3)/12 + area1*Math.pow(centroideY-centroideY3,2));
-                        float momentoInerciaX = momentoInerciaX1 + momentoInerciaX2 + momentoInerciaX3;
+                        double momentoInerciaX1 = (medidaBase*Math.pow(medidaEspessura,3)/12 + area1*Math.pow(centroideY-centroideY1,2));
+                        double momentoInerciaX2 = (medidaEspessura*Math.pow(medidaAltura-2*medidaEspessura,3)/12);
+                        double momentoInerciaX3 = (medidaBase*Math.pow(medidaEspessura,3)/12 + area1*Math.pow(centroideY-centroideY3,2));
+                        double momentoInerciaX = momentoInerciaX1 + momentoInerciaX2 + momentoInerciaX3;
 
-                        float momentoInerciaY1 = (float) (medidaEspessura*Math.pow(medidaBase,3)/12 + area1*Math.pow(centroideX-centroideX1,2));
-                        float momentoInerciaY2 = (float) ((medidaAlturaInterna)*Math.pow(medidaEspessura,3)/12 + area2*Math.pow(centroideX-centroideX2,2));
-                        float momentoInerciaY3 = (float) (medidaEspessura*Math.pow(medidaBase,3)/12 + area1*Math.pow(centroideX-centroideX1,2));
-                        float momentoInerciaY = momentoInerciaY1 + momentoInerciaY2 + momentoInerciaY3;
+                        double momentoInerciaY1 = (medidaEspessura*Math.pow(medidaBase,3)/12 + area1*Math.pow(centroideX-centroideX1,2));
+                        double momentoInerciaY2 = ((medidaAlturaInterna)*Math.pow(medidaEspessura,3)/12 + area2*Math.pow(centroideX-centroideX2,2));
+                        double momentoInerciaY3 = (medidaEspessura*Math.pow(medidaBase,3)/12 + area1*Math.pow(centroideX-centroideX1,2));
+                        double momentoInerciaY = momentoInerciaY1 + momentoInerciaY2 + momentoInerciaY3;
 
-                        String textMomentoInerciaX = String.valueOf(momentoInerciaX);
-                        String textMomentoInerciaY = String.valueOf(momentoInerciaY);
+                        String textMomentoInerciaX = Utils.arredondar(momentoInerciaX);
+                        String textMomentoInerciaY = Utils.arredondar(momentoInerciaY);
                         textViewIx.setText("Ix' = " + textMomentoInerciaX);
                         textViewIy.setText("Iy' = " + textMomentoInerciaY);
 
                         //Raio de giração
                         double raioGiracaoX = Math.sqrt(momentoInerciaX/areaTotal);
                         double raioGiracaoY = Math.sqrt(momentoInerciaY/areaTotal);
-                        String textRaioGiracaoX = String.valueOf(raioGiracaoX);
-                        String textRaioGiracaoY = String.valueOf(raioGiracaoY);
+                        String textRaioGiracaoX = Utils.arredondar(raioGiracaoX);
+                        String textRaioGiracaoY = Utils.arredondar(raioGiracaoY);
                         textViewix.setText("ix' = " + textRaioGiracaoX);
                         textViewiy.setText("iy' = " + textRaioGiracaoY);
 
                         //Módulo plastico
-                        float moduloPlasticoX = (float) (medidaBase*medidaEspessura*(medidaAltura-medidaEspessura)+medidaEspessura*Math.pow(0.5*medidaAltura-medidaEspessura,2));
-                        float moduloPlasticoY = (float) (medidaEspessura*Math.pow(medidaBase-centroideX,2) + medidaEspessura*(medidaAltura-2*medidaEspessura)*(centroideX-0.5*medidaEspessura)+medidaEspessura*Math.pow(centroideX,2));
-                        String textModuloPlasticoX = String.valueOf(moduloPlasticoX);
-                        String textModuloPlasticoY = String.valueOf(moduloPlasticoY);
+                        double moduloPlasticoX = (medidaBase*medidaEspessura*(medidaAltura-medidaEspessura)+medidaEspessura*Math.pow(0.5*medidaAltura-medidaEspessura,2));
+                        double moduloPlasticoY = (medidaEspessura*Math.pow(medidaBase-centroideX,2) + medidaEspessura*(medidaAltura-2*medidaEspessura)*(centroideX-0.5*medidaEspessura)+medidaEspessura*Math.pow(centroideX,2));
+                        String textModuloPlasticoX = Utils.arredondar(moduloPlasticoX);
+                        String textModuloPlasticoY = Utils.arredondar(moduloPlasticoY);
                         textViewZx.setText("Zx' = "+textModuloPlasticoX);
                         textViewZy.setText("Zy' = "+textModuloPlasticoY);
 
                         //Módulo elástico
-                        float moduloElasticoX = 2*momentoInerciaX/medidaAltura;
-                        float moduloElasticoY = momentoInerciaY/(medidaBase-centroideY);
-                        String textModuloElasticoX = String.valueOf(moduloElasticoX);
-                        String textModuloElasticoY = String.valueOf(moduloElasticoY);
+                        double moduloElasticoX = 2*momentoInerciaX/medidaAltura;
+                        double moduloElasticoY = momentoInerciaY/(medidaBase-centroideY);
+                        String textModuloElasticoX = Utils.arredondar(moduloElasticoX);
+                        String textModuloElasticoY = Utils.arredondar(moduloElasticoY);
                         textViewWx.setText("Wx' = "+textModuloElasticoX);
                         textViewWy.setText("Wx' = "+textModuloElasticoY);
 

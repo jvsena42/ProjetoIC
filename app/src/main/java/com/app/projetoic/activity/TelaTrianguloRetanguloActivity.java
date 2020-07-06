@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.projetoic.R;
+import com.app.projetoic.helper.Utils;
 
 public class TelaTrianguloRetanguloActivity extends AppCompatActivity {
 
@@ -70,43 +71,43 @@ public class TelaTrianguloRetanguloActivity extends AppCompatActivity {
 
                     //Área
                     double area = medidaLadoB * medidaLadoC/2;
-                    String textArea = String.valueOf(area);
+                    String textArea = Utils.arredondar(area);
                     textViewArea.setText("Área = " + textArea);
 
                     //Perímetro
                     double perimetro = medidaLadoA + medidaLadoB +medidaLadoC;
-                    String textPerimetro = String.valueOf(perimetro);
+                    String textPerimetro = Utils.arredondar(perimetro);
                     textViewPerimetro.setText("P. Ext. = " + textPerimetro);
 
                     //Momento de inercia
                     double momentoInerciaX = (medidaLadoC*Math.pow(medidaLadoB,3)/36);
                     double momentoInerciaY = (medidaLadoB*Math.pow(medidaLadoC,3)/36);
-                    String textMomentoInerciaX = String.valueOf(momentoInerciaX);
-                    String textMomentoInerciaY = String.valueOf(momentoInerciaY);
+                    String textMomentoInerciaX = Utils.arredondar(momentoInerciaX);
+                    String textMomentoInerciaY = Utils.arredondar(momentoInerciaY);
                     textViewIx.setText("Ix = " + textMomentoInerciaX);
                     textViewIy.setText("Iy = " + textMomentoInerciaY);
 
                     //Raio de giração
                     double raioGiracaoX = Math.sqrt(momentoInerciaX/area);
                     double raioGiracaoY = Math.sqrt(momentoInerciaY/area);
-                    String textRaioGiracaoX = String.valueOf(raioGiracaoX);
-                    String textRaioGiracaoY = String.valueOf(raioGiracaoY);
+                    String textRaioGiracaoX = Utils.arredondar(raioGiracaoX);
+                    String textRaioGiracaoY = Utils.arredondar(raioGiracaoY);
                     textViewix.setText("ix = " + textRaioGiracaoX);
                     textViewiy.setText("iy = " + textRaioGiracaoY);
 
                     //Módulo Plástico
                     double moduloPlasticoX = 0.0864*medidaLadoC*Math.pow(medidaLadoB, 2);
                     double moduloPlasticoY = 0.0864*medidaLadoB*Math.pow(medidaLadoC, 2);
-                    String textModuloPlasticoX = String.valueOf(moduloPlasticoX);
-                    String textModuloPlasticoY = String.valueOf(moduloPlasticoY);
+                    String textModuloPlasticoX = Utils.arredondar(moduloPlasticoX);
+                    String textModuloPlasticoY = Utils.arredondar(moduloPlasticoY);
                     textViewZx.setText("Zx = " + textModuloPlasticoX);
                     textViewZy.setText("Zy = " + textModuloPlasticoY);
 
                     //Módulo Elástico
                     double moduloElasticoX = (medidaLadoC*Math.pow(medidaLadoB, 2) / 24);
                     double moduloElasticoY = (medidaLadoB*Math.pow(medidaLadoC, 2) / 24);
-                    String textModuloElasticoX = String.valueOf(moduloElasticoX);
-                    String textModuloElasticoY = String.valueOf(moduloElasticoY);
+                    String textModuloElasticoX = Utils.arredondar(moduloElasticoX);
+                    String textModuloElasticoY = Utils.arredondar(moduloElasticoY);
                     textViewWx.setText("Wx = " + textModuloElasticoX);
                     textViewWy.setText("Wy = " + textModuloElasticoY);
 

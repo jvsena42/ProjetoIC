@@ -4,8 +4,10 @@ import java.text.DecimalFormat;
 
 public class Utils {
 
-    public static String arredondar( double numeroArredondado){
-        DecimalFormat df = new DecimalFormat("#.###");
-        return df.format(numeroArredondado);
+    public static String arredondar( double numero){
+        DecimalFormat df = new DecimalFormat("#.##");
+        String numeroArredondado = df.format(numero);
+        numeroArredondado = numeroArredondado.replace(",",".");
+        return numeroArredondado;
     }
 }
