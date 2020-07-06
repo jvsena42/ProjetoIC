@@ -66,10 +66,10 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
                 String textLado = editTextLado.getText().toString();
                 if (!textLado.isEmpty()) {
                     double medidaLado = Float.parseFloat(textLado);
-                    double altura = Math.sqrt(Math.pow(medidaLado,2)+Math.pow(medidaLado/2,2));
+                    double altura = Math.sqrt(Math.pow(medidaLado,2)-Math.pow(medidaLado/2,2));
 
                     //Área
-                    double area = (medidaLado/2) * altura/2;
+                    double area = medidaLado * altura/2;
                     String textArea = Utils.arredondar(area);
                     textViewArea.setText("Área = " + textArea);
 
@@ -80,7 +80,7 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
 
                     //Momento de inercia
                     double momentoInerciaX = (medidaLado*Math.pow(altura,3)/36);
-                    double momentoInerciaY = (altura*Math.pow(medidaLado,3)/36);
+                    double momentoInerciaY = momentoInerciaX;
                     String textMomentoInerciaX = Utils.arredondar(momentoInerciaX);
                     String textMomentoInerciaY = Utils.arredondar(momentoInerciaY);
                     textViewIx.setText("Ix = " + textMomentoInerciaX);

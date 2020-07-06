@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Geometrix</string>
     <string name="textoSobre">O Geometrix foi desenvolvido para o cálculo de propriedades geométricas de seções planas.
-        Sua elaboração só foi possível graças ao financiamento do programa PIBIC, com o objetivo didático e científico.
+              Sua elaboração só foi possível graças ao financiamento do programa PIBIC, com o objetivo didático e científico.
        </string>
 
     <string name="desenvolvedor">
@@ -13,7 +13,7 @@
     </string>
 
     <string name="orientador">
-        Orientador: Prof. Dr. Eduardo Martins Fontes do Rêgo  2020.
+        Orientador: Prof. Dr. Eduardo Martins Fontes do Rêgo.
     </string>
 
     <string name="direitos">
