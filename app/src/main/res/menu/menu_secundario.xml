@@ -3,6 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/idNotacao"
+        android:title="Notações Utilizadas"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/item_limpar"
         android:icon="@drawable/ic_baseline_delete_24"
         android:title="Limpar Tela"

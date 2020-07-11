@@ -158,7 +158,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.itemSobre:
                 Intent intent = new Intent(MainActivity.this, SobreActivity.class);
                 startActivity(intent);
-                Toast.makeText(getApplicationContext(), "Página sobre", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.idNotacaoGeral:
+                Intent intent2 = new Intent(MainActivity.this, NotacoesActivity.class);
+                startActivity(intent2);
                 break;
         }
 

@@ -3,6 +3,7 @@ package com.app.projetoic.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -151,6 +152,10 @@ public class TelaCirculoVazadoActivity extends AppCompatActivity {
                 //Limpar EditText
                 editTextEspessura.setText("");
                 editTextRaio.setText("");
+                break;
+            case R.id.idNotacao:
+                Intent intent2 = new Intent(this, NotacoesActivity.class);
+                startActivity(intent2);
                 break;
 
         }

@@ -128,6 +128,10 @@ public class TelaQuadradoActivity extends AppCompatActivity {
                 //Limpar EditText
                 editTextLado.setText("");
                 break;
+            case R.id.idNotacao:
+                Intent intent2 = new Intent(this, NotacoesActivity.class);
+                startActivity(intent2);
+                break;
 
         }
 

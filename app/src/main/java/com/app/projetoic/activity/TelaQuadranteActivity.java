@@ -2,6 +2,7 @@ package com.app.projetoic.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -123,6 +124,10 @@ public class TelaQuadranteActivity extends AppCompatActivity {
 
                 //Limpar EditText
                 editTextRaio.setText("");
+                break;
+            case R.id.idNotacao:
+                Intent intent2 = new Intent(this, NotacoesActivity.class);
+                startActivity(intent2);
                 break;
 
         }

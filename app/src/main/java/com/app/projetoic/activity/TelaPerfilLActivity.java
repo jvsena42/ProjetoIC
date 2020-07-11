@@ -3,6 +3,7 @@ package com.app.projetoic.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -73,53 +74,53 @@ public class TelaPerfilLActivity extends AppCompatActivity {
                 String textBase = editTextBase.getText().toString();
                 String textEspessura = editTextEspessura.getText().toString();
 
-                if (!textBase.isEmpty() && !textEspessura.isEmpty()){
+                if (!textBase.isEmpty() && !textEspessura.isEmpty()) {
                     double medidaBase = Float.parseFloat(textBase);
                     double medidaAltura = medidaBase;
                     double medidaEspessura = Float.parseFloat(textEspessura);
-                    double medidaBaseInterna = medidaBase-(medidaEspessura);
-                    double medidaAlturaInterna = medidaAltura-(medidaEspessura);
+                    double medidaBaseInterna = medidaBase - (medidaEspessura);
+                    double medidaAlturaInterna = medidaAltura - (medidaEspessura);
 
-                    if (medidaBaseInterna>0 && medidaAlturaInterna>0){
+                    if (medidaBaseInterna > 0 && medidaAlturaInterna > 0) {
 
                         //Área
-                        double area1 = medidaBase*medidaEspessura;
-                        double area2 = medidaEspessura*medidaAlturaInterna;
+                        double area1 = medidaBase * medidaEspessura;
+                        double area2 = medidaEspessura * medidaAlturaInterna;
                         double areaTotal = area1 + area2;
                         String textArea = Utils.arredondar(areaTotal);
-                        textViewArea.setText("Área = " +textArea);
+                        textViewArea.setText("Área = " + textArea);
 
                         //Centróide
-                        double centroideX1 = medidaBase/2;
-                        double centroideX2 = medidaEspessura/2;
-                        double centroideX = (centroideX1*area1 + centroideX2*area2)/areaTotal;
+                        double centroideX1 = medidaBase / 2;
+                        double centroideX2 = medidaEspessura / 2;
+                        double centroideX = (centroideX1 * area1 + centroideX2 * area2) / areaTotal;
 
-                        double centroideY1 = medidaEspessura/2;
-                        double centroideY2 = medidaEspessura + (medidaAlturaInterna/2);
-                        double centroideY = (centroideY1*area1 + centroideY2*area2)/areaTotal;
+                        double centroideY1 = medidaEspessura / 2;
+                        double centroideY2 = medidaEspessura + (medidaAlturaInterna / 2);
+                        double centroideY = (centroideY1 * area1 + centroideY2 * area2) / areaTotal;
 
                         String textCentroideX = Utils.arredondar(centroideX);
                         String textCentroideY = Utils.arredondar(centroideY);
-                        textViewCentroideX.setText("X' = "+textCentroideX);
-                        textViewCentroideY.setText("Y' = "+textCentroideY);
+                        textViewCentroideX.setText("X' = " + textCentroideX);
+                        textViewCentroideY.setText("Y' = " + textCentroideY);
 
                         //Perímetro
-                        double perimetro = medidaBase + medidaAltura + medidaBaseInterna + medidaAlturaInterna + (2*medidaEspessura);
+                        double perimetro = medidaBase + medidaAltura + medidaBaseInterna + medidaAlturaInterna + (2 * medidaEspessura);
                         String textPerimetro = Utils.arredondar(perimetro);
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
 
                         //Momento de inercia
-                        double momentoInerciaX1 = ((medidaBase*Math.pow(medidaEspessura,3)/12)  + area1*Math.pow(centroideY-centroideY1,2));
-                        double momentoInerciaX2 = ((medidaEspessura*Math.pow(medidaAltura-medidaEspessura,3)/12)  + area2*Math.pow(centroideY-centroideY2,2));
+                        double momentoInerciaX1 = ((medidaBase * Math.pow(medidaEspessura, 3) / 12) + area1 * Math.pow(centroideY - centroideY1, 2));
+                        double momentoInerciaX2 = ((medidaEspessura * Math.pow(medidaAltura - medidaEspessura, 3) / 12) + area2 * Math.pow(centroideY - centroideY2, 2));
                         double momentoInerciaX = momentoInerciaX1 + momentoInerciaX2;
 
-                        double momentoInerciaY1 =((medidaEspessura*Math.pow(medidaBase,3)/12)  + area1*Math.pow(centroideX-centroideX1,2));
-                        double momentoInerciaY2 =(((medidaAltura-medidaEspessura)*Math.pow(medidaEspessura,3)/12)  + area2*Math.pow(centroideX-centroideX2,2));
+                        double momentoInerciaY1 = ((medidaEspessura * Math.pow(medidaBase, 3) / 12) + area1 * Math.pow(centroideX - centroideX1, 2));
+                        double momentoInerciaY2 = (((medidaAltura - medidaEspessura) * Math.pow(medidaEspessura, 3) / 12) + area2 * Math.pow(centroideX - centroideX2, 2));
                         double momentoInerciaY = momentoInerciaY1 + momentoInerciaY2;
 
-                        double Ixy = area1*(centroideX1-centroideX)*(centroideY1-centroideY)+area2*(centroideX2-centroideX)*(centroideY2-centroideY);
-                        double Imin = momentoInerciaX-Math.abs(Ixy);
-                        double IZ = Imin/areaTotal;
+                        double Ixy = area1 * (centroideX1 - centroideX) * (centroideY1 - centroideY) + area2 * (centroideX2 - centroideX) * (centroideY2 - centroideY);
+                        double Imin = momentoInerciaX - Math.abs(Ixy);
+                        double IZ = Imin / areaTotal;
 
                         String textMomentoInerciaX = Utils.arredondar(momentoInerciaX);
                         String textMomentoInerciaY = Utils.arredondar(momentoInerciaY);
@@ -131,9 +132,9 @@ public class TelaPerfilLActivity extends AppCompatActivity {
                         textViewIZ.setText("Iz = " + textMomentoInerciaZ);
 
                         //Raio de giração
-                        double raioGiracaoX = Math.sqrt((momentoInerciaX/areaTotal));
+                        double raioGiracaoX = Math.sqrt((momentoInerciaX / areaTotal));
                         //float raioGiracaoY = (float) Math.sqrt((momentoInerciaY/areaTotal));
-                        double raioGiracaoZ = Math.sqrt((Imin/areaTotal));
+                        double raioGiracaoZ = Math.sqrt((Imin / areaTotal));
                         String textRaioGiracaoX = Utils.arredondar(raioGiracaoX);
                         //String textRaioGiracaoY = String.valueOf(raioGiracaoY);
                         String textRaioGiracaoZ = Utils.arredondar(raioGiracaoZ);
@@ -142,26 +143,26 @@ public class TelaPerfilLActivity extends AppCompatActivity {
                         //textViewiz.setText("iy' = " + textRaioGiracaoZ);
 
                         //Módulo plastico
-                        double moduloPlasticoX = (0.5*medidaEspessura*Math.pow(medidaAltura-centroideY,2) + 0.5*medidaEspessura*Math.pow(centroideY,2)+medidaEspessura*(medidaBase-medidaEspessura)*(centroideY-0.5*medidaEspessura));
-                        double moduloPlasticoY = (0.5*medidaEspessura*Math.pow(medidaBase-centroideX,2) + 0.5*medidaEspessura*Math.pow(centroideX,2)+medidaEspessura*(medidaAltura-medidaEspessura)*(centroideX-0.5*medidaEspessura));
+                        double moduloPlasticoX = (0.5 * medidaEspessura * Math.pow(medidaAltura - centroideY, 2) + 0.5 * medidaEspessura * Math.pow(centroideY, 2) + medidaEspessura * (medidaBase - medidaEspessura) * (centroideY - 0.5 * medidaEspessura));
+                        double moduloPlasticoY = (0.5 * medidaEspessura * Math.pow(medidaBase - centroideX, 2) + 0.5 * medidaEspessura * Math.pow(centroideX, 2) + medidaEspessura * (medidaAltura - medidaEspessura) * (centroideX - 0.5 * medidaEspessura));
                         String textModuloPlasticoX = Utils.arredondar(moduloPlasticoX);
                         String textModuloPlasticoY = Utils.arredondar(moduloPlasticoY);
-                        textViewZx.setText("Zx' = "+textModuloPlasticoX);
-                        textViewZy.setText("Zy' = "+textModuloPlasticoY);
+                        textViewZx.setText("Zx' = " + textModuloPlasticoX);
+                        textViewZy.setText("Zy' = " + textModuloPlasticoY);
 
                         //Módulo elástico
-                        double moduloElasticoX = momentoInerciaX/(medidaAltura-centroideY);
-                        double moduloElasticoY = momentoInerciaY/(medidaBase-centroideX);
+                        double moduloElasticoX = momentoInerciaX / (medidaAltura - centroideY);
+                        double moduloElasticoY = momentoInerciaY / (medidaBase - centroideX);
                         String textModuloElasticoX = Utils.arredondar(moduloElasticoX);
                         String textModuloElasticoY = Utils.arredondar(moduloElasticoY);
-                        textViewWx.setText("Wx' = "+textModuloElasticoX);
-                        textViewWy.setText("Wx' = "+textModuloElasticoY);
+                        textViewWx.setText("Wx' = " + textModuloElasticoX);
+                        textViewWy.setText("Wx' = " + textModuloElasticoY);
 
-                    }else {
+                    } else {
                         Toast.makeText(TelaPerfilLActivity.this, "Erro! digite uma espessura menor ou medidas maiores para os lados", Toast.LENGTH_SHORT).show();
                     }
 
-                }else {
+                } else {
                     Toast.makeText(TelaPerfilLActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -186,6 +187,10 @@ public class TelaPerfilLActivity extends AppCompatActivity {
                 //Limpar EditText
                 editTextBase.setText("");
                 editTextEspessura.setText("");
+                break;
+            case R.id.idNotacao:
+                Intent intent2 = new Intent(this, NotacoesActivity.class);
+                startActivity(intent2);
                 break;
 
         }
