@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp"
+    android:padding="16dp"
     tools:context=".activity.NotacoesActivity">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Lista de notações"
+        android:text="Lista de símbolos utilizados"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -51,7 +51,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="iy = raio de giração em y" />
+        android:text="iy = Raio de giração em y" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="iz = Raio de giração em y" />
 
     <TextView
         android:id="@+id/textView19"
@@ -86,14 +93,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="x' = centróide em x" />
+        android:text="x' = Centróide em x" />
 
     <TextView
         android:id="@+id/textView28"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="y' = centróide em y" />
+        android:text="y' = Centróide em y" />
 
     <TextView
         android:id="@+id/textView23"
@@ -121,6 +128,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="tw = Espessura da alma" />
+        android:text="b = Base" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="h = Altura" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="a = Largura da aba" />
 
 </LinearLayout>
