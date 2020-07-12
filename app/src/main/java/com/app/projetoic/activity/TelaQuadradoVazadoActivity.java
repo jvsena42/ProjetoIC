@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.projetoic.R;
+import com.app.projetoic.helper.PDFCreator;
 import com.app.projetoic.helper.Utils;
 
 public class TelaQuadradoVazadoActivity extends AppCompatActivity {
@@ -32,6 +33,11 @@ public class TelaQuadradoVazadoActivity extends AppCompatActivity {
     private TextView textViewWx;
     private TextView textViewWy;
     private Button buttonCalcular;
+
+    private String textLado;
+    private String textEspessura;
+
+    private PDFCreator pdfCreator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +71,8 @@ public class TelaQuadradoVazadoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Recuperar dados
-                String textLado = editTextLado.getText().toString();
-                String textEspessura = editTextEspessura.getText().toString();
+                textLado = editTextLado.getText().toString();
+                textEspessura = editTextEspessura.getText().toString();
 
                 //Cálculo
                 if (!textLado.isEmpty() && !textEspessura.isEmpty()) {
@@ -79,41 +85,57 @@ public class TelaQuadradoVazadoActivity extends AppCompatActivity {
                     if (medidaLadoMenor <0) {
                         Toast.makeText(TelaQuadradoVazadoActivity.this, "Erro! digite uma espessura menor.", Toast.LENGTH_SHORT).show();
                     } else {
+
+                        //Instanciar PDFCreator
+                        pdfCreator = new PDFCreator(getApplicationContext());
+                        pdfCreator.addLine("Lado (L) = " + textLado);
+                        pdfCreator.addLine("Espessura (e) = " + textEspessura);
+
                         //Área
                         double areaMaior = (medidaLadoMaior * medidaLadoMaior);
                         double areaMenor = (medidaLadoMenor * medidaLadoMenor);
                         double area = areaMaior - areaMenor;
                         String textArea = String.valueOf(area);
                         textViewArea.setText("Área = " + textArea);
+                        pdfCreator.addLine("Área = " + textArea);
 
                         //Perímetro
                         double perimetro = medidaLadoMaior * 4;
                         String textPerimetro = String.valueOf(perimetro);
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
+                        pdfCreator.addLine("Perímetro externo = " + textPerimetro);
 
                         //Momento de inercia
                         double momentoInercia =  (Math.pow(medidaLadoMaior,4)/12)-(Math.pow(medidaLadoMenor,4)/12);
                         String textMomentoInercia = Utils.arredondar(momentoInercia);
                         textViewIx.setText("Ix = " + textMomentoInercia);
                         textViewIy.setText("Iy = " + textMomentoInercia);
+                        pdfCreator.addLine("Momento de inércia em x (Ix) = " + textMomentoInercia);
+                        pdfCreator.addLine("Momento de inércia em y (Iy) = " + textMomentoInercia);
 
                         //Raio de giração
                         double raioGiracao = Math.sqrt((momentoInercia/area));
                         String textRaioGiracao = Utils.arredondar(raioGiracao);
                         textViewix.setText("ix = "+textRaioGiracao);
                         textViewiy.setText("iy = "+textRaioGiracao);
+                        pdfCreator.addLine("Raio de giração em x (ix) = " + textRaioGiracao);
+                        pdfCreator.addLine("Raio de giração em y (iy) = " + textRaioGiracao);
 
                         //Módulo plastico
                         double moduloPlastico = Math.pow(medidaLadoMaior,3)/4*(1-Math.pow(1-2*medidaEspessura/medidaLadoMaior,3));
                         String textModuloPlastico = Utils.arredondar(moduloPlastico);
                         textViewZx.setText("Zx = "+textModuloPlastico);
                         textViewZy.setText("Zy = "+textModuloPlastico);
+                        pdfCreator.addLine("Módulo plástico em x (Zx) = " + textModuloPlastico);
+                        pdfCreator.addLine("Módulo plástico em y (Zy) = " + textModuloPlastico);
 
                         //Modulo Elastico
                         double moduloElastico = (Math.pow(medidaLadoMaior,4)-Math.pow(medidaLadoMaior-2*medidaEspessura,4))/(6*medidaLadoMaior);
                         String textModuloElastico = Utils.arredondar(moduloElastico);
                         textViewWx.setText("Wx = "+textModuloElastico);
                         textViewWy.setText("Wy = "+textModuloElastico);
+                        pdfCreator.addLine("Módulo elástico em x (Wx) = " + textModuloElastico);
+                        pdfCreator.addLine("Módulo elástico em y (Wy) = " + textModuloElastico);
 
                        /* Log.i("TESTEVALOR", "Lado maior: " + medidaLadoMaior.toString());
                         Log.i("TESTEVALOR", "Lado menor: " + medidaLadoMenor.toString());
@@ -151,12 +173,19 @@ public class TelaQuadradoVazadoActivity extends AppCompatActivity {
                 //Limpar EditText
                 editTextEspessura.setText("");
                 editTextLado.setText("");
+                textLado = "";
                 break;
             case R.id.idNotacao:
                 Intent intent2 = new Intent(this, NotacoesActivity.class);
                 startActivity(intent2);
                 break;
-
+            case R.id.itemExportar:
+                if (textLado != null && !textLado.equals("") && textEspessura != null && !textEspessura.equals("")) {
+                    pdfCreator.createPage("tela_quadrado_vazado", getResources(), R.drawable.tela_quadrado_vazado);
+                } else {
+                    Toast.makeText(this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
 
         return super.onOptionsItemSelected(item);
