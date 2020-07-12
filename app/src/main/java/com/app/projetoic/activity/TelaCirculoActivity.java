@@ -23,12 +23,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.projetoic.R;
+import com.app.projetoic.helper.Utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class TelaCirculoActivity extends AppCompatActivity {
@@ -46,14 +48,19 @@ public class TelaCirculoActivity extends AppCompatActivity {
     private TextView textViewWy;
     private Button buttonCalcular;
 
+    String textRaio, textArea, textPerimetro, textMomentoInerciaX, textMomentoInerciaY, textRaioGiracaoX,
+            textRaioGiracaoY, textModuloPlasticoX, textModuloPlasticoY, textModuloElasticoX, textModuloElasticoY;
+
     Bitmap bmp,scaleBmp;
     Date dateObj;
     DateFormat dateFormat;
 
-    String[] dados = new String[]{"Raio = ", "Espessura = ", "Momento de inércia em x (Ix) = ",
+    ArrayList<String> dados = new ArrayList<>();
+
+    /*ArrayList<String> dadosLimpos = new ArrayList<>(){"Raio = ", "Espessura = ", "Momento de inércia em x (Ix) = ",
             "Momento de inércia em y (Iy) = ","Raio de giração em x (ix) = ","Raio de giração em y (iy) = ",
             "Módulo plástico em x (Zx) =", "Módulo plástico em y (Zy) =", "Módulo elástico em x (Wx) = ",
-            "Módulo plástico em y (Wy) = "};
+            "Módulo plástico em y (Wy) = "};*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +74,7 @@ public class TelaCirculoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ActivityCompat.requestPermissions(this,new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
 
         //Configurar imagem
         bmp = BitmapFactory.decodeResource(getResources(),R.drawable.tela_circulo);
@@ -85,6 +92,7 @@ public class TelaCirculoActivity extends AppCompatActivity {
         textViewZy = findViewById(R.id.textViewZy);
         textViewWx = findViewById(R.id.textViewWx);
         textViewWy = findViewById(R.id.textViewWy);
+
         buttonCalcular = findViewById(R.id.buttonCalcular);
 
         //Evento de clique
@@ -92,43 +100,63 @@ public class TelaCirculoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Recuperar dados
-                String textRaio = editTextRaio.getText().toString();
+                textRaio = editTextRaio.getText().toString();
                 if (!textRaio.isEmpty()) {
+
+                    dados.clear();
+
                     double medidaRaio = Float.parseFloat(textRaio);
+                    dados.add("Raio (R) = " + Utils.arredondar(medidaRaio));
+
 
                     //Área
                     double area = (Math.PI * Math.pow(medidaRaio, 2));
-                    String textArea = String.valueOf(area);
-                    textViewArea.setText("Área = " + textArea);
+                    textArea = "Área = " + Utils.arredondar(area);
+                    textViewArea.setText( textArea);
+                    dados.add(textArea);
+
 
                     //Perímetro
                     double perimetro = (Math.PI * 2 * medidaRaio);
-                    String textPerimetro = String.valueOf(perimetro);
+                    textPerimetro = Utils.arredondar(perimetro);
                     textViewPerimetro.setText("P. Ext.= " + textPerimetro);
+                    dados.add("Perímero externo = " + textPerimetro);
 
                     //Momento de inercia
                     double momentoInercia = (Math.PI * Math.pow(medidaRaio, 4) / 4);
-                    String textMomentoInercia = String.valueOf(momentoInercia);
-                    textViewIx.setText("Ix = " + textMomentoInercia);
-                    textViewIy.setText("Iy = " + textMomentoInercia);
+                    textMomentoInerciaX = Utils.arredondar(momentoInercia);
+                    textMomentoInerciaY = Utils.arredondar(momentoInercia);
+                    textViewIx.setText("Ix = " + textMomentoInerciaX);
+                    textViewIy.setText("Iy = " + textMomentoInerciaY);
+                    dados.add("Momento de inércia em x (Ix) = " + textMomentoInerciaX);
+                    dados.add("Momento de inércia em y (Iy) = " + textMomentoInerciaY);
 
                     //Raio de giração
                     double raioGiracao = medidaRaio / 2;
-                    String textRaioGiracao = String.valueOf(raioGiracao);
-                    textViewix.setText("ix = " + textRaioGiracao);
-                    textViewiy.setText("iy = " + textRaioGiracao);
+                    textRaioGiracaoX =  Utils.arredondar(raioGiracao);
+                    textRaioGiracaoY =  textRaioGiracaoX;
+                    textViewix.setText("ix = " + textRaioGiracaoX);
+                    textViewiy.setText("iy = " + textRaioGiracaoY);
+                    dados.add("Raio de giração em x (ix) = " + textRaioGiracaoX);
+                    dados.add("Raio de giração em y (iy) = " + textRaioGiracaoY);
 
                     //Módulo Plástico
                     double moduloPlastico = (4 * Math.pow(medidaRaio, 3) / 3);
-                    String textModuloPlastico = String.valueOf(moduloPlastico);
-                    textViewZx.setText("Zx = " + textModuloPlastico);
-                    textViewZy.setText("Zy = " + textModuloPlastico);
+                    textModuloPlasticoX = Utils.arredondar(moduloPlastico);
+                    textModuloPlasticoY = textModuloPlasticoX;
+                    textViewZx.setText("Zx = " + textModuloPlasticoX);
+                    textViewZy.setText("Zy = " + textModuloPlasticoY);
+                    dados.add("Módulo plástico em x (Zx) = " + textModuloPlasticoX);
+                    dados.add("Módulo plástico em x (Zx) = " + textModuloPlasticoY);
 
                     //Módulo Elástico
                     double moduloElastico = (Math.PI * Math.pow(medidaRaio, 3) / 4);
-                    String textModuloElastico = String.valueOf(moduloElastico);
-                    textViewWx.setText("Wx = " + textModuloElastico);
-                    textViewWy.setText("Wy = " + textModuloElastico);
+                    textModuloElasticoX = Utils.arredondar(moduloElastico);
+                    textModuloElasticoY = textModuloElasticoX;
+                    textViewWx.setText("Wx = " + textModuloElasticoX);
+                    textViewWy.setText( "Wy = " + textModuloElasticoY);
+                    dados.add("Módulo elástico em x (Wx) = " + textModuloElasticoX);
+                    dados.add("Módulo elástico em y (Wy) = " + textModuloElasticoY);
 
                 } else {
                     Toast.makeText(TelaCirculoActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
@@ -153,13 +181,18 @@ public class TelaCirculoActivity extends AppCompatActivity {
             case R.id.item_limpar:
                 //Limpar EditText
                 editTextRaio.setText("");
+                textRaio = "";
                 break;
             case R.id.idNotacao:
                 Intent intent2 = new Intent(this, NotacoesActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.itemExportar:
-                createPDF();
+                if (textRaio != null && !textRaio.equals("")){
+                    createPDF();
+                }else {
+                    Toast.makeText(TelaCirculoActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
         }
@@ -203,7 +236,7 @@ public class TelaCirculoActivity extends AppCompatActivity {
         int startYPosition = 180;
 
         for (int i=0;i<10;i++){
-            canvas.drawText(dados[i],startXPosition,startYPosition,myPaint);
+            canvas.drawText(dados.get(i),startXPosition,startYPosition,myPaint);
             canvas.drawLine(startXPosition,startYPosition+8,endXPosition,startYPosition+8,myPaint);
             startYPosition +=25;
         }
@@ -212,11 +245,13 @@ public class TelaCirculoActivity extends AppCompatActivity {
         //Fim da página
         myPdfDocument.finishPage(myPage1);
 
-        File file = new File(Environment.getExternalStorageDirectory(),"tela_circulo "+date+".pdf");
+        String nomeArquivo = "/tela_circulo " + date+".pdf";
+        String filePath = Environment.getExternalStorageDirectory().getPath()+nomeArquivo;
+        File file = new File(filePath);
 
         try {
             myPdfDocument.writeTo(new FileOutputStream(file));
-            Toast.makeText(this, "PDF salvo na memória interna", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "PDF salvo em " + filePath, Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             Toast.makeText(this, "Erro ao gerar PDF!", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
