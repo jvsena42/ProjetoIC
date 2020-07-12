@@ -94,7 +94,7 @@ public class TelaPerfilIActivity extends AppCompatActivity {
 
                     if (medidaBaseInterna>0 && medidaAlturaInterna>0){
 
-                        //Instanciar classe
+                        //Instanciar PDFCreator
                         pdfCreator = new PDFCreator(getApplicationContext());
 
                         //Área
