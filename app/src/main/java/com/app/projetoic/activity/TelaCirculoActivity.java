@@ -147,7 +147,7 @@ public class TelaCirculoActivity extends AppCompatActivity {
                     textViewZx.setText("Zx = " + textModuloPlasticoX);
                     textViewZy.setText("Zy = " + textModuloPlasticoY);
                     dados.add("Módulo plástico em x (Zx) = " + textModuloPlasticoX);
-                    dados.add("Módulo plástico em x (Zx) = " + textModuloPlasticoY);
+                    dados.add("Módulo plástico em y (Zy) = " + textModuloPlasticoY);
 
                     //Módulo Elástico
                     double moduloElastico = (Math.PI * Math.pow(medidaRaio, 3) / 4);
