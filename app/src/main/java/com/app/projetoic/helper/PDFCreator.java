@@ -92,7 +92,7 @@ public class PDFCreator {
 
         try {
             myPdfDocument.writeTo(new FileOutputStream(file));
-            Toast.makeText(context, "PDF salvo em " + filePath, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "PDF salvo em " + filePath, Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             Toast.makeText(context, "Erro ao gerar PDF!", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
