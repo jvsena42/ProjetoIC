@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.projetoic.R;
+import com.app.projetoic.helper.PDFCreator;
 import com.app.projetoic.helper.Utils;
 
 public class TelaPerfilCActivity extends AppCompatActivity {
@@ -35,6 +36,10 @@ public class TelaPerfilCActivity extends AppCompatActivity {
     private TextView textViewCentroideX;
     private TextView textViewCentroideY;
     private Button buttonCalcular;
+
+    String textBase, textAltura, textEspessura;
+
+    private PDFCreator pdfCreator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,91 +74,106 @@ public class TelaPerfilCActivity extends AppCompatActivity {
         buttonCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String textBase = editTextBase.getText().toString();
-                String textAltura = editTextAltura.getText().toString();
-                String textEspessura = editTextEspessura.getText().toString();
+                textBase = editTextBase.getText().toString();
+                textAltura = editTextAltura.getText().toString();
+                textEspessura = editTextEspessura.getText().toString();
 
-                if (!textBase.isEmpty() && !textAltura.isEmpty() && !textEspessura.isEmpty()){
+                if (!textBase.isEmpty() && !textAltura.isEmpty() && !textEspessura.isEmpty()) {
                     double medidaBase = Float.parseFloat(textBase);
                     double medidaAltura = Float.parseFloat(textAltura);
                     double medidaEspessura = Float.parseFloat(textEspessura);
-                    double medidaBaseInterna = medidaBase-(medidaEspessura);
-                    double medidaAlturaInterna = medidaAltura-(2*medidaEspessura);
+                    double medidaBaseInterna = medidaBase - (medidaEspessura);
+                    double medidaAlturaInterna = medidaAltura - (2 * medidaEspessura);
 
-                    if (medidaBaseInterna>0 && medidaAlturaInterna>0){
+                    if (medidaBaseInterna > 0 && medidaAlturaInterna > 0) {
+
+                        //Instanciar classe
+                        pdfCreator = new PDFCreator(getApplicationContext());
 
                         //Área
-                        double area1 = medidaEspessura*medidaBase;
-                        double area2 = medidaAlturaInterna*medidaEspessura;
-                        double areaTotal = 2*area1 + area2;
+                        double area1 = medidaEspessura * medidaBase;
+                        double area2 = medidaAlturaInterna * medidaEspessura;
+                        double areaTotal = 2 * area1 + area2;
                         String textArea = Utils.arredondar(areaTotal);
-                        textViewArea.setText("Área = " +textArea);
+                        textViewArea.setText("Área = " + textArea);
+                        pdfCreator.addLine("Área = " + textArea);
 
                         //Centróide
-                        double centroideX1 = medidaBase/2;
-                        double centroideX2 = medidaEspessura/2;
-                        double centroideX = (2*(area1*centroideX1)+area2*centroideX2)/areaTotal;
+                        double centroideX1 = medidaBase / 2;
+                        double centroideX2 = medidaEspessura / 2;
+                        double centroideX = (2 * (area1 * centroideX1) + area2 * centroideX2) / areaTotal;
 
-                        double centroideY1 = medidaEspessura/2;
-                        double centroideY2 = medidaAltura/2;
-                        double centroideY3 = medidaAltura - (medidaEspessura/2);
-                        double centroideY = (area1*centroideY1+area2*centroideY2+area1*centroideY3)/areaTotal;
+                        double centroideY1 = medidaEspessura / 2;
+                        double centroideY2 = medidaAltura / 2;
+                        double centroideY3 = medidaAltura - (medidaEspessura / 2);
+                        double centroideY = (area1 * centroideY1 + area2 * centroideY2 + area1 * centroideY3) / areaTotal;
 
                         String textCentroideX = Utils.arredondar(centroideX);
                         String textCentroideY = Utils.arredondar(centroideY);
-                        textViewCentroideX.setText("X' = "+textCentroideX);
-                        textViewCentroideY.setText("Y' = "+textCentroideY);
+                        textViewCentroideX.setText("X' = " + textCentroideX);
+                        textViewCentroideY.setText("Y' = " + textCentroideY);
+                        pdfCreator.addLine("Centróide em x (x') = " + textCentroideX);
+                        pdfCreator.addLine("Centróide em y (y') = " + textCentroideY);
 
                         //Perímetro
-                        double perimetro = (2*medidaBase) + (2*medidaBaseInterna) + (2*medidaEspessura)+ medidaAltura + medidaAlturaInterna;
+                        double perimetro = (2 * medidaBase) + (2 * medidaBaseInterna) + (2 * medidaEspessura) + medidaAltura + medidaAlturaInterna;
                         String textPerimetro = Utils.arredondar(perimetro);
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
+                        pdfCreator.addLine("Perímetro externo" + textPerimetro);
 
                         //Momento de inercia
-                        double momentoInerciaX1 = (medidaBase*Math.pow(medidaEspessura,3)/12 + area1*Math.pow(centroideY-centroideY1,2));
-                        double momentoInerciaX2 = (medidaEspessura*Math.pow(medidaAltura-2*medidaEspessura,3)/12);
-                        double momentoInerciaX3 = (medidaBase*Math.pow(medidaEspessura,3)/12 + area1*Math.pow(centroideY-centroideY3,2));
+                        double momentoInerciaX1 = (medidaBase * Math.pow(medidaEspessura, 3) / 12 + area1 * Math.pow(centroideY - centroideY1, 2));
+                        double momentoInerciaX2 = (medidaEspessura * Math.pow(medidaAltura - 2 * medidaEspessura, 3) / 12);
+                        double momentoInerciaX3 = (medidaBase * Math.pow(medidaEspessura, 3) / 12 + area1 * Math.pow(centroideY - centroideY3, 2));
                         double momentoInerciaX = momentoInerciaX1 + momentoInerciaX2 + momentoInerciaX3;
 
-                        double momentoInerciaY1 = (medidaEspessura*Math.pow(medidaBase,3)/12 + area1*Math.pow(centroideX-centroideX1,2));
-                        double momentoInerciaY2 = ((medidaAlturaInterna)*Math.pow(medidaEspessura,3)/12 + area2*Math.pow(centroideX-centroideX2,2));
-                        double momentoInerciaY3 = (medidaEspessura*Math.pow(medidaBase,3)/12 + area1*Math.pow(centroideX-centroideX1,2));
+                        double momentoInerciaY1 = (medidaEspessura * Math.pow(medidaBase, 3) / 12 + area1 * Math.pow(centroideX - centroideX1, 2));
+                        double momentoInerciaY2 = ((medidaAlturaInterna) * Math.pow(medidaEspessura, 3) / 12 + area2 * Math.pow(centroideX - centroideX2, 2));
+                        double momentoInerciaY3 = (medidaEspessura * Math.pow(medidaBase, 3) / 12 + area1 * Math.pow(centroideX - centroideX1, 2));
                         double momentoInerciaY = momentoInerciaY1 + momentoInerciaY2 + momentoInerciaY3;
 
                         String textMomentoInerciaX = Utils.arredondar(momentoInerciaX);
                         String textMomentoInerciaY = Utils.arredondar(momentoInerciaY);
                         textViewIx.setText("Ix' = " + textMomentoInerciaX);
                         textViewIy.setText("Iy' = " + textMomentoInerciaY);
+                        pdfCreator.addLine("Momento de inércia em x (Ix) = " + textMomentoInerciaX);
+                        pdfCreator.addLine("Momento de inércia em y (Iy) = " + textMomentoInerciaY);
 
                         //Raio de giração
-                        double raioGiracaoX = Math.sqrt(momentoInerciaX/areaTotal);
-                        double raioGiracaoY = Math.sqrt(momentoInerciaY/areaTotal);
+                        double raioGiracaoX = Math.sqrt(momentoInerciaX / areaTotal);
+                        double raioGiracaoY = Math.sqrt(momentoInerciaY / areaTotal);
                         String textRaioGiracaoX = Utils.arredondar(raioGiracaoX);
                         String textRaioGiracaoY = Utils.arredondar(raioGiracaoY);
                         textViewix.setText("ix' = " + textRaioGiracaoX);
                         textViewiy.setText("iy' = " + textRaioGiracaoY);
+                        pdfCreator.addLine("Raio de giração em x (ix) = " + textRaioGiracaoX);
+                        pdfCreator.addLine("Raio de giração em y (iy) = " + textRaioGiracaoY);
 
                         //Módulo plastico
-                        double moduloPlasticoX = (medidaBase*medidaEspessura*(medidaAltura-medidaEspessura)+medidaEspessura*Math.pow(0.5*medidaAltura-medidaEspessura,2));
-                        double moduloPlasticoY = (medidaEspessura*Math.pow(medidaBase-centroideX,2) + medidaEspessura*(medidaAltura-2*medidaEspessura)*(centroideX-0.5*medidaEspessura)+medidaEspessura*Math.pow(centroideX,2));
+                        double moduloPlasticoX = (medidaBase * medidaEspessura * (medidaAltura - medidaEspessura) + medidaEspessura * Math.pow(0.5 * medidaAltura - medidaEspessura, 2));
+                        double moduloPlasticoY = (medidaEspessura * Math.pow(medidaBase - centroideX, 2) + medidaEspessura * (medidaAltura - 2 * medidaEspessura) * (centroideX - 0.5 * medidaEspessura) + medidaEspessura * Math.pow(centroideX, 2));
                         String textModuloPlasticoX = Utils.arredondar(moduloPlasticoX);
                         String textModuloPlasticoY = Utils.arredondar(moduloPlasticoY);
-                        textViewZx.setText("Zx' = "+textModuloPlasticoX);
-                        textViewZy.setText("Zy' = "+textModuloPlasticoY);
+                        textViewZx.setText("Zx' = " + textModuloPlasticoX);
+                        textViewZy.setText("Zy' = " + textModuloPlasticoY);
+                        pdfCreator.addLine("Módulo plástico em x (Zx) = " + textModuloPlasticoX);
+                        pdfCreator.addLine("Módulo plástico em y (Zy) = " + textModuloPlasticoY);
 
                         //Módulo elástico
-                        double moduloElasticoX = 2*momentoInerciaX/medidaAltura;
-                        double moduloElasticoY = momentoInerciaY/(medidaBase-centroideY);
+                        double moduloElasticoX = 2 * momentoInerciaX / medidaAltura;
+                        double moduloElasticoY = momentoInerciaY / (medidaBase - centroideY);
                         String textModuloElasticoX = Utils.arredondar(moduloElasticoX);
                         String textModuloElasticoY = Utils.arredondar(moduloElasticoY);
-                        textViewWx.setText("Wx' = "+textModuloElasticoX);
-                        textViewWy.setText("Wx' = "+textModuloElasticoY);
+                        textViewWx.setText("Wx' = " + textModuloElasticoX);
+                        textViewWy.setText("Wx' = " + textModuloElasticoY);
+                        pdfCreator.addLine("Módulo elástico em x (Wx) = " + textModuloElasticoX);
+                        pdfCreator.addLine("Módulo elástico em y (Wy) = " + textModuloElasticoY);
 
-                    }else {
+                    } else {
                         Toast.makeText(TelaPerfilCActivity.this, "Erro! digite uma espessura menor ou medidas maiores para os lados", Toast.LENGTH_SHORT).show();
                     }
 
-                }else {
+                } else {
                     Toast.makeText(TelaPerfilCActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -184,7 +204,13 @@ public class TelaPerfilCActivity extends AppCompatActivity {
                 Intent intent2 = new Intent(this, NotacoesActivity.class);
                 startActivity(intent2);
                 break;
-
+            case R.id.itemExportar:
+                if (textBase!= null && textAltura!=null && textEspessura!= null &&!textBase.isEmpty() && !textAltura.isEmpty() && !textEspessura.isEmpty()) {
+                    pdfCreator.createPage("tela_perfil_c", getResources(), R.drawable.tela_perfil_c);
+                } else {
+                    Toast.makeText(this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
 
         return super.onOptionsItemSelected(item);

@@ -1,6 +1,7 @@
 package com.app.projetoic.helper;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -33,12 +34,13 @@ public class PDFCreator {
         dados.clear();
     }
 
-    public void addLinha(String textoLinha){
-        dados.add(textoLinha);
+    public void addLine(String textLine){
+        dados.add(textLine);
     }
 
-    public void criarPagina(String nomePagina){
+    public void createPage(String pageName, Resources res, int idImage){
         //Configurar imagem
+        this.image = BitmapFactory.decodeResource(res,idImage);
         Bitmap scaleBmp = Bitmap.createScaledBitmap(image,75,75,false);
 
         //Recuperar data atual
@@ -72,7 +74,7 @@ public class PDFCreator {
 
         int startXPosition = 40;
         int endXPosition = mypageInfo1.getPageWidth() -40;
-        int startYPosition = 180;
+        int startYPosition = 60+ scaleBmp.getHeight() + 40;
 
         for (int i=0;i<dados.size();i++){
             canvas.drawText(dados.get(i),startXPosition,startYPosition,myPaint);
@@ -84,7 +86,7 @@ public class PDFCreator {
         //Fim da página
         myPdfDocument.finishPage(myPage1);
 
-        String nomeArquivo = "/"+ nomePagina + date+".pdf";
+        String nomeArquivo = "/"+ pageName + " " + date+".pdf";
         String filePath = Environment.getExternalStorageDirectory().getPath()+nomeArquivo;
         File file = new File(filePath);
 
