@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.projetoic.R;
+import com.app.projetoic.helper.PDFCreator;
 import com.app.projetoic.helper.Utils;
 
 public class TelaPerfilIActivity extends AppCompatActivity {
@@ -36,6 +37,13 @@ public class TelaPerfilIActivity extends AppCompatActivity {
     private TextView textViewCentroideX;
     private TextView textViewCentroideY;
     private Button buttonCalcular;
+
+    private String textBase;
+    private String textAltura;
+    private String textEspessuraMesa;
+    private String textEspessuraAlma;
+
+    private PDFCreator pdfCreator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +79,10 @@ public class TelaPerfilIActivity extends AppCompatActivity {
         buttonCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String textBase = editTextBase.getText().toString();
-                String textAltura = editTextAltura.getText().toString();
-                String textEspessuraMesa = editTextEspessuraMesa.getText().toString();
-                String textEspessuraAlma = editTextEspessuraAlma.getText().toString();
+                textBase = editTextBase.getText().toString();
+                textAltura = editTextAltura.getText().toString();
+                textEspessuraMesa = editTextEspessuraMesa.getText().toString();
+                textEspessuraAlma = editTextEspessuraAlma.getText().toString();
 
                 if (!textBase.isEmpty() && !textAltura.isEmpty() && !textEspessuraMesa.isEmpty() && !textEspessuraAlma.isEmpty()){
                     double medidaBase = Float.parseFloat(textBase);
@@ -86,6 +94,9 @@ public class TelaPerfilIActivity extends AppCompatActivity {
 
                     if (medidaBaseInterna>0 && medidaAlturaInterna>0){
 
+                        //Instanciar classe
+                        pdfCreator = new PDFCreator(getApplicationContext());
+
                         //Área
                         double area1 = medidaEspessuraMesa*medidaBase;
                         double area2 = medidaAlturaInterna*medidaEspessuraAlma;
@@ -93,6 +104,7 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                         double areaTotal = area1 + area2 + area3;
                         String textArea = Utils.arredondar(areaTotal);
                         textViewArea.setText("Área = " +textArea);
+                        pdfCreator.addLine("Área = " + textArea);
 
                         //Centróide
                         double centroideX1 = medidaBase/2;
@@ -110,12 +122,14 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                         String textCentroideY = Utils.arredondar(centroideY);
                         textViewCentroideX.setText("X' = "+textCentroideX);
                         textViewCentroideY.setText("Y' = "+textCentroideY);
-
+                        pdfCreator.addLine("Centróide em x (x') = " + textCentroideX);
+                        pdfCreator.addLine("Centróide em y (y') = " + textCentroideY);
 
                         //Perímetro
                         double perimetro = (2*medidaBase) + (2*medidaBaseInterna) + (4*medidaEspessuraAlma) + (2*medidaAlturaInterna);
                         String textPerimetro = Utils.arredondar(perimetro);
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
+                        pdfCreator.addLine("Perímetro externo" + textPerimetro);
 
                         //Momento de inercia
                         double momentoInerciaX1 = (medidaBase*Math.pow(medidaEspessuraMesa,3)/12 + area1*Math.pow(centroideY-centroideY1,2));
@@ -132,6 +146,8 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                         String textMomentoInerciaY = Utils.arredondar(momentoInerciaY);
                         textViewIx.setText("Ix' = " + textMomentoInerciaX);
                         textViewIy.setText("Iy' = " + textMomentoInerciaY);
+                        pdfCreator.addLine("Momento de inércia em x' (Ix') = " + textMomentoInerciaX);
+                        pdfCreator.addLine("Momento de inércia em y' (Iy') = " + textMomentoInerciaY);
 
                         //Raio de giração
                         double raioGiracaoX = Math.sqrt((momentoInerciaX/areaTotal));
@@ -140,7 +156,8 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                         String textRaioGiracaoY = Utils.arredondar(raioGiracaoY);
                         textViewix.setText("ix' = " + textRaioGiracaoX);
                         textViewiy.setText("iy' = " + textRaioGiracaoY);
-
+                        pdfCreator.addLine("Raio de giração em x' (ix') = " + textRaioGiracaoX);
+                        pdfCreator.addLine("Raio de giração em y' (iy') = " + textRaioGiracaoY);
 
                         //Módulo plastico
                         double moduloPlasticoX = (medidaBase*medidaEspessuraMesa*(medidaAltura-medidaEspessuraMesa)+0.25*medidaEspessuraAlma*Math.pow(medidaAltura-2*medidaEspessuraMesa,2));
@@ -149,6 +166,8 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                         String textModuloPlasticoY = Utils.arredondar(moduloPlasticoY);
                         textViewZx.setText("Zx' = "+textModuloPlasticoX);
                         textViewZy.setText("Zy' = "+textModuloPlasticoY);
+                        pdfCreator.addLine("Módulo plástico em x (Zx') = " + textModuloPlasticoX);
+                        pdfCreator.addLine("Módulo plástico em y' (Zy') = " + textModuloPlasticoY);
 
                         //Módulo elástico
                         double moduloElasticoX = moduloPlasticoX/1.12;
@@ -157,6 +176,8 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                         String textModuloElasticoY = Utils.arredondar(moduloElasticoY);
                         textViewWx.setText("Wx' = "+textModuloElasticoX);
                         textViewWy.setText("Wx' = "+textModuloElasticoY);
+                        pdfCreator.addLine("Módulo elástico em x' (Wx') = " + textModuloElasticoX);
+                        pdfCreator.addLine("Módulo elástico em y' (Wy') = " + textModuloElasticoY);
 
                     }else {
                         Toast.makeText(TelaPerfilIActivity.this, "Erro! digite uma espessura menor ou medidas maiores para os lados", Toast.LENGTH_SHORT).show();
@@ -193,6 +214,13 @@ public class TelaPerfilIActivity extends AppCompatActivity {
             case R.id.idNotacao:
                 Intent intent2 = new Intent(this, NotacoesActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.itemExportar:
+                if (!textBase.isEmpty() && !textAltura.isEmpty() && !textEspessuraMesa.isEmpty() && !textEspessuraAlma.isEmpty()) {
+                    pdfCreator.createPage("tela_perfil_i", getResources(), R.drawable.tela_perfil_i);
+                } else {
+                    Toast.makeText(this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
         }

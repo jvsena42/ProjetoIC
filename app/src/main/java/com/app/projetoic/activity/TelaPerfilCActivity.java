@@ -146,8 +146,8 @@ public class TelaPerfilCActivity extends AppCompatActivity {
                         String textRaioGiracaoY = Utils.arredondar(raioGiracaoY);
                         textViewix.setText("ix' = " + textRaioGiracaoX);
                         textViewiy.setText("iy' = " + textRaioGiracaoY);
-                        pdfCreator.addLine("Raio de giração em x (ix) = " + textRaioGiracaoX);
-                        pdfCreator.addLine("Raio de giração em y (iy) = " + textRaioGiracaoY);
+                        pdfCreator.addLine("Raio de giração em x' (ix') = " + textRaioGiracaoX);
+                        pdfCreator.addLine("Raio de giração em y' (iy') = " + textRaioGiracaoY);
 
                         //Módulo plastico
                         double moduloPlasticoX = (medidaBase * medidaEspessura * (medidaAltura - medidaEspessura) + medidaEspessura * Math.pow(0.5 * medidaAltura - medidaEspessura, 2));
@@ -156,8 +156,8 @@ public class TelaPerfilCActivity extends AppCompatActivity {
                         String textModuloPlasticoY = Utils.arredondar(moduloPlasticoY);
                         textViewZx.setText("Zx' = " + textModuloPlasticoX);
                         textViewZy.setText("Zy' = " + textModuloPlasticoY);
-                        pdfCreator.addLine("Módulo plástico em x (Zx) = " + textModuloPlasticoX);
-                        pdfCreator.addLine("Módulo plástico em y (Zy) = " + textModuloPlasticoY);
+                        pdfCreator.addLine("Módulo plástico em x' (Zx') = " + textModuloPlasticoX);
+                        pdfCreator.addLine("Módulo plástico em y' (Zy') = " + textModuloPlasticoY);
 
                         //Módulo elástico
                         double moduloElasticoX = 2 * momentoInerciaX / medidaAltura;
