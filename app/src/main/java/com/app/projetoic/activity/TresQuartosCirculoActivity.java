@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.projetoic.R;
+import com.app.projetoic.helper.PDFCreator;
 import com.app.projetoic.helper.Utils;
 
 public class TresQuartosCirculoActivity extends AppCompatActivity {
@@ -30,6 +31,10 @@ public class TresQuartosCirculoActivity extends AppCompatActivity {
     private TextView textViewWx;
     private TextView textViewWy;
     private Button buttonCalcular;
+
+    private  String textRaio;
+
+    private PDFCreator pdfCreator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,31 +66,41 @@ public class TresQuartosCirculoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Recuperar dados
-                String textRaio = editTextRaio.getText().toString();
+                textRaio = editTextRaio.getText().toString();
                 if (!textRaio.isEmpty()){
                     double medidaRaio = Float.parseFloat(textRaio);
+
+                    //Instanciar PDFCreator
+                    pdfCreator = new PDFCreator(getApplicationContext());
+                    pdfCreator.addLine("Raio (R) = " + textRaio);
 
                     //Área
                     double area = Math.PI*Math.pow(medidaRaio,2)*3/4;
                     String textArea = Utils.arredondar(area);
                     textViewArea.setText("Área = " +textArea);
+                    pdfCreator.addLine("Área = " + textArea);
 
                     //Perímetro
                     double perimetro =  ((Math.PI*2*medidaRaio)*3/4)+(2*medidaRaio);
                     String textPerimetro = Utils.arredondar(perimetro);
                     textViewPerimetro.setText("P. Ext.= " + textPerimetro);
+                    pdfCreator.addLine("Perímetro externo = " + textPerimetro);
 
                     //Momento de inercia
                     double momentoInercia = (3*Math.PI*Math.pow(medidaRaio,4)/16);
                     String textMomentoInercia = Utils.arredondar(momentoInercia);
                     textViewIx.setText("Ix = " + textMomentoInercia);
                     textViewIy.setText("Iy = " + textMomentoInercia);
+                    pdfCreator.addLine("Momento de inércia em x (Ix) = " + textMomentoInercia);
+                    pdfCreator.addLine("Momento de inércia em y (Iy) = " + textMomentoInercia);
 
                     //Raio de giração
                     double raioGiracao = Math.sqrt(momentoInercia/area);
                     String textRaioGiracao = Utils.arredondar(raioGiracao);
                     textViewix.setText("ix = " + textRaioGiracao);
                     textViewiy.setText("iy = " + textRaioGiracao);
+                    pdfCreator.addLine("Raio de giração em x (ix) = " + textRaioGiracao);
+                    pdfCreator.addLine("Raio de giração em y (iy) = " + textRaioGiracao);
 
                     //Módulo Plástico
                    /* float moduloPlastico = (float) (3*Math.PI*Math.pow(medidaRaio,3)/16);
@@ -98,6 +113,8 @@ public class TresQuartosCirculoActivity extends AppCompatActivity {
                     String textModuloElastico = Utils.arredondar(moduloElastico);
                     textViewWx.setText("Wx = "+textModuloElastico);
                     textViewWy.setText("Wy = "+textModuloElastico);
+                    pdfCreator.addLine("Módulo elástico em x (Wx) = " + textModuloElastico);
+                    pdfCreator.addLine("Módulo elástico em y (Wy) = " + textModuloElastico);
 
                 }else {
                     Toast.makeText(TresQuartosCirculoActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
@@ -129,6 +146,13 @@ public class TresQuartosCirculoActivity extends AppCompatActivity {
             case R.id.idNotacao:
                 Intent intent2 = new Intent(this, NotacoesActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.itemExportar:
+                if (textRaio != null && !textRaio.equals("") ) {
+                    pdfCreator.createPage("tela_tres_quartos_circulo", getResources(), R.drawable.tela_tresquartoscirculo);
+                } else {
+                    Toast.makeText(this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
         }
