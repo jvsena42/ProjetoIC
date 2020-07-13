@@ -199,6 +199,20 @@ public class TelaPerfilCActivity extends AppCompatActivity {
                 editTextBase.setText("");
                 editTextAltura.setText("");
                 editTextEspessura.setText("");
+
+                textViewArea.setText( "Área =");
+                textViewPerimetro.setText("P. Ext.= ");
+                textViewIx.setText("Ix = " );
+                textViewIy.setText("Iy = ");
+                textViewix.setText("ix = ");
+                textViewiy.setText("iy = ");
+                textViewZx.setText("Zx' = ");
+                textViewZy.setText("Zy' = ");
+                textViewWx.setText("Wx = ");
+                textViewWy.setText( "Wy = ");
+                textViewCentroideX.setText("X' = ");
+                textViewCentroideY.setText("Y' = ");
+
                 break;
             case R.id.idNotacao:
                 Intent intent2 = new Intent(this, NotacoesActivity.class);

@@ -212,6 +212,19 @@ public class TelaPerfilLActivity extends AppCompatActivity {
                 //Limpar EditText
                 editTextBase.setText("");
                 editTextEspessura.setText("");
+
+                textViewArea.setText( "Área =");
+                textViewPerimetro.setText("P. Ext.= ");
+                textViewIx.setText("Ix = " );
+                textViewIy.setText("Iy = ");
+                textViewix.setText("ix'=iy'= ");
+                textViewiy.setText("iz' = ");
+                textViewZx.setText("Zx' = ");
+                textViewZy.setText("Zy' = ");
+                textViewWx.setText("Wx = ");
+                textViewWy.setText( "Wy = ");
+                textViewCentroideX.setText("x' = ");
+                textViewCentroideY.setText("y' = ");
                 break;
             case R.id.idNotacao:
                 Intent intent2 = new Intent(this, NotacoesActivity.class);
