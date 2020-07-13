@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.projetoic.R;
+import com.app.projetoic.helper.PDFCreator;
 import com.app.projetoic.helper.Utils;
 
 public class TelaRetanguloVazadoActivity extends AppCompatActivity {
@@ -33,6 +34,12 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
     private TextView textViewWx;
     private TextView textViewWy;
     private Button buttonCalcular;
+
+    private String textBase;
+    private String textAltura;
+    private  String textEspessura;
+
+    private PDFCreator pdfCreator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +72,9 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
         buttonCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String textBase = editTextBase.getText().toString();
-                String textAltura = editTextAltura.getText().toString();
-                String textEspessura = editTextEspessura.getText().toString();
+                textBase = editTextBase.getText().toString();
+                textAltura = editTextAltura.getText().toString();
+                textEspessura = editTextEspessura.getText().toString();
 
                 if (!textBase.isEmpty() && !textAltura.isEmpty() && !textEspessura.isEmpty()){
                     double medidaBase = Float.parseFloat(textBase);
@@ -77,15 +84,25 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
                     double medidaAlturaInterna = medidaAltura-(2*medidaEspessura);
 
                     if (medidaBaseInterna>0 && medidaAlturaInterna>0){
+
+                        //Instanciar PDFCreator
+                        pdfCreator = new PDFCreator(getApplicationContext());
+                        pdfCreator.addLine("Base (b) = " + textBase);
+                        pdfCreator.addLine("Altura (h) = " + textAltura);
+                        pdfCreator.addLine("Espessura (e) = " + textEspessura);
+
                         //Área
                         double area = (medidaBase*medidaAltura)-(medidaBaseInterna*medidaAlturaInterna);
                         String textArea = Utils.arredondar(area);
                         textViewArea.setText("Área = " +textArea);
+                        pdfCreator.addLine("Área = " + textArea);
 
                         //Perímetro
                         double perimetro = medidaBase*2+medidaAltura*2;
                         String textPerimetro = Utils.arredondar(perimetro);
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
+                        pdfCreator.addLine("Perímetro externo = " + textPerimetro);
+
 
                         //Momento de inercia
                         double momentoInerciaX = ((Math.pow(medidaAltura,3)*medidaBase/12)-(Math.pow(medidaAlturaInterna,3)*medidaBaseInterna/12));
@@ -94,6 +111,8 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
                         String textMomentoInerciaY = Utils.arredondar(momentoInerciaY);
                         textViewIx.setText("Ix = " + textMomentoInerciaX);
                         textViewIy.setText("Iy = " + textMomentoInerciaY);
+                        pdfCreator.addLine("Momento de inércia em x (Ix) = " + textMomentoInerciaX);
+                        pdfCreator.addLine("Momento de inércia em y (Iy) = " + textMomentoInerciaY);
 
                         //Raio de giração
                         double raioGiracaoX = Math.sqrt((momentoInerciaX/area));
@@ -102,6 +121,8 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
                         String textRaioGiracaoY = Utils.arredondar(raioGiracaoY);
                         textViewix.setText("ix = " + textRaioGiracaoX);
                         textViewiy.setText("iy = " + textRaioGiracaoY);
+                        pdfCreator.addLine("Raio de giração em x (ix) = " + textRaioGiracaoX);
+                        pdfCreator.addLine("Raio de giração em y (iy) = " + textRaioGiracaoY);
 
                         //Módulo plastico
                         double moduloPlasticoX = (Math.pow(medidaAltura,2)*medidaBase/4*(1-(1-2*medidaEspessura/medidaBase)*Math.pow(1-2*medidaEspessura/medidaAltura,2)));
@@ -110,6 +131,8 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
                         String textModuloPlasticoY = Utils.arredondar(moduloPlasticoY);
                         textViewZx.setText("Zx = "+textModuloPlasticoX);
                         textViewZy.setText("Zy = "+textModuloPlasticoY);
+                        pdfCreator.addLine("Módulo plástico em x (Zx) = " + textModuloPlasticoX);
+                        pdfCreator.addLine("Módulo plástico em y (Zy) = " + textModuloPlasticoY);
 
                         //Módulo elástico
                         double moduloElasticoX = ((medidaBase*medidaAltura)*medidaEspessura + (Math.pow(medidaBase,2)*medidaEspessura/3));
@@ -118,6 +141,8 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
                         String textModuloElasticoY = Utils.arredondar(moduloElasticoY);
                         textViewWx.setText("Wx = "+textModuloElasticoX);
                         textViewWy.setText("Wy = "+textModuloElasticoY);
+                        pdfCreator.addLine("Módulo elástico em x (Wx) = " + textModuloElasticoX);
+                        pdfCreator.addLine("Módulo elástico em y (Wy) = " + textModuloElasticoY);
 
                         //Limpar EditText
                         editTextBase.setText("");
@@ -154,10 +179,19 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
                 editTextBase.setText("");
                 editTextAltura.setText("");
                 editTextEspessura.setText("");
+                textBase = "";
+                textAltura = "";
                 break;
             case R.id.idNotacao:
                 Intent intent2 = new Intent(this, NotacoesActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.itemExportar:
+                if (textBase != null && !textBase.equals("") && textAltura != null && !textAltura.equals("") && textEspessura != null && !textEspessura.equals("")) {
+                    pdfCreator.createPage("tela_retangulo_vazado", getResources(), R.drawable.tela_retangulo_vazado);
+                } else {
+                    Toast.makeText(this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
         }
