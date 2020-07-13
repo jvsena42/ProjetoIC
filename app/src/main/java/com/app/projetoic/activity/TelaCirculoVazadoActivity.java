@@ -217,7 +217,7 @@ public class TelaCirculoVazadoActivity extends AppCompatActivity {
                 break;
             case R.id.itemExportar:
                 if (textRaio != null && !textRaio.equals("") && textEspessura != null && !textEspessura.equals("")) {
-                    pdfCreator.createPage("tela_ciruclo_vazado", getResources(), R.drawable.tela_circulo_vazado);
+                    pdfCreator.createPage("tela_circulo_vazado", getResources(), R.drawable.tela_circulo_vazado);
                 } else {
                     Toast.makeText(this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
                 }
