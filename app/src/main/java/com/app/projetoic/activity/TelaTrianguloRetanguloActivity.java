@@ -81,9 +81,9 @@ public class TelaTrianguloRetanguloActivity extends AppCompatActivity {
 
                     //Instanciar PDFCreator
                     pdfCreator = new PDFCreator(getApplicationContext());
-                    pdfCreator.addLine("Lado A = " + Utils.arredondar(medidaLadoA));
-                    pdfCreator.addLine("Lado B = " + textLadoB);
-                    pdfCreator.addLine("Lado C = " + textLadoC);
+                    pdfCreator.addLine("Lado a = " + Utils.arredondar(medidaLadoA));
+                    pdfCreator.addLine("Lado b = " + textLadoB);
+                    pdfCreator.addLine("Lado c = " + textLadoC);
 
                     //Área
                     double area = medidaLadoB * medidaLadoC/2;

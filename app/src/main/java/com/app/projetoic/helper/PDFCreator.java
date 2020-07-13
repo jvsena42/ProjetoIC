@@ -41,7 +41,7 @@ public class PDFCreator {
     public void createPage(String pageName, Resources res, int idImage){
         //Configurar imagem
         this.image = BitmapFactory.decodeResource(res,idImage);
-        Bitmap scaleBmp = Bitmap.createScaledBitmap(image,75,75,false);
+        Bitmap scaleBmp = Bitmap.createScaledBitmap(image,170,170,false);
 
         //Recuperar data atual
         dateObj = new Date();
@@ -67,14 +67,14 @@ public class PDFCreator {
         myPaint.setTextSize(14.0f);
         canvas.drawText("GEOMETRIX",pageWidth/2f,40,myPaint);
 
-        canvas.drawBitmap(scaleBmp,pageWidth/2f-(scaleBmp.getWidth()/2f),60,myPaint);
+        canvas.drawBitmap(scaleBmp,pageWidth/2f-(scaleBmp.getWidth()/2f),70,myPaint);
 
         myPaint.setTextAlign(Paint.Align.LEFT);
         myPaint.setTextSize(12.0f);
 
         int startXPosition = 40;
         int endXPosition = mypageInfo1.getPageWidth() -40;
-        int startYPosition = 60+ scaleBmp.getHeight() + 40;
+        int startYPosition = 70+ scaleBmp.getHeight() + 40;
 
         for (int i=0;i<dados.size();i++){
             canvas.drawText(dados.get(i),startXPosition,startYPosition,myPaint);
