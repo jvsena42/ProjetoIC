@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.projetoic.R;
+import com.app.projetoic.helper.PDFCreator;
 import com.app.projetoic.helper.Utils;
 
 public class TelaRetanguloActivity extends AppCompatActivity {
@@ -32,6 +33,11 @@ public class TelaRetanguloActivity extends AppCompatActivity {
     private TextView textViewWx;
     private TextView textViewWy;
     private Button buttonCalcular;
+
+    private String textBase;
+    private String textAltura;
+
+    private PDFCreator pdfCreator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +70,8 @@ public class TelaRetanguloActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Recuperar dados
-                String textBase = editTextBase.getText().toString();
-                String textAltura = editTextAltura.getText().toString();
+                textBase = editTextBase.getText().toString();
+                textAltura = editTextAltura.getText().toString();
 
                 if (!textBase.isEmpty() || !textAltura.isEmpty()) {
 
@@ -74,15 +80,22 @@ public class TelaRetanguloActivity extends AppCompatActivity {
 
                     if (medidaBase > 0 && medidaAltura > 0) {
 
+                        //Instanciar PDFCreator
+                        pdfCreator = new PDFCreator(getApplicationContext());
+                        pdfCreator.addLine("Base (b) = " + textBase);
+                        pdfCreator.addLine("Altura (h) = " + textAltura);
+
                         //Área
                         double area = medidaBase*medidaAltura;
                         String textArea = Utils.arredondar(area);
                         textViewArea.setText("Área = " +textArea);
+                        pdfCreator.addLine("Área = " + textArea);
 
                         //Perímetro
                         double perimetro = medidaBase*2+medidaAltura*2;
                         String textPerimetro = Utils.arredondar(perimetro);
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
+                        pdfCreator.addLine("Perímetro externo = " + textPerimetro);
 
                         //Momento de inercia
                         double momentoInerciaX =  (Math.pow(medidaAltura,3)*medidaBase/12);
@@ -91,6 +104,8 @@ public class TelaRetanguloActivity extends AppCompatActivity {
                         String textMomentoInerciaY = Utils.arredondar(momentoInerciaY);
                         textViewIx.setText("Ix = " + textMomentoInerciaX);
                         textViewIy.setText("Iy = " + textMomentoInerciaY);
+                        pdfCreator.addLine("Momento de inércia em x (Ix) = " + textMomentoInerciaX);
+                        pdfCreator.addLine("Momento de inércia em y (Iy) = " + textMomentoInerciaY);
 
                         //Raio de giração
                         double raioGiracaoX = Math.sqrt((momentoInerciaX/area));
@@ -99,6 +114,8 @@ public class TelaRetanguloActivity extends AppCompatActivity {
                         String textRaioGiracaoY = Utils.arredondar(raioGiracaoY);
                         textViewix.setText("ix = " + textRaioGiracaoX);
                         textViewiy.setText("iy = " + textRaioGiracaoY);
+                        pdfCreator.addLine("Raio de giração em x (ix) = " + textRaioGiracaoX);
+                        pdfCreator.addLine("Raio de giração em y (iy) = " + textRaioGiracaoY);
 
                         //Módulo Plástico
                         double moduloPlasticoX = (Math.pow(medidaAltura,2)*medidaBase/4);
@@ -107,6 +124,8 @@ public class TelaRetanguloActivity extends AppCompatActivity {
                         String textModuloPlasticoY = Utils.arredondar(moduloPlasticoY);
                         textViewZx.setText("Zx = "+textModuloPlasticoX);
                         textViewZy.setText("Zy = "+textModuloPlasticoY);
+                        pdfCreator.addLine("Módulo plástico em x (Zx) = " + textModuloPlasticoX);
+                        pdfCreator.addLine("Módulo plástico em y (Zy) = " + textModuloPlasticoY);
 
                         //Módulo Elástico
                         double moduloElasticoX = (medidaBase*Math.pow(medidaAltura,2)/6);
@@ -115,6 +134,8 @@ public class TelaRetanguloActivity extends AppCompatActivity {
                         String textModuloElasticoY = Utils.arredondar(moduloElasticoY);
                         textViewWx.setText("Wx = "+textModuloElasticoX);
                         textViewWy.setText("Wy = "+textModuloElasticoY);
+                        pdfCreator.addLine("Módulo elástico em x (Wx) = " + textModuloElasticoX);
+                        pdfCreator.addLine("Módulo elástico em y (Wy) = " + textModuloElasticoY);
 
                     } else {
                     Toast.makeText(TelaRetanguloActivity.this, "Utilize valores válidos!", Toast.LENGTH_SHORT).show();
@@ -145,10 +166,19 @@ public class TelaRetanguloActivity extends AppCompatActivity {
                 //Limpar EditText
                 editTextBase.setText("");
                 editTextAltura.setText("");
+                textBase = "";
+                textAltura = "";
                 break;
             case R.id.idNotacao:
                 Intent intent2 = new Intent(this, NotacoesActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.itemExportar:
+                if (textBase != null && !textBase.equals("") && textAltura != null && !textAltura.equals("")) {
+                    pdfCreator.createPage("tela_retangulo", getResources(), R.drawable.tela_retangulo);
+                } else {
+                    Toast.makeText(this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
         }
