@@ -191,7 +191,7 @@ public class TelaCirculoActivity extends AppCompatActivity {
                 break;
             case R.id.itemExportar:
                 if (textRaio != null && !textRaio.equals("")) {
-                    pdfCreator.createPage("tela_quadrado", getResources(), R.drawable.tela_quadrado);
+                    pdfCreator.createPage("tela_circulo", getResources(), R.drawable.tela_circulo);
                 } else {
                     Toast.makeText(this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
                 }
