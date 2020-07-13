@@ -103,7 +103,6 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
                         pdfCreator.addLine("Perímetro externo = " + textPerimetro);
 
-
                         //Momento de inercia
                         double momentoInerciaX = ((Math.pow(medidaAltura,3)*medidaBase/12)-(Math.pow(medidaAlturaInterna,3)*medidaBaseInterna/12));
                         double momentoInerciaY = ((Math.pow(medidaBase,3)*medidaAltura/12)-(Math.pow(medidaBaseInterna,3)*medidaAlturaInterna/12));
@@ -193,7 +192,6 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
                     Toast.makeText(this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
                 }
                 break;
-
         }
 
         return super.onOptionsItemSelected(item);
