@@ -142,6 +142,17 @@ public class TresQuartosCirculoActivity extends AppCompatActivity {
 
                 //Limpar EditText
                 editTextRaio.setText("");
+
+                textViewArea.setText( "Área =");
+                textViewPerimetro.setText("P. Ext.= ");
+                textViewIx.setText("Ix = " );
+                textViewIy.setText("Iy = ");
+                textViewix.setText("ix = ");
+                textViewiy.setText("iy = ");
+                textViewZx.setText("Zx = ");
+                textViewZy.setText("Zy = ");
+                textViewWx.setText("Wx = ");
+                textViewWy.setText( "Wy = ");
                 break;
             case R.id.idNotacao:
                 Intent intent2 = new Intent(this, NotacoesActivity.class);
