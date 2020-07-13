@@ -89,6 +89,9 @@ public class TelaPerfilCActivity extends AppCompatActivity {
 
                         //Instanciar classe
                         pdfCreator = new PDFCreator(getApplicationContext());
+                        pdfCreator.addLine("Base (h) = " + textBase);
+                        pdfCreator.addLine("Altura (b) = " + textAltura);
+                        pdfCreator.addLine("Espessura (e) = " + textEspessura);
 
                         //Área
                         double area1 = medidaEspessura * medidaBase;
