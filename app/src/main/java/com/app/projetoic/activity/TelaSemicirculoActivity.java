@@ -109,14 +109,14 @@ public class TelaSemicirculoActivity extends AppCompatActivity {
                     textViewZy.setText("Zy' = "+textModuloPlastico);
                     pdfCreator.addLine("Módulo plástico em x (Zx) = " + textModuloPlastico);
                     pdfCreator.addLine("Módulo plástico em y (Zy) = " + textModuloPlastico);
-                    pdfCreator.addLine("Módulo elástico em x (Wx) = " + textModuloPlastico);
-                    pdfCreator.addLine("Módulo elástico em y (Wy) = " + textModuloPlastico);
 
                     //Módulo Elástico
                     double moduloElastico = (0.3927*Math.pow(medidaRaio,3));
                     String textModuloElastico = Utils.arredondar(moduloElastico);
                     textViewWx.setText("Wx = "+textModuloElastico);
                     textViewWy.setText("Wy = "+textModuloElastico);
+                    pdfCreator.addLine("Módulo elástico em x (Wx) = " + textModuloElastico);
+                    pdfCreator.addLine("Módulo elástico em y (Wy) = " + textModuloElastico);
 
                 }else {
                     Toast.makeText(TelaSemicirculoActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();

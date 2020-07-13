@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.projetoic.R;
+import com.app.projetoic.helper.PDFCreator;
 import com.app.projetoic.helper.Utils;
 
 public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
@@ -31,6 +32,10 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
     private TextView textViewWx;
     private TextView textViewWy;
     private Button buttonCalcular;
+
+    private String textLado;
+
+    private PDFCreator pdfCreator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,20 +69,26 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Recuperar dados
-                String textLado = editTextLado.getText().toString();
+                textLado = editTextLado.getText().toString();
                 if (!textLado.isEmpty()) {
                     double medidaLado = Float.parseFloat(textLado);
                     double altura = Math.sqrt(Math.pow(medidaLado,2)-Math.pow(medidaLado/2,2));
+
+                    //Instanciar PDFCreator
+                    pdfCreator = new PDFCreator(getApplicationContext());
+                    pdfCreator.addLine("Lado (L) = " + textLado);
 
                     //Área
                     double area = medidaLado * altura/2;
                     String textArea = Utils.arredondar(area);
                     textViewArea.setText("Área = " + textArea);
+                    pdfCreator.addLine("Área = " + textArea);
 
                     //Perímetro
                     double perimetro = medidaLado * 3;
                     String textPerimetro = Utils.arredondar(perimetro);
                     textViewPerimetro.setText("P. Ext. = " + textPerimetro);
+                    pdfCreator.addLine("Perímetro externo = " + textPerimetro);
 
                     //Momento de inercia
                     double momentoInerciaX = (medidaLado*Math.pow(altura,3)/36);
@@ -86,6 +97,8 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
                     String textMomentoInerciaY = Utils.arredondar(momentoInerciaY);
                     textViewIx.setText("Ix = " + textMomentoInerciaX);
                     textViewIy.setText("Iy = " + textMomentoInerciaY);
+                    pdfCreator.addLine("Momento de inércia em x (Ix) = " + textMomentoInerciaX);
+                    pdfCreator.addLine("Momento de inércia em y (Iy) = " + textMomentoInerciaY);
 
                     //Raio de giração
                     double raioGiracaoX = Math.sqrt(momentoInerciaX/area);
@@ -94,6 +107,8 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
                     String textRaioGiracaoY = Utils.arredondar(raioGiracaoY);
                     textViewix.setText("ix = " + textRaioGiracaoX);
                     textViewiy.setText("iy = " + textRaioGiracaoY);
+                    pdfCreator.addLine("Raio de giração em x (ix) = " + textRaioGiracaoX);
+                    pdfCreator.addLine("Raio de giração em y (iy) = " + textRaioGiracaoY);
 
                     //Módulo Plástico
                     double moduloPlasticoX = ((medidaLado*Math.pow(altura, 2)*(2-Math.sqrt(2))) / 6);
@@ -102,6 +117,8 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
                     String textModuloPlasticoY = Utils.arredondar(moduloPlasticoY);
                     textViewZx.setText("Zx = " + textModuloPlasticoX);
                     textViewZy.setText("Zy = " + textModuloPlasticoY);
+                    pdfCreator.addLine("Módulo plástico em x (Zx) = " + textModuloPlasticoX);
+                    pdfCreator.addLine("Módulo plástico em y (Zy) = " + textModuloPlasticoY);
 
                     //Módulo Elástico
                     double moduloElasticoX = (medidaLado*Math.pow(altura, 2) / 24);
@@ -110,6 +127,8 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
                     String textModuloElasticoY = Utils.arredondar(moduloElasticoY);
                     textViewWx.setText("Wx = " + textModuloElasticoX);
                     textViewWy.setText("Wy = " + textModuloElasticoY);
+                    pdfCreator.addLine("Módulo elástico em x (Wx) = " + textModuloElasticoX);
+                    pdfCreator.addLine("Módulo elástico em y (Wy) = " + textModuloElasticoY);
 
                 } else {
                     Toast.makeText(TelaTrianguloEquilateroActivity.this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
@@ -137,10 +156,18 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
 
                 //Limpar EditText
                 editTextLado.setText("");
+                textLado = "";
                 break;
             case R.id.idNotacao:
                 Intent intent2 = new Intent(this, NotacoesActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.itemExportar:
+                if (textLado != null && !textLado.equals("") ) {
+                    pdfCreator.createPage("tela_triangulo_equilatero", getResources(), R.drawable.tela_triangulo_isoceles);
+                } else {
+                    Toast.makeText(this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
         }
