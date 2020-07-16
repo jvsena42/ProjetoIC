@@ -217,14 +217,14 @@ public class TelaPerfilLActivity extends AppCompatActivity {
 
                 textViewArea.setText( "Área =");
                 textViewPerimetro.setText("P. Ext.= ");
-                textViewIx.setText("Ix = " );
-                textViewIy.setText("Iy = ");
+                textViewIx.setText("Ix' = " );
+                textViewIy.setText("Iy' = ");
                 textViewix.setText("ix'=iy'= ");
                 textViewiy.setText("iz' = ");
                 textViewZx.setText("Zx' = ");
                 textViewZy.setText("Zy' = ");
-                textViewWx.setText("Wx = ");
-                textViewWy.setText( "Wy = ");
+                textViewWx.setText("Wx' = ");
+                textViewWy.setText( "Wy' = ");
                 textViewCentroideX.setText("x' = ");
                 textViewCentroideY.setText("y' = ");
                 break;

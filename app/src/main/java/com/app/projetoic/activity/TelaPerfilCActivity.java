@@ -205,16 +205,16 @@ public class TelaPerfilCActivity extends AppCompatActivity {
 
                 textViewArea.setText( "Área =");
                 textViewPerimetro.setText("P. Ext.= ");
-                textViewIx.setText("Ix = " );
-                textViewIy.setText("Iy = ");
-                textViewix.setText("ix = ");
-                textViewiy.setText("iy = ");
+                textViewIx.setText("Ix' = " );
+                textViewIy.setText("Iy' = ");
+                textViewix.setText("ix' = ");
+                textViewiy.setText("iy' = ");
                 textViewZx.setText("Zx' = ");
                 textViewZy.setText("Zy' = ");
-                textViewWx.setText("Wx = ");
-                textViewWy.setText( "Wy = ");
-                textViewCentroideX.setText("X' = ");
-                textViewCentroideY.setText("Y' = ");
+                textViewWx.setText("Wx' = ");
+                textViewWy.setText( "Wy' = ");
+                textViewCentroideX.setText("x' = ");
+                textViewCentroideY.setText("y' = ");
 
                 break;
             case R.id.idNotacao:
