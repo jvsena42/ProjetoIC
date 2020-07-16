@@ -137,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="5dp"
-                        android:text="Ix ="
+                        android:text="Ix' ="
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
 
@@ -220,7 +220,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="5dp"
-                        android:text="Iy ="
+                        android:text="Iy' ="
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
 

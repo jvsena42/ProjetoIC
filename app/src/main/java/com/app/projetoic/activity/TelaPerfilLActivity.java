@@ -91,7 +91,7 @@ public class TelaPerfilLActivity extends AppCompatActivity {
 
                         //Instanciar PDFCreator
                         pdfCreator = new PDFCreator(getApplicationContext());
-                        pdfCreator.addLine("Lado (l) = " + textBase);
+                        pdfCreator.addLine("Alma (a) = " + textBase);
                         pdfCreator.addLine("Espessura (e) = " + textEspessura);
 
                         //Área
@@ -122,7 +122,7 @@ public class TelaPerfilLActivity extends AppCompatActivity {
                         double perimetro = medidaBase + medidaAltura + medidaBaseInterna + medidaAlturaInterna + (2 * medidaEspessura);
                         String textPerimetro = Utils.arredondar(perimetro);
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
-                        pdfCreator.addLine("Perímetro externo" + textPerimetro);
+                        pdfCreator.addLine("Perímetro externo = " + textPerimetro);
 
                         //Momento de inercia
                         double momentoInerciaX1 = ((medidaBase * Math.pow(medidaEspessura, 3) / 12) + area1 * Math.pow(centroideY - centroideY1, 2));
@@ -160,7 +160,7 @@ public class TelaPerfilLActivity extends AppCompatActivity {
 
                         pdfCreator.addLine("Raio de giração em x' (ix') = " + textRaioGiracaoX);
                         pdfCreator.addLine("Raio de giração em y' (iy') = " + textRaioGiracaoX);
-                        pdfCreator.addLine("Raio de giração em z' (iy') = " + textRaioGiracaoZ);
+                        pdfCreator.addLine("Raio de giração em z' (iz') = " + textRaioGiracaoZ);
 
 
                         //Módulo plastico

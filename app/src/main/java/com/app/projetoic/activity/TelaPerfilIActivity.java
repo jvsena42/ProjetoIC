@@ -133,7 +133,7 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                         double perimetro = (2*medidaBase) + (2*medidaBaseInterna) + (4*medidaEspessuraAlma) + (2*medidaAlturaInterna);
                         String textPerimetro = Utils.arredondar(perimetro);
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
-                        pdfCreator.addLine("Perímetro externo" + textPerimetro);
+                        pdfCreator.addLine("Perímetro externo = " + textPerimetro);
 
                         //Momento de inercia
                         double momentoInerciaX1 = (medidaBase*Math.pow(medidaEspessuraMesa,3)/12 + area1*Math.pow(centroideY-centroideY1,2));

@@ -143,10 +143,6 @@ public class TelaRetanguloVazadoActivity extends AppCompatActivity {
                         pdfCreator.addLine("Módulo elástico em x (Wx) = " + textModuloElasticoX);
                         pdfCreator.addLine("Módulo elástico em y (Wy) = " + textModuloElasticoY);
 
-                        //Limpar EditText
-                        editTextBase.setText("");
-                        editTextAltura.setText("");
-                        editTextEspessura.setText("");
                     }else {
                         Toast.makeText(TelaRetanguloVazadoActivity.this, "Erro! digite uma espessura menor ou medidas maiores para os lados", Toast.LENGTH_SHORT).show();
                     }

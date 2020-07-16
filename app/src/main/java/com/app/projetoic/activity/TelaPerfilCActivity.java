@@ -122,7 +122,7 @@ public class TelaPerfilCActivity extends AppCompatActivity {
                         double perimetro = (2 * medidaBase) + (2 * medidaBaseInterna) + (2 * medidaEspessura) + medidaAltura + medidaAlturaInterna;
                         String textPerimetro = Utils.arredondar(perimetro);
                         textViewPerimetro.setText("P. Ext. = " + textPerimetro);
-                        pdfCreator.addLine("Perímetro externo" + textPerimetro);
+                        pdfCreator.addLine("Perímetro externo = " + textPerimetro);
 
                         //Momento de inercia
                         double momentoInerciaX1 = (medidaBase * Math.pow(medidaEspessura, 3) / 12 + area1 * Math.pow(centroideY - centroideY1, 2));
@@ -139,8 +139,8 @@ public class TelaPerfilCActivity extends AppCompatActivity {
                         String textMomentoInerciaY = Utils.arredondar(momentoInerciaY);
                         textViewIx.setText("Ix' = " + textMomentoInerciaX);
                         textViewIy.setText("Iy' = " + textMomentoInerciaY);
-                        pdfCreator.addLine("Momento de inércia em x (Ix) = " + textMomentoInerciaX);
-                        pdfCreator.addLine("Momento de inércia em y (Iy) = " + textMomentoInerciaY);
+                        pdfCreator.addLine("Momento de inércia em x' (Ix') = " + textMomentoInerciaX);
+                        pdfCreator.addLine("Momento de inércia em y' (Iy') = " + textMomentoInerciaY);
 
                         //Raio de giração
                         double raioGiracaoX = Math.sqrt(momentoInerciaX / areaTotal);
@@ -169,8 +169,8 @@ public class TelaPerfilCActivity extends AppCompatActivity {
                         String textModuloElasticoY = Utils.arredondar(moduloElasticoY);
                         textViewWx.setText("Wx' = " + textModuloElasticoX);
                         textViewWy.setText("Wx' = " + textModuloElasticoY);
-                        pdfCreator.addLine("Módulo elástico em x (Wx) = " + textModuloElasticoX);
-                        pdfCreator.addLine("Módulo elástico em y (Wy) = " + textModuloElasticoY);
+                        pdfCreator.addLine("Módulo elástico em x' (Wx') = " + textModuloElasticoX);
+                        pdfCreator.addLine("Módulo elástico em y' (Wy') = " + textModuloElasticoY);
 
                     } else {
                         Toast.makeText(TelaPerfilCActivity.this, "Erro! digite uma espessura menor ou medidas maiores para os lados", Toast.LENGTH_SHORT).show();
