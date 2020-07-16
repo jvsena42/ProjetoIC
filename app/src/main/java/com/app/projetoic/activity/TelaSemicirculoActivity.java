@@ -163,7 +163,7 @@ public class TelaSemicirculoActivity extends AppCompatActivity {
                 break;
             case R.id.itemExportar:
                 if (textRaio != null && !textRaio.equals("") ) {
-                    pdfCreator.createPage("tela_semicirculo", getResources(), R.drawable.tela_semicirculo);
+                    pdfCreator.createPage("tela_semicirculo", getResources(), R.drawable.pdf_semicirculo);
                 } else {
                     Toast.makeText(this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
                 }

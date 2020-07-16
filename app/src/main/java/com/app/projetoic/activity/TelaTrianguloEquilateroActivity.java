@@ -175,7 +175,7 @@ public class TelaTrianguloEquilateroActivity extends AppCompatActivity {
                 break;
             case R.id.itemExportar:
                 if (textLado != null && !textLado.equals("") ) {
-                    pdfCreator.createPage("tela_triangulo_equilatero", getResources(), R.drawable.tela_triangulo_isoceles);
+                    pdfCreator.createPage("tela_triangulo_equilatero", getResources(), R.drawable.pdf_triangulo_equilatero);
                 } else {
                     Toast.makeText(this, "Preencha todos os valores!", Toast.LENGTH_SHORT).show();
                 }
