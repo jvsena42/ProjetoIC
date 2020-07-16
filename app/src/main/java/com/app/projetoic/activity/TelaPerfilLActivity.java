@@ -180,7 +180,7 @@ public class TelaPerfilLActivity extends AppCompatActivity {
                         String textModuloElasticoX = Utils.arredondar(moduloElasticoX);
                         String textModuloElasticoY = Utils.arredondar(moduloElasticoY);
                         textViewWx.setText("Wx' = " + textModuloElasticoX);
-                        textViewWy.setText("Wx' = " + textModuloElasticoY);
+                        textViewWy.setText("Wy' = " + textModuloElasticoY);
 
                         pdfCreator.addLine("Módulo elástico em x' (Wx') = " + textModuloElasticoX);
                         pdfCreator.addLine("Módulo elástico em y' (Wy') = " + textModuloElasticoY);
