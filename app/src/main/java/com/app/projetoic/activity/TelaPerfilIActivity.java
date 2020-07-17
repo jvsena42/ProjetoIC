@@ -219,8 +219,8 @@ public class TelaPerfilIActivity extends AppCompatActivity {
                 textViewPerimetro.setText("P. Ext.= ");
                 textViewIx.setText("Ix' = " );
                 textViewIy.setText("Iy' = ");
-                textViewix.setText("ix = ");
-                textViewiy.setText("iy = ");
+                textViewix.setText("ix' = ");
+                textViewiy.setText("iy' = ");
                 textViewZx.setText("Zx' = ");
                 textViewZy.setText("Zy' = ");
                 textViewWx.setText("Wx' = ");

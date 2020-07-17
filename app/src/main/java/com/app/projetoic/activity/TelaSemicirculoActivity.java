@@ -107,8 +107,8 @@ public class TelaSemicirculoActivity extends AppCompatActivity {
                     String textModuloPlastico = Utils.arredondar(moduloPlastico);
                     textViewZx.setText("Zx' = "+textModuloPlastico);
                     textViewZy.setText("Zy' = "+textModuloPlastico);
-                    pdfCreator.addLine("Módulo plástico em x (Zx) = " + textModuloPlastico);
-                    pdfCreator.addLine("Módulo plástico em y (Zy) = " + textModuloPlastico);
+                    pdfCreator.addLine("Módulo plástico em x' (Zx') = " + textModuloPlastico);
+                    pdfCreator.addLine("Módulo plástico em y' (Zy') = " + textModuloPlastico);
 
                     //Módulo Elástico
                     double moduloElastico = (0.3927*Math.pow(medidaRaio,3));

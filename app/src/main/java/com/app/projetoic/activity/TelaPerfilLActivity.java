@@ -160,7 +160,7 @@ public class TelaPerfilLActivity extends AppCompatActivity {
 
                         pdfCreator.addLine("Raio de giração em x' (ix') = " + textRaioGiracaoX);
                         pdfCreator.addLine("Raio de giração em y' (iy') = " + textRaioGiracaoX);
-                        pdfCreator.addLine("Raio de giração em z' (iz') = " + textRaioGiracaoZ);
+                        pdfCreator.addLine("Raio de giração em z (iz) = " + textRaioGiracaoZ);
 
 
                         //Módulo plastico
@@ -220,7 +220,7 @@ public class TelaPerfilLActivity extends AppCompatActivity {
                 textViewIx.setText("Ix' = " );
                 textViewIy.setText("Iy' = ");
                 textViewix.setText("ix'=iy'= ");
-                textViewiy.setText("iz' = ");
+                textViewiy.setText("iz = ");
                 textViewZx.setText("Zx' = ");
                 textViewZy.setText("Zy' = ");
                 textViewWx.setText("Wx' = ");
