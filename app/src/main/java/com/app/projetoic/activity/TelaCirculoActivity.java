@@ -103,7 +103,7 @@ public class TelaCirculoActivity extends AppCompatActivity {
                     double area = (Math.PI * Math.pow(medidaRaio, 2));
                     textArea = "Área = " + Utils.arredondar(area);
                     textViewArea.setText( textArea);
-                    pdfCreator.addLine("Área = " + textArea);
+                    pdfCreator.addLine(textArea);
 
                     //Perímetro
                     double perimetro = (Math.PI * 2 * medidaRaio);

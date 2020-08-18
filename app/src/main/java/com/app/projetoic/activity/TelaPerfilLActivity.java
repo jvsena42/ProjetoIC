@@ -91,7 +91,7 @@ public class TelaPerfilLActivity extends AppCompatActivity {
 
                         //Instanciar PDFCreator
                         pdfCreator = new PDFCreator(getApplicationContext());
-                        pdfCreator.addLine("Alma (a) = " + textBase);
+                        pdfCreator.addLine("Aba (a) = " + textBase);
                         pdfCreator.addLine("Espessura (e) = " + textEspessura);
 
                         //Área
@@ -156,7 +156,7 @@ public class TelaPerfilLActivity extends AppCompatActivity {
                         String textRaioGiracaoX = Utils.arredondar(raioGiracaoX);
                         String textRaioGiracaoZ = Utils.arredondar(raioGiracaoZ);
                         textViewix.setText("ix'=iy'= " + textRaioGiracaoX);
-                        textViewiy.setText("iz' = " + textRaioGiracaoZ);
+                        textViewiy.setText("iz = " + textRaioGiracaoZ);
 
                         pdfCreator.addLine("Raio de giração em x' (ix') = " + textRaioGiracaoX);
                         pdfCreator.addLine("Raio de giração em y' (iy') = " + textRaioGiracaoX);
